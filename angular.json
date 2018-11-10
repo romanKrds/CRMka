@@ -23,8 +23,13 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/scss/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/scss"
+              ]
+            },
             "scripts": []
           },
           "configurations": {
@@ -124,14 +129,9 @@
     }
   },
   "defaultProject": "CRMka",
-  "schematicOptions": {
-    "type": "object",
-    "properties": {
-      "styleext": {
-        "description": "The file extension to be used for style files.",
-        "type": "string",
-        "default": "scss"
-      }
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
     }
   }
 }
