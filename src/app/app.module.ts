@@ -20,7 +20,7 @@ import { AppEffects } from './store/effects/app.effects';
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule, // for database
-    MaterialModules
+    MaterialModules,
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([AppEffects]),
   ],
