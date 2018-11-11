@@ -7,6 +7,10 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { MaterialModules } from './materials';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './store/reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { AppEffects } from './store/effects/app.effects';
 
 @NgModule({
   declarations: [
@@ -17,6 +21,8 @@ import { MaterialModules } from './materials';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule, // for database
     MaterialModules
+    StoreModule.forRoot(reducers, { metaReducers }),
+    EffectsModule.forRoot([AppEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent]
