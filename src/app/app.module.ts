@@ -4,8 +4,9 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+// import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { MaterialModules } from './materials.module';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './store/reducers';
@@ -19,8 +20,9 @@ import { AppEffects } from './store/effects/app.effects';
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule, // for database
-    MaterialModules
+    // AngularFireDatabaseModule, // for database
+    AngularFireDatabaseModule,
+    MaterialModules,
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([AppEffects]),
   ],
