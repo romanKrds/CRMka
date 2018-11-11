@@ -6,6 +6,7 @@ import { environment } from '../environments/environment';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { MaterialModules } from './materials';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule, // for database
+    MaterialModules
   ],
   providers: [],
   bootstrap: [AppComponent]
