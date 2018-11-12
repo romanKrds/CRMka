@@ -13,6 +13,29 @@ import { selectStateServices } from './store/selectors/services.selectors';
 export class AppComponent {
   title = 'CRMka';
   service;
+  sideNavMode = 'side'; // 'side' or 'over'
+  navList = [
+    {
+      path: '',
+      title:  'Home'
+    },
+    {
+      path: 'user',
+      title: 'User'
+    },
+    {
+      path: 'user/login',
+      title: 'Login'
+    },
+    {
+      path: 'user/register',
+      title: 'Register'
+    },
+    {
+      path: 'orders-dashboard',
+      title: 'Orders Dashboard'
+    }
+  ];
   constructor(private db: AngularFireDatabase, private state: Store<AppStore>) {
     this.state.dispatch(new GetServices());
 
