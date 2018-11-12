@@ -14,6 +14,9 @@ import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './store/effects/app.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
+import { CustomersEffectsService } from './store/effects/customers.effects';
+
+
 @NgModule({
   declarations: [
     AppComponent
@@ -27,6 +30,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([AppEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    EffectsModule.forRoot([CustomersEffectsService]),
   ],
   providers: [],
   bootstrap: [AppComponent]
