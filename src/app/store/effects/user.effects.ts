@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { UserActionTypes } from '../actions/user.actions
+import { UserActionTypes } from '../actions/user.actions';
 
 @Injectable()
 export class UserEffects {

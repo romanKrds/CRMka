@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { UserActions, UserActionTypes } from './store/actions/user.actions';
+import { UserActions, UserActionTypes } from '../actions/user.actions';
 
 export interface State {
 
