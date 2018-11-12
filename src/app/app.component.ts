@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { AppStore } from './models';
 import { GetServices } from './store/actions/services.actions';
 import { selectStateServices } from './store/selectors/services.selectors';
+import { GetUser } from './store/actions/user.actions';
 
 @Component({
   selector: 'app-root',
@@ -47,5 +48,7 @@ export class AppComponent {
     this.state
       .select(selectStateServices)
       .subscribe(value => console.log(value));
+
+    this.state.dispatch(new GetUser());
   }
 }

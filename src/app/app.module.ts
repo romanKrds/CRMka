@@ -14,6 +14,8 @@ import { AppEffects } from './store/effects/app.effects';
 import { ServiceEffects } from './store/effects/service.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppRoutingModule } from './app-routing.module';
+import { AuthEffects } from './store/effects/user.effects';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [
@@ -25,9 +27,10 @@ import { AppRoutingModule } from './app-routing.module';
     AngularFireModule.initializeApp(environment.firebase),
     // AngularFireDatabaseModule, // for database
     AngularFireDatabaseModule,
+    AngularFireAuthModule,
     MaterialModules,
     StoreModule.forRoot(reducers, { metaReducers }),
-    EffectsModule.forRoot([AppEffects, ServiceEffects]),
+    EffectsModule.forRoot([AppEffects, ServiceEffects, AuthEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   providers: [],

@@ -1,22 +1,70 @@
-import { Action } from '@ngrx/store';
-import { UserActions, UserActionTypes } from '../actions/user.actions';
+import { UserActions } from '../actions/user.actions';
+import { UserActionTypes } from '../constants/user.constants';
+import { UserState } from '../../models';
 
-export interface StateUser {
-
-}
-
-export const initialStateUser: StateUser = {
-
+export const initialUserState: UserState = {
+  user: {
+    uid: null,
+    displayName: 'Guest'
+  }
 };
 
-export function reducer(state = initialStateUser, action: UserActions): StateUser {
+export function reducer(
+  state = initialUserState,
+  action: UserActions
+): UserState {
   switch (action.type) {
+    case UserActionTypes.GetUser: {
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          loading: true
+        }
+      };
+    }
+    case UserActionTypes.Authenticated: {
+      return {
+        ...state,
+        user: {
+          ...action.payload,
+          loading: false
+        }
+      };
+    }
+    case UserActionTypes.NotAuthenticated: {
+      return {
+        ...state,
+        ...initialUserState
+      };
+    }
+    case UserActionTypes.GoogleLogin: {
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          loading: true
+        }
+      };
+    }
+    case UserActionTypes.AuthError: {
+      return {
+        ...state,
+        user: {
+          ...action.payload,
+          loading: false
+        }
+      };
+    }
+    case UserActionTypes.Logout: {
+      return {
+        ...state,
+        ...initialUserState
+      };
+    }
 
-    case UserActionTypes.LoadUsers:
+    default: {
       return state;
-
-
-    default:
-      return state;
+    }
   }
 }

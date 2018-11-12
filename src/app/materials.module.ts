@@ -19,7 +19,7 @@ const MODULES = [
   MatIconModule,
   MatToolbarModule,
   MatListModule,
-  MatButtonModule
+  MatButtonModule,
 ];
 
 @NgModule({
