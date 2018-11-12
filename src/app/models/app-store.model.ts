@@ -1,9 +1,9 @@
 import { StateServices } from './services-store.models';
-import { State } from '../store/reducers/user.reducer';
+import { StateUser } from '../store/reducers/user.reducer';
 
 // Todo check for elvis operator. Is required?
 export interface AppStore {
-  user: State;
+  user: StateUser;
   currentClient?: string;
   currentBusiness?: string;
   orders?: any;

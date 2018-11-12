@@ -1,15 +1,15 @@
 import { Action } from '@ngrx/store';
 import { UserActions, UserActionTypes } from '../actions/user.actions';
 
-export interface State {
+export interface StateUser {
 
 }
 
-export const initialState: State = {
+export const initialStateUser: StateUser = {
 
 };
 
-export function reducer(state = initialState, action: UserActions): State {
+export function reducer(state = initialStateUser, action: UserActions): StateUser {
   switch (action.type) {
 
     case UserActionTypes.LoadUsers:
