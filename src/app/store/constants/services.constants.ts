@@ -9,5 +9,6 @@ export enum ServicesActionTypes {
   UpdateServicess = '[Services] Update Servicess',
   DeleteServices = '[Services] Delete Services',
   DeleteServicess = '[Services] Delete Servicess',
-  ClearServicess = '[Services] Clear Servicess'
+  ClearServicess = '[Services] Clear Servicess',
+  ErrorServicess = '[Services] Error Servicess'
 }

@@ -5,7 +5,7 @@ import { ServicesActionTypes } from '../constants/services.constants';
 
 export class GetServices implements Action {
   readonly type = ServicesActionTypes.GetServices;
-  constructor() { }
+  constructor() {}
 }
 
 export class LoadServicess implements Action {
@@ -66,6 +66,12 @@ export class ClearServicess implements Action {
   readonly type = ServicesActionTypes.ClearServicess;
 }
 
+export class ErrorServicess implements Action {
+  readonly type = ServicesActionTypes.ErrorServicess;
+
+  constructor(public payload: { errors: string[] }) {}
+}
+
 export type ServicesActions =
   | GetServices
   | LoadServicess
@@ -77,4 +83,5 @@ export type ServicesActions =
   | UpdateServicess
   | DeleteServices
   | DeleteServicess
-  | ClearServicess;
+  | ClearServicess
+  | ErrorServicess;

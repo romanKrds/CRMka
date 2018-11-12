@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { AngularFireDatabase } from '@angular/fire/database';
-import { Observable } from 'rxjs';
-import { map, mergeMap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { map, mergeMap, catchError } from 'rxjs/operators';
 import { ServicesActionTypes } from '../constants/services.constants';
 import {
   AddServicess,
   AddServices,
   LoadServicess,
-  UpsertServicess
+  UpsertServicess,
+  ErrorServicess
 } from '../actions/services.actions';
 import { Action } from '@ngrx/store';
 import { Services } from '../../models';
@@ -28,7 +29,8 @@ export class ServicesEffects {
     }),
     map((service: Services[]) => {
       return new LoadServicess({ servicess: service });
-    })
+    }),
+    catchError(errors => of(new ErrorServicess({ errors })))
   );
 
   constructor(private actions$: Actions, private db: AngularFireDatabase) {}
