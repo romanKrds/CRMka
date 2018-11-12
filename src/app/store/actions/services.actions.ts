@@ -1,87 +1,87 @@
 import { Action } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
-import { Services } from '../../models/services.model';
+import { Service } from '../../models/service.model';
 import { ServicesActionTypes } from '../constants/services.constants';
 
 export class GetServices implements Action {
-  readonly type = ServicesActionTypes.GetServices;
+  readonly type = ServicesActionTypes.GetService;
   constructor() {}
 }
 
-export class LoadServicess implements Action {
-  readonly type = ServicesActionTypes.LoadServicess;
+export class LoadServices implements Action {
+  readonly type = ServicesActionTypes.LoadServices;
 
-  constructor(public payload: { servicess: Services[] }) {}
+  constructor(public payload: { services: Service[] }) {}
+}
+
+export class AddService implements Action {
+  readonly type = ServicesActionTypes.AddService;
+
+  constructor(public payload: { service: Service }) {}
+}
+
+export class UpsertService implements Action {
+  readonly type = ServicesActionTypes.UpsertService;
+
+  constructor(public payload: { service: Service }) {}
 }
 
 export class AddServices implements Action {
   readonly type = ServicesActionTypes.AddServices;
 
-  constructor(public payload: { services: Services }) {}
+  constructor(public payload: { services: Service[] }) {}
 }
 
 export class UpsertServices implements Action {
   readonly type = ServicesActionTypes.UpsertServices;
 
-  constructor(public payload: { services: Services }) {}
+  constructor(public payload: { services: Service[] }) {}
 }
 
-export class AddServicess implements Action {
-  readonly type = ServicesActionTypes.AddServicess;
+export class UpdateService implements Action {
+  readonly type = ServicesActionTypes.UpdateService;
 
-  constructor(public payload: { servicess: Services[] }) {}
-}
-
-export class UpsertServicess implements Action {
-  readonly type = ServicesActionTypes.UpsertServicess;
-
-  constructor(public payload: { servicess: Services[] }) {}
+  constructor(public payload: { service: Update<Service> }) {}
 }
 
 export class UpdateServices implements Action {
   readonly type = ServicesActionTypes.UpdateServices;
 
-  constructor(public payload: { services: Update<Services> }) {}
+  constructor(public payload: { services: Update<Service>[] }) {}
 }
 
-export class UpdateServicess implements Action {
-  readonly type = ServicesActionTypes.UpdateServicess;
+export class DeleteService implements Action {
+  readonly type = ServicesActionTypes.DeleteService;
 
-  constructor(public payload: { servicess: Update<Services>[] }) {}
+  constructor(public payload: { id: string }) {}
 }
 
 export class DeleteServices implements Action {
   readonly type = ServicesActionTypes.DeleteServices;
 
-  constructor(public payload: { id: string }) {}
-}
-
-export class DeleteServicess implements Action {
-  readonly type = ServicesActionTypes.DeleteServicess;
-
   constructor(public payload: { ids: string[] }) {}
 }
 
-export class ClearServicess implements Action {
-  readonly type = ServicesActionTypes.ClearServicess;
+export class ClearServices implements Action {
+  readonly type = ServicesActionTypes.ClearServices;
 }
 
-export class ErrorServicess implements Action {
-  readonly type = ServicesActionTypes.ErrorServicess;
+export class ErrorService implements Action {
+  readonly type = ServicesActionTypes.ErrorService;
 
   constructor(public payload: { errors: string[] }) {}
 }
 
 export type ServicesActions =
   | GetServices
-  | LoadServicess
+  | LoadServices
+  | AddService
+  | UpsertService
   | AddServices
   | UpsertServices
-  | AddServicess
-  | UpsertServicess
+  | UpdateService
   | UpdateServices
-  | UpdateServicess
+  | DeleteService
   | DeleteServices
-  | DeleteServicess
-  | ClearServicess
-  | ErrorServicess;
+  | ClearServices
+  | ErrorService;
