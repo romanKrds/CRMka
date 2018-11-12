@@ -4,9 +4,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule, MatProgressSpinnerModule } from '@angular/material';
 
 const MODULES = [
-    MatCardModule,
-    BrowserAnimationsModule,
-    MatProgressSpinnerModule
+  MatCardModule,
+  BrowserAnimationsModule,
+  MatProgressSpinnerModule
 ];
 
 @NgModule({
