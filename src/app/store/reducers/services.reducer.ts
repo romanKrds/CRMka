@@ -7,6 +7,7 @@ export const adapterServices: EntityAdapter<Services> = createEntityAdapter<Serv
 
 export const initialStateServices: StateServices = adapterServices.getInitialState({
     // additional entity state properties
+    errors: null
 });
 
 export function reducerServices(state = initialStateServices, action: ServicesActions): StateServices {
@@ -49,6 +50,13 @@ export function reducerServices(state = initialStateServices, action: ServicesAc
 
     case ServicesActionTypes.ClearServicess: {
       return adapterServices.removeAll(state);
+    }
+
+    case ServicesActionTypes.ErrorServicess: {
+      return {
+        ...state,
+          errors: [...state.errors, ...action.payload.errors]
+      };
     }
 
     default: {
