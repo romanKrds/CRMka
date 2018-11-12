@@ -1,14 +1,14 @@
 export enum ServicesActionTypes {
-  GetServices = '[Services] Get Servicess',
-  LoadServicess = '[Services] Load Servicess',
-  AddServices = '[Services] Add Services',
-  UpsertServices = '[Services] Upsert Services',
-  AddServicess = '[Services] Add Servicess',
-  UpsertServicess = '[Services] Upsert Servicess',
-  UpdateServices = '[Services] Update Services',
-  UpdateServicess = '[Services] Update Servicess',
-  DeleteServices = '[Services] Delete Services',
-  DeleteServicess = '[Services] Delete Servicess',
-  ClearServicess = '[Services] Clear Servicess',
-  ErrorServicess = '[Services] Error Servicess'
+  GetService = '[Service] Get Services',
+  LoadServices = '[Service] Load Services',
+  AddService = '[Service] Add Service',
+  UpsertService = '[Service] Upsert Service',
+  AddServices = '[Service] Add Services',
+  UpsertServices = '[Service] Upsert Services',
+  UpdateService = '[Service] Update Service',
+  UpdateServices = '[Service] Update Services',
+  DeleteService = '[Service] Delete Service',
+  DeleteServices = '[Service] Delete Services',
+  ClearServices = '[Service] Clear Services',
+  ErrorService = '[Service] Error Service'
 }

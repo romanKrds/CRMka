@@ -5,32 +5,32 @@ import { Observable, of } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 import { ServicesActionTypes } from '../constants/services.constants';
 import {
-  AddServicess,
   AddServices,
-  LoadServicess,
-  UpsertServicess,
-  ErrorServicess
+  AddService,
+  LoadServices,
+  UpsertServices,
+  ErrorService
 } from '../actions/services.actions';
 import { Action } from '@ngrx/store';
-import { Services } from '../../models';
+import { Service } from '../../models';
 
 @Injectable()
-export class ServicesEffects {
+export class ServiceEffects {
   @Effect()
   loadServices$: Observable<Action> = this.actions$.pipe(
-    ofType(ServicesActionTypes.GetServices),
-    mergeMap(_ => this.db.list<Services>('/services').snapshotChanges()),
-    map(a => {
-      return a.map(b => {
-        const data = b.payload.val();
-        const id = b.payload.key;
+    ofType(ServicesActionTypes.GetService),
+    mergeMap(_ => this.db.list<Service>('/services').snapshotChanges()),
+    map(list => {
+      return list.map(service => {
+        const data = service.payload.val();
+        const id = service.payload.key;
         return { id, ...data };
       });
     }),
-    map((service: Services[]) => {
-      return new LoadServicess({ servicess: service });
+    map((services: Service[]) => {
+      return new LoadServices({ services });
     }),
-    catchError(errors => of(new ErrorServicess({ errors })))
+    catchError(errors => of(new ErrorService({ errors })))
   );
 
   constructor(private actions$: Actions, private db: AngularFireDatabase) {}

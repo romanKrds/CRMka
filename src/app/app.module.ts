@@ -12,7 +12,7 @@ import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './store/reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './store/effects/app.effects';
-import { ServicesEffects } from './store/effects/services.effects';
+import { ServiceEffects } from './store/effects/service.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
@@ -26,8 +26,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     AngularFireDatabaseModule,
     MaterialModules,
     StoreModule.forRoot(reducers, { metaReducers }),
-    EffectsModule.forRoot([AppEffects]),
-    EffectsModule.forFeature([ServicesEffects]),
+    EffectsModule.forRoot([AppEffects, ServiceEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   providers: [],

@@ -1,9 +1,9 @@
 import { createEntityAdapter, EntityAdapter } from '@ngrx/entity';
 import { ServicesActions } from '../actions/services.actions';
 import { ServicesActionTypes } from '../constants/services.constants';
-import { Services, StateServices } from '../../models';
+import { Service, StateServices } from '../../models';
 
-export const adapterServices: EntityAdapter<Services> = createEntityAdapter<Services>({});
+export const adapterServices: EntityAdapter<Service> = createEntityAdapter<Service>({});
 
 export const initialStateServices: StateServices = adapterServices.getInitialState({
     // additional entity state properties
@@ -12,47 +12,47 @@ export const initialStateServices: StateServices = adapterServices.getInitialSta
 
 export function reducerServices(state = initialStateServices, action: ServicesActions): StateServices {
   switch (action.type) {
+    case ServicesActionTypes.AddService: {
+      return adapterServices.addOne(action.payload.service, state);
+    }
+
+    case ServicesActionTypes.UpsertService: {
+      return adapterServices.upsertOne(action.payload.service, state);
+    }
+
     case ServicesActionTypes.AddServices: {
-      return adapterServices.addOne(action.payload.services, state);
+      return adapterServices.addMany(action.payload.services, state);
     }
 
     case ServicesActionTypes.UpsertServices: {
-      return adapterServices.upsertOne(action.payload.services, state);
+      return adapterServices.upsertMany(action.payload.services, state);
     }
 
-    case ServicesActionTypes.AddServicess: {
-      return adapterServices.addMany(action.payload.servicess, state);
-    }
-
-    case ServicesActionTypes.UpsertServicess: {
-      return adapterServices.upsertMany(action.payload.servicess, state);
+    case ServicesActionTypes.UpdateService: {
+      return adapterServices.updateOne(action.payload.service, state);
     }
 
     case ServicesActionTypes.UpdateServices: {
-      return adapterServices.updateOne(action.payload.services, state);
+      return adapterServices.updateMany(action.payload.services, state);
     }
 
-    case ServicesActionTypes.UpdateServicess: {
-      return adapterServices.updateMany(action.payload.servicess, state);
-    }
-
-    case ServicesActionTypes.DeleteServices: {
+    case ServicesActionTypes.DeleteService: {
       return adapterServices.removeOne(action.payload.id, state);
     }
 
-    case ServicesActionTypes.DeleteServicess: {
+    case ServicesActionTypes.DeleteServices: {
       return adapterServices.removeMany(action.payload.ids, state);
     }
 
-    case ServicesActionTypes.LoadServicess: {
-      return adapterServices.addAll(action.payload.servicess, state);
+    case ServicesActionTypes.LoadServices: {
+      return adapterServices.addAll(action.payload.services, state);
     }
 
-    case ServicesActionTypes.ClearServicess: {
+    case ServicesActionTypes.ClearServices: {
       return adapterServices.removeAll(state);
     }
 
-    case ServicesActionTypes.ErrorServicess: {
+    case ServicesActionTypes.ErrorService: {
       return {
         ...state,
           errors: [...state.errors, ...action.payload.errors]
