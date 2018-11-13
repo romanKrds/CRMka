@@ -3,6 +3,8 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { AppStore } from './models/app-store.model';
 import { CustomersActionTypes } from './store/constants/customer.constants';
 import { Store } from '@ngrx/store';
+import { GetServices } from './store/actions/services.actions';
+import { selectStateServices } from './store/selectors/services.selectors';
 
 @Component({
   selector: 'app-root',
@@ -12,9 +14,9 @@ import { Store } from '@ngrx/store';
 export class AppComponent {
   title = 'CRMka';
 
-  constructor (
-    private db: AngularFireDatabase, private store: Store<AppStore>
-  ) {
+  constructor(private db: AngularFireDatabase, private store: Store<AppStore>) {
+    this.store.dispatch(new GetServices());
+
 
     // this.db.list('/customers').valueChanges()
     // .subscribe(
@@ -30,5 +32,14 @@ export class AppComponent {
     this.store.dispatch({
       type: CustomersActionTypes.LOAD_CUSTOMERS,
     });
+
+    this.db
+      .list('/clients')
+      .valueChanges()
+      .subscribe(value => console.log(value));
+
+    this.store
+      .select(selectStateServices)
+      .subscribe(value => console.log(value));
   }
 }
