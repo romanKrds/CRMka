@@ -19,7 +19,7 @@ export class OrderEffects {
   orders$: Observable<Action> = this.actions$.pipe(
     ofType(ordersActionTypes.LOAD),
     mergeMap(() =>
-      this.db.list('/orders1').valueChanges().pipe(
+      this.db.list('/orders').valueChanges().pipe(
         map((orders: Order[]) => new OrdersLoadSuccess(orders)),
         catchError(() => of(new OrdersLoadFiled()))
       )

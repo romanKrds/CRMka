@@ -28,7 +28,7 @@ import { OrderEffects } from './store/effects/order.effects';
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([
       AppEffects,
-      OrderEffects
+      // OrderEffects
     ]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
