@@ -20,7 +20,7 @@ export class AuthEffects {
     map(authData => {
       if (authData) {
         const {uid, displayName} = authData;
-        return new userActions.Authenticated({uid, displayName});
+        return new userActions.Authenticated(authData);
       } else {
         return new userActions.NotAuthenticated();
       }

@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
-import { User } from '../../models/user.model';
 import { UserActionTypes } from '../constants/user.constants';
+import { User } from '../../models';
 
 export class GetUser implements Action {
   readonly type = UserActionTypes.GetUser;
@@ -8,7 +8,7 @@ export class GetUser implements Action {
 }
 export class Authenticated implements Action {
   readonly type = UserActionTypes.Authenticated;
-  constructor(public payload?: any) {}
+  constructor(public payload: User) {}
 }
 export class NotAuthenticated implements Action {
   readonly type = UserActionTypes.NotAuthenticated;
