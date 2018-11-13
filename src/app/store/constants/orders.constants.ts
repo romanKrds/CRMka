@@ -1,5 +1,5 @@
 export enum OrderActionTypes {
-  GetOrder = '[Order] Get Orders',
+  GetOrders = '[Order] Get Orders',
   LoadOrders = '[Order] Load Orders',
   AddOrder = '[Order] Add Order',
   UpsertOrder = '[Order] Upsert Order',
