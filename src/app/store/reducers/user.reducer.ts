@@ -2,14 +2,19 @@ import { UserActions } from '../actions/user.actions';
 import { UserActionTypes } from '../constants/user.constants';
 import { UserState } from '../../models';
 
+// TODO: Как проинициализировать пользователя если мне нужно только DisplayName и uid=null а самого пользователя я беру из Базы FireBase
 export const initialUserState: UserState = {
   user: {
     uid: null,
+    email: null,
+    phoneNumber: null,
+    photoURL: null,
+    providerId: null,
     displayName: 'Guest'
   }
 };
 
-export function reducer(
+export function reducerUser(
   state = initialUserState,
   action: UserActions
 ): UserState {
@@ -48,10 +53,12 @@ export function reducer(
       };
     }
     case UserActionTypes.AuthError: {
+      console.log(action);
       return {
         ...state,
         user: {
-          ...action.payload,
+          ...state.user,
+          error: action.payload.error,
           loading: false
         }
       };

@@ -8,13 +8,13 @@ import {
 import { environment } from '../../../environments/environment';
 import { AppStore } from 'src/app/models';
 import { reducerServices } from './services.reducer';
-import * as fromUser from './user.reducer';
+import { reducerUser } from './user.reducer';
 
 export const reducers: ActionReducerMap<AppStore> = {
 
   services: reducerServices,
 
-  user: fromUser.reducer,
+  user: reducerUser,
 };
 
 
