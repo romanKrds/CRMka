@@ -19,7 +19,24 @@ export class getStatusByIdError implements Action {
   constructor(public payload: any) {}
 }
 
+export class getStatuses implements Action {
+  readonly type = statusesActionTypes.LOAD_STATUSES_TYPES;
+  constructor() {}
+}
+
+export class getStatusesSuccess implements Action {
+  readonly type = statusesActionTypes.LOAD_STATUSES_TYPES_SUCCESS;
+  constructor(public payload: any) {}
+}
+
+export class getStatusesError implements Action {
+  readonly type = statusesActionTypes.LOAD_STATUSES_TYPES_ERROR;
+  constructor() {}
+}
+
 export type statusesActions = 
   getStatusById         |
   getStatusByIdSuccess  |
-  getStatusByIdError;
+  getStatusByIdError    |
+  getStatusesSuccess    |
+  getStatusesError;
