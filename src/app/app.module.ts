@@ -13,11 +13,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './store/effects/app.effects';
 import { ServiceEffects } from './store/effects/service.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-<<<<<<< HEAD
 import { OrderEffects } from './store/effects/order.effects';
-=======
 import { AppRoutingModule } from './app-routing.module';
->>>>>>> upstream/dev
 
 @NgModule({
   declarations: [
