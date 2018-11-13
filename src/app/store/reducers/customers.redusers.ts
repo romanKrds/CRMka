@@ -3,7 +3,7 @@ import { initialState, customerAdapter } from 'src/app/models/customer.state';
 import { CustomersActionTypes } from '../constants/customer.constants';
 import { State } from '../../models/customer.state';
 
-export function reducer(state = initialState, action: CustomersActionsUnion): State {
+export function customersReducer(state = initialState, action: CustomersActionsUnion): State {
     switch (action.type) {
 
         case CustomersActionTypes.LOAD_CUSTOMERS: {
