@@ -1,24 +1,24 @@
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-import { Order } from '@models/index';
+import { Order, Orders } from '@models/index';
 import { OrderActions } from '../actions/order.actions';
 import { OrderActionTypes } from '../constants/orders.constants';
 
 
 
-export interface State extends EntityState<Order> {
-  // additional entities state properties
-}
+// export interface State extends EntityState<Order> {
+//   // additional entities state properties
+// }
 
 export const orderAdapter: EntityAdapter<Order> = createEntityAdapter<Order>();
 
-export const initialState: State = orderAdapter.getInitialState({
+export const initialState: Orders = orderAdapter.getInitialState({
   // additional entity state properties
 });
 
 export function ordersReducer(
   state = initialState,
   action: OrderActions
-): State {
+): Orders {
   switch (action.type) {
     case OrderActionTypes.AddOrder: {
       return orderAdapter.addOne(action.payload.order, state);
