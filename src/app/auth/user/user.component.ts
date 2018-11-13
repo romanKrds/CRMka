@@ -3,6 +3,7 @@ import { User, AppStore } from 'src/app/models';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { GetUser, GoogleLogin, Logout } from 'src/app/store/actions/user.actions';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-user',
@@ -13,7 +14,7 @@ export class UserComponent implements OnInit {
 
   user$: Observable<User>;
 
-  constructor(private state: Store<AppStore>) { }
+  constructor(private state: Store<AppStore>, public snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.user$ = this.state.select(state => state.user.user);
@@ -28,6 +29,10 @@ export class UserComponent implements OnInit {
     this.state.dispatch(new Logout());
   }
 
-  getErrorMessage() {}
+  getErrorMessage() {
+    this.snackBar.open('Message archived', 'Undo', {
+      duration: 3000
+    });
+  }
 
 }
