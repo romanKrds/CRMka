@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
-import { AppStore } from './models/models';
 import { Store } from '@ngrx/store';
-import { OrdersLoad } from './store/actions/order.actions';
-import { ordersActionTypes } from './store/constants/order.constants';
-import { mergeMap, map } from 'rxjs/operators';
-import { Order } from './models/order.model';
+import { AppStore } from './models';
+import { GetServices } from './store/actions/services.actions';
+import { selectStateServices } from './store/selectors/services.selectors';
 
 @Component({
   selector: 'app-root',
@@ -14,23 +12,17 @@ import { Order } from './models/order.model';
 })
 export class AppComponent {
   title = 'CRMka';
+  service;
+  constructor(private db: AngularFireDatabase, private state: Store<AppStore>) {
+    this.state.dispatch(new GetServices());
 
-  constructor(
-    private db: AngularFireDatabase,
-    private store: Store<AppStore>
-  ) {
-    console.log('sdfsd');
-    // this.store.dispatch(new OrdersLoad());
-    // this.db.list('/orders').valueChanges().pipe(
-    //   map((orders: Order[]) => this.store.dispatch({
-    //     type: ordersActionTypes.LOAD_SUCCESS,
-    //     payload: orders
-    //   }))
-    // );
+    this.db
+      .list('/clients')
+      .valueChanges()
+      .subscribe(value => console.log(value));
 
-    // this.store.dispatch({
-    //   type: ordersActionTypes.LOAD_SUCCESS,
-    //   payload: []
-    // });
+    this.state
+      .select(selectStateServices)
+      .subscribe(value => console.log(value));
   }
 }
