@@ -1,5 +1,5 @@
-import { StatusesState } from "./statuses.model";
 import { StateServices } from './services-store.models';
+import { StatusesState } from "./statuses-store.models";
 
 // Todo check for elvis operator. Is required?
 export interface AppStore {
