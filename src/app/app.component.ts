@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AppStore } from './models/app-store.model';
-import { CustomersActionTypes } from './store/constants/customer.constants';
+import { CustomerActionTypes } from './store/constants/customer.constants';
 import { Store } from '@ngrx/store';
 import { GetServices } from './store/actions/services.actions';
 import { selectStateServices } from './store/selectors/services.selectors';
@@ -30,7 +30,7 @@ export class AppComponent {
 
 
     this.store.dispatch({
-      type: CustomersActionTypes.LOAD_CUSTOMERS,
+      type: CustomerActionTypes.GetCustomers,
     });
 
     this.db

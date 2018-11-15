@@ -16,6 +16,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppRoutingModule } from './app-routing.module';
 
 import { CustomersEffectsService } from './store/effects/customers.effects';
+import * as fromCustomer from './store/reducers/customer.reducer';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { CustomersEffectsService } from './store/effects/customers.effects';
     EffectsModule.forRoot([AppEffects, ServiceEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([CustomersEffectsService]),
+    StoreModule.forFeature('customer', fromCustomer.reducer),
   ],
   providers: [],
   bootstrap: [AppComponent]
