@@ -5,10 +5,10 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { startWith, switchMap, catchError, map, mergeMap, tap } from 'rxjs/operators';
 
-import { CustomersActionTypes } from '../constants/customer.constants';
+import { CustomerActionTypes } from '../constants/customer.constants';
 import * as customersActions from '../actions/customer.actions';
 import { Customer } from 'src/app/models/customer.model';
-import { CustomersLoadSuccess } from '../actions/customer.actions';
+// import { CustomersLoadSuccess } from '../actions/customer.actions';
 
 
 @Injectable()
@@ -18,7 +18,7 @@ export class CustomersEffectsService {
 
     @Effect()
     loadCustomersEffect$: Observable<Action> = this.actions$.pipe(
-            ofType(CustomersActionTypes.LOAD_CUSTOMERS),
+            ofType(CustomerActionTypes.GetCustomers),
             mergeMap(() => this.db.list<Customer>('/customers').snapshotChanges().pipe(
                     // If successful, dispatch success action with result
                     map(data => {
@@ -33,13 +33,13 @@ export class CustomersEffectsService {
 //                        payload: data
                     }),
                     map((customer: Customer[]) => {
-                        return new CustomersLoadSuccess({ data: customer });
+                        return new customersActions.LoadCustomers({ customers: customer });
                     }),
                     // If request fails, dispatch failed action
-                    catchError(_ => of({
-                        type: CustomersActionTypes.LOAD_CUSTOMERS_FAILED,
-                        payload: []
-                    })),
+                    // catchError(_ => of({
+                    //     type: CustomersActionTypes.LOAD_CUSTOMERS_FAILED,
+                    //     payload: []
+                    // })),
                     tap(data => console.log('loadCustomerEffect', data))
                 )
             )
