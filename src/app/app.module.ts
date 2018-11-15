@@ -14,8 +14,6 @@ import { AppEffects } from './store/effects/app.effects';
 import { ServiceEffects } from './store/effects/service.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppRoutingModule } from './app-routing.module';
-import { StatusesEffects } from './store/effects/statuses.effects';
-
 @NgModule({
   declarations: [
     AppComponent
@@ -28,7 +26,7 @@ import { StatusesEffects } from './store/effects/statuses.effects';
     AngularFireDatabaseModule,
     MaterialModules,
     StoreModule.forRoot(reducers, { metaReducers }),
-    EffectsModule.forRoot([AppEffects, ServiceEffects, StatusesEffects]),
+    EffectsModule.forRoot([AppEffects, ServiceEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   providers: [],
