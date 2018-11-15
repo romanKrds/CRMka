@@ -25,7 +25,7 @@ export class CustomersEffectsService {
                         return data.map(value => {
                             const dat = value.payload.val();
                             const id = value.payload.key;
-                           // console.log(id, dat);
+                            // console.log({id, ...dat});
                             return { id, ...dat};
 
                         });

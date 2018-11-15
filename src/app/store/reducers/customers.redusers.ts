@@ -15,7 +15,7 @@ export function customersReducer(state = initialState, action: CustomersActionsU
         }
 
         case CustomersActionTypes.LOAD_CUSTOMERS_SUCCESS: {
-            console.log('reducer LOAD_CUSTOMERS_SUCCESS');
+            console.log('reducer LOAD_CUSTOMERS_SUCCESS', action.payload.data);
             // adapterServices.addAll(action.payload.servicess, state);
             return customerAdapter.addAll(action.payload.data, {
                 ...state,
