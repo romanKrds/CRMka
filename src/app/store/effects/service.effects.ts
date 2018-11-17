@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { AngularFireDatabase } from '@angular/fire/database';
-import { ServicesActionTypes } from '@constants/index';
-import { LoadServicesSuccess, ErrorService } from '@actions/index';
-import { Service } from '@models/index';
+import { ServicesActionTypes } from '@constants/*';
+import { LoadServicesSuccess, ErrorService } from '@actions/*';
+import { Service } from '@models/*';
 import { Observable, of } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 

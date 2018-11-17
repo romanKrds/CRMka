@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
-import { Service } from '@models/index';
-import { ServicesActionTypes } from '@constants/index';
+import { Service } from '@models/*';
+import { ServicesActionTypes } from '@constants/*';
 
 export class LoadServices implements Action {
   readonly type = ServicesActionTypes.LoadServices;

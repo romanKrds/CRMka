@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Store } from '@ngrx/store';
 
-import { AppStore, OrdersState } from '@models/index';
+import { AppStore, OrdersState } from '@models/*';
 
-import { LoadStatuses, LoadOrders, LoadServices } from '@actions/index';
-import { selectStateServices, selectStatusesAsArray} from '@selectors/index';
+import { LoadStatuses, LoadOrders, LoadServices } from '@actions/*';
+import { selectStateServices, selectStatusesAsArray} from '@selectors/*';
 
 
 

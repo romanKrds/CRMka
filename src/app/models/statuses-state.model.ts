@@ -1,5 +1,5 @@
-import { Status } from './status.model';
 import { EntityState } from '@ngrx/entity';
+import { Status } from '@models/*';
 
 export interface StatusesState extends EntityState<Status> {
   // additional entities state properties

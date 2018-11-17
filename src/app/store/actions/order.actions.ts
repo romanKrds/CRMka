@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
-import { Order } from '@models/index';
-import { OrderActionTypes } from '@constants/index';
+import { Order } from '@models/*';
+import { OrderActionTypes } from '@constants/*';
 
 
 export class LoadOrders implements Action {

@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
-import { Status } from '@models/index';
-import { StatusesActionTypes } from '@constants/index';
+import { Status } from '@models/*';
+import { StatusesActionTypes } from '@constants/*';
 
 export class LoadStatuses implements Action {
   readonly type = StatusesActionTypes.LoadStatuses;
