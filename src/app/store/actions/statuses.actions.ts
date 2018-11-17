@@ -1,14 +1,14 @@
 import { Action } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
-import { Status } from '../../models/status.model';
-import { StatusesActionTypes } from '../constants/statuses.constants';
-
-export class GetStatuses implements Action {
-  readonly type = StatusesActionTypes.GetStatuses
-}
+import { Status } from '@models/index';
+import { StatusesActionTypes } from '@constants/index';
 
 export class LoadStatuses implements Action {
   readonly type = StatusesActionTypes.LoadStatuses;
+}
+
+export class LoadStatusesSuccess implements Action {
+  readonly type = StatusesActionTypes.LoadStatusesSuccess;
 
   constructor(public payload: { statuses: Status[] }) {}
 }
@@ -65,9 +65,15 @@ export class ClearStatuss implements Action {
   readonly type = StatusesActionTypes.ClearStatuss;
 }
 
+export class ErrorStatuses implements Action {
+  readonly type = StatusesActionTypes.ErrorStatuses;
+
+  constructor(public payload: { errors: string[] }) {}
+}
+
 export type StatusActions =
-GetStatuses
- | LoadStatuses
+LoadStatuses
+ | LoadStatusesSuccess
  | AddStatus
  | UpsertStatus
  | AddStatuss
@@ -76,4 +82,5 @@ GetStatuses
  | UpdateStatuss
  | DeleteStatus
  | DeleteStatuss
- | ClearStatuss;
+ | ClearStatuss
+ | ErrorStatuses;

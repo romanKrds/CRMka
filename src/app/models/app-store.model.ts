@@ -1,5 +1,5 @@
 import { StateServices } from './services-store.models';
-import { StatusesState } from "./statuses-store.models";
+import { StatusesState } from './statuses-state.model';
 import { Orders } from '@models/index';
 
 

@@ -3,7 +3,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { Store } from '@ngrx/store';
 
 import { AppStore, Orders, } from '@models/index';
-import { GetStatuses } from './store/actions/statuses.actions';
+import { LoadStatuses } from './store/actions/statuses.actions';
 import { GetOrders } from './store/actions/order.actions';
 import { GetServices } from './store/actions/services.actions';
 import { selectStateServices } from './store/selectors/services.selectors';
@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.store.dispatch(new GetOrders());
-    this.store.dispatch(new GetStatuses());
+    this.store.dispatch(new LoadStatuses());
     this.store.dispatch(new GetServices());
 
     this.store.select('orders').subscribe(
