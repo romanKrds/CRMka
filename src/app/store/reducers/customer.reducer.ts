@@ -2,16 +2,17 @@ import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { Customer } from '../../models/customer.model';
 import { CustomerActions  } from '../actions/customer.actions';
 import { CustomerActionTypes } from '../constants/customer.constants';
+import { initialState, State, customerAdapter } from '@models/customer.state';
 
-export interface State extends EntityState<Customer> {
-  // additional entities state properties
-}
+// export interface State extends EntityState<Customer> {
+//   // additional entities state properties
+// }
 
-export const adapter: EntityAdapter<Customer> = createEntityAdapter<Customer>();
+// export const adapter: EntityAdapter<Customer> = createEntityAdapter<Customer>();
 
-export const initialState: State = adapter.getInitialState({
-  // additional entity state properties
-});
+// export const initialState: State = adapter.getInitialState({
+//   // additional entity state properties
+// });
 
 export function reducer(
   state = initialState,
@@ -19,43 +20,44 @@ export function reducer(
 ): State {
   switch (action.type) {
     case CustomerActionTypes.AddCustomer: {
-      return adapter.addOne(action.payload.customer, state);
+      return customerAdapter.addOne(action.payload.customer, state);
     }
 
     case CustomerActionTypes.UpsertCustomer: {
-      return adapter.upsertOne(action.payload.customer, state);
+      return customerAdapter.upsertOne(action.payload.customer, state);
     }
 
     case CustomerActionTypes.AddCustomers: {
-      return adapter.addMany(action.payload.customers, state);
+      return customerAdapter.addMany(action.payload.customers, state);
     }
 
     case CustomerActionTypes.UpsertCustomers: {
-      return adapter.upsertMany(action.payload.customers, state);
+      return customerAdapter.upsertMany(action.payload.customers, state);
     }
 
     case CustomerActionTypes.UpdateCustomer: {
-      return adapter.updateOne(action.payload.customer, state);
+      return customerAdapter.updateOne(action.payload.customer, state);
     }
 
     case CustomerActionTypes.UpdateCustomers: {
-      return adapter.updateMany(action.payload.customers, state);
+      return customerAdapter.updateMany(action.payload.customers, state);
     }
 
     case CustomerActionTypes.DeleteCustomer: {
-      return adapter.removeOne(action.payload.id, state);
+      return customerAdapter.removeOne(action.payload.id, state);
     }
 
     case CustomerActionTypes.DeleteCustomers: {
-      return adapter.removeMany(action.payload.ids, state);
+      return customerAdapter.removeMany(action.payload.ids, state);
     }
 
     case CustomerActionTypes.LoadCustomers: {
-      return adapter.addAll(action.payload.customers, state);
+      console.log('Load Customers reducer', action, state);
+      return customerAdapter.addAll(action.payload.customers, state);
     }
 
     case CustomerActionTypes.ClearCustomers: {
-      return adapter.removeAll(state);
+      return customerAdapter.removeAll(state);
     }
 
     default: {
@@ -69,4 +71,4 @@ export const {
   selectEntities,
   selectAll,
   selectTotal,
-} = adapter.getSelectors();
+} = customerAdapter.getSelectors();

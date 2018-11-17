@@ -12,8 +12,7 @@ import { Customer } from 'src/app/models/customer.model';
 
 
 @Injectable()
-export class CustomersEffectsService {
-
+export class CustomersEffects {
 
 
     @Effect()
@@ -33,6 +32,7 @@ export class CustomersEffectsService {
 //                        payload: data
                     }),
                     map((customer: Customer[]) => {
+                        console.log('effect');
                         return new customersActions.LoadCustomers({ customers: customer });
                     }),
                     // If request fails, dispatch failed action
