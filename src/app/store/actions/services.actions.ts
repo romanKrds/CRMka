@@ -1,15 +1,15 @@
 import { Action } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
-import { Service } from '../../models/service.model';
-import { ServicesActionTypes } from '../constants/services.constants';
-
-export class GetServices implements Action {
-  readonly type = ServicesActionTypes.GetService;
-  constructor() {}
-}
+import { Service } from '@models/index';
+import { ServicesActionTypes } from '@constants/index';
 
 export class LoadServices implements Action {
   readonly type = ServicesActionTypes.LoadServices;
+  constructor() {}
+}
+
+export class LoadServicesSuccess implements Action {
+  readonly type = ServicesActionTypes.LoadServicesSuccess;
 
   constructor(public payload: { services: Service[] }) {}
 }
@@ -73,8 +73,8 @@ export class ErrorService implements Action {
 }
 
 export type ServicesActions =
-  | GetServices
   | LoadServices
+  | LoadServicesSuccess
   | AddService
   | UpsertService
   | AddServices
