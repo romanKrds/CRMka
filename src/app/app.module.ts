@@ -1,3 +1,4 @@
+import { StatusesEffects } from './store/effects/statuses.effects';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -15,9 +16,10 @@ import { ServiceEffects } from './store/effects/service.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppRoutingModule } from './app-routing.module';
 
-import { CustomersEffects } from './store/effects/customers.effects';
-import * as fromCustomer from './store/reducers/customer.reducer';
+import { OrdersEffects } from './store/effects/orders.effects';
 
+import { CustomersEffects } from './store/effects/customers.effects';
+// import * as fromOrder from './order.reducer';
 
 @NgModule({
   declarations: [
@@ -31,10 +33,9 @@ import * as fromCustomer from './store/reducers/customer.reducer';
     AngularFireDatabaseModule,
     MaterialModules,
     StoreModule.forRoot(reducers, { metaReducers }),
-    EffectsModule.forRoot([AppEffects, ServiceEffects, CustomersEffects]),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot([CustomersEffects]),
-    // StoreModule.forFeature('customer', fromCustomer.reducer),
+
+    EffectsModule.forRoot([AppEffects, ServiceEffects, StatusesEffects, OrdersEffects, CustomersEffects]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]

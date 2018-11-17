@@ -1,15 +1,15 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
-import { StateServices } from '../../models';
-import { adapterServices } from '../reducers/services.reducer';
+import { ServicesState } from '@models/*';
+import { servicesAdapter } from '../reducers/services.reducer';
 
-export const selectStateServices = createFeatureSelector<StateServices>('services');
+export const selectStateServices = createFeatureSelector<ServicesState>('services');
 
-export const {
+const {
   selectIds,
   selectEntities,
   selectAll,
   selectTotal
-} = adapterServices.getSelectors();
+} = servicesAdapter.getSelectors();
 
 export const selectServicesIds = createSelector(
   selectStateServices,

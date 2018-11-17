@@ -18,7 +18,10 @@
       "dom"
     ],
     "paths": {
-      "@models/*": ["src/app/models/*"]
+      "@models/*": ["src/app/models/index.ts"],
+      "@constants/*": ["src/app/store/constants/index.ts"],
+      "@actions/*": ["src/app/store/actions/index.ts"],
+      "@selectors/*": ["src/app/store/selectors/index.ts"]
     }
   }
 }

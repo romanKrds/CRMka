@@ -1,14 +1,15 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
-import { customerAdapter, State } from '@models/customer.state';
+import { CustomersState } from '@models/*';
+import { customersAdapter } from '../reducers/customers.reducer';
 
-export const selectStateCustomers = createFeatureSelector<State>('customers');
+export const selectStateCustomers = createFeatureSelector<CustomersState>('customers');
 
 export const {
     selectIds,
     selectEntities,
     selectAll,
     selectTotal,
-} = customerAdapter.getSelectors();
+} = customersAdapter.getSelectors();
 
 
 export const selectServicesIds = createSelector(

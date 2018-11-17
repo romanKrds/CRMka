@@ -1,13 +1,14 @@
-import { StateServices } from './services-store.models';
+
+import { OrdersState, ServicesState, StatusesState, CustomersState } from '@models/*';
 
 // Todo check for elvis operator. Is required?
-import * as customerStoreState from './customer.state';
+import * as customerStoreState from './customers-state.model';
 
 export interface AppStore {
   currentClient?: string;
   currentBusiness?: string;
-  orders?: any;
-  customers?: customerStoreState.State;
-  services?: StateServices;
-  states?: any;
+  orders: OrdersState;
+  customers: CustomersState;
+  statuses: StatusesState;
+  services: ServicesState;
 }
