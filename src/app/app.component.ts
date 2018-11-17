@@ -5,9 +5,8 @@ import { Store } from '@ngrx/store';
 import { AppStore, Orders, } from '@models/index';
 
 import { LoadStatuses, GetOrders, LoadServices } from '@actions/index';
-// TODO: add aliase path for selectors
-import { selectStateServices } from './store/selectors/services.selectors';
-import { selectStatusesAsArray } from './store/selectors/statuses.selectors';
+import { selectStateServices, selectStatusesAsArray} from '@selectors/index';
+
 
 
 @Component({

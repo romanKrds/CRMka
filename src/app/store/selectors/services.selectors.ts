@@ -4,7 +4,7 @@ import { servicesAdapter } from '../reducers/services.reducer';
 
 export const selectStateServices = createFeatureSelector<StateServices>('services');
 
-export const {
+const {
   selectIds,
   selectEntities,
   selectAll,
