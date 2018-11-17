@@ -1,3 +1,4 @@
+import { StatusesEffects } from './store/effects/statuses.effects';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -29,9 +30,8 @@ import { OrdersEffects } from './store/effects/orders.effects';
     AngularFireDatabaseModule,
     MaterialModules,
     StoreModule.forRoot(reducers, { metaReducers }),
-    EffectsModule.forRoot([AppEffects, ServiceEffects, OrdersEffects]),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    // StoreModule.forFeature('order', fromOrder.reducer),
+    EffectsModule.forRoot([AppEffects, ServiceEffects, StatusesEffects, OrdersEffects]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]

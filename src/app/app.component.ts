@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Store } from '@ngrx/store';
-import { AppStore, Order, Orders } from '@models/index';
+
+import { AppStore, Order, Orders, Status } from '@models/index';
+import { GetStatuses } from './store/actions/statuses.actions';
+import { GetOrders } from './store/actions/order.actions';
 import { GetServices } from './store/actions/services.actions';
 import { selectStateServices } from './store/selectors/services.selectors';
-import { GetOrders } from './store/actions/order.actions';
+import { selectStateStatuses, selectAllStatuses, selectStatusesAsArray } from './store/selectors/statuses.selectors';
+
 
 @Component({
   selector: 'app-root',
@@ -14,29 +18,32 @@ import { GetOrders } from './store/actions/order.actions';
 
 export class AppComponent implements OnInit {
   title = 'CRMka';
-  service;
-  orders: Orders;
-  constructor(
-    private db: AngularFireDatabase,
-    private store: Store<AppStore>) {
-    // this.state.dispatch(new GetServices());
-    // this.db
-    //   .list('/clients')
-    //   .valueChanges()
-    //   .subscribe(value => console.log(value));
-    // this.state
-    //   .select(selectStateServices)
-    //   .subscribe(value => console.log(value));
-  }
+  
+  constructor(private db: AngularFireDatabase, private state: Store<AppStore>) {}
+
   ngOnInit() {
+    this.store.dispatch(new GetOrders());
+    this.state.dispatch(new GetStatuses());
+    this.state.dispatch(new GetServices());
+
     this.store.select('orders').subscribe(
       (orders: Orders) => this.orders = orders
     );
+    
+    this.state
+      .select(selectStatusesAsArray)
+      .subscribe( statuses => {
+          console.log('STATUSES: ', statuses);
+          // this.statuses = statuses;
+        }
+      )
 
-    this.store
+    this.state
       .select(selectStateServices)
-      .subscribe(value => console.log(value));
-    this.store.dispatch(new GetServices());
-    this.store.dispatch(new GetOrders());
+      .subscribe(value => console.log('SERVICES: ', value));
+    this.db
+      .list('/clients')
+      .valueChanges()
+      .subscribe(value => console.log('CLIENTS: ',value));
   }
 }
