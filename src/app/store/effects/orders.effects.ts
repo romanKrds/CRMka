@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { OrderActionTypes } from '../constants/orders.constants';
+import { ErrorOrders, LoadOrdersSuccess } from '@actions/*';
+import { OrderActionTypes } from '@constants/*';
+import { Order } from '@models/*';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { mergeMap, map, catchError } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Action } from '@ngrx/store';
-import { LoadOrders } from '../actions/order.actions';
-import { Order } from '@models/index';
+
 
 
 @Injectable()
@@ -19,7 +20,7 @@ export class OrdersEffects {
 
   @Effect()
   loadOrders$: Observable<Action> = this.actions$.pipe(
-    ofType(OrderActionTypes.GetOrders),
+    ofType(OrderActionTypes.LoadOrders),
     mergeMap(_ => this.db.list('/orders').snapshotChanges()),
     map(list => {
       return list.map(orders => {
@@ -29,8 +30,9 @@ export class OrdersEffects {
       });
     }),
     map((orders: Order[]) => {
-      return new LoadOrders({ orders });
+      return new LoadOrdersSuccess({ orders });
     }),
+    catchError(errors => of(new ErrorOrders({ errors })))
   );
 
 }

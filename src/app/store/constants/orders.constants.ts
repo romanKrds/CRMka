@@ -1,6 +1,6 @@
 export enum OrderActionTypes {
-  GetOrders = '[Order] Get Orders',
   LoadOrders = '[Order] Load Orders',
+  LoadOrdersSuccess = '[Order] Load Orders Success',
   AddOrder = '[Order] Add Order',
   UpsertOrder = '[Order] Upsert Order',
   AddOrders = '[Order] Add Orders',
@@ -10,5 +10,5 @@ export enum OrderActionTypes {
   DeleteOrder = '[Order] Delete Order',
   DeleteOrders = '[Order] Delete Orders',
   ClearOrders = '[Order] Clear Orders',
-  ErrorOrder = '[Order] Error Order'
+  ErrorOrders = '[Order] Error Orders'
 }

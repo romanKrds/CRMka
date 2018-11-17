@@ -1,30 +1,15 @@
 import { Action } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
-import { Order } from '../../models/order.model';
-import { OrderActionTypes } from '../constants/orders.constants';
+import { Order } from '@models/index';
+import { OrderActionTypes } from '@constants/index';
 
-// export enum OrderActionTypes {
-//   GetOrders = '[Order] Get Orders',
-
-//   LoadOrders = '[Order] Load Orders',
-//   AddOrder = '[Order] Add Order',
-//   UpsertOrder = '[Order] Upsert Order',
-//   AddOrders = '[Order] Add Orders',
-//   UpsertOrders = '[Order] Upsert Orders',
-//   UpdateOrder = '[Order] Update Order',
-//   UpdateOrders = '[Order] Update Orders',
-//   DeleteOrder = '[Order] Delete Order',
-//   DeleteOrders = '[Order] Delete Orders',
-//   ClearOrders = '[Order] Clear Orders'
-// }
-
-export class GetOrders implements Action {
-  readonly type = OrderActionTypes.GetOrders;
-
-}
 
 export class LoadOrders implements Action {
   readonly type = OrderActionTypes.LoadOrders;
+}
+
+export class LoadOrdersSuccess implements Action {
+  readonly type = OrderActionTypes.LoadOrdersSuccess;
 
   constructor(public payload: { orders: Order[] }) { }
 }
@@ -81,9 +66,16 @@ export class ClearOrders implements Action {
   readonly type = OrderActionTypes.ClearOrders;
 }
 
+export class ErrorOrders implements Action {
+  readonly type = OrderActionTypes.ErrorOrders;
+
+  constructor(public payload: { errors: string[] }) {}
+}
+
+
 export type OrderActions =
-  LoadOrders
-  | GetOrders
+LoadOrders
+  | LoadOrdersSuccess
   | AddOrder
   | UpsertOrder
   | AddOrders
@@ -92,4 +84,5 @@ export type OrderActions =
   | UpdateOrders
   | DeleteOrder
   | DeleteOrders
-  | ClearOrders;
+  | ClearOrders
+  | ErrorOrders;
