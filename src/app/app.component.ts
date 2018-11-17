@@ -3,9 +3,9 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { Store } from '@ngrx/store';
 
 import { AppStore, Orders, } from '@models/index';
-import { LoadStatuses } from './store/actions/statuses.actions';
-import { GetOrders } from './store/actions/order.actions';
-import { GetServices } from './store/actions/services.actions';
+
+import { LoadStatuses, GetOrders, LoadServices } from '@actions/index';
+// TODO: add aliase path for selectors
 import { selectStateServices } from './store/selectors/services.selectors';
 import { selectStatusesAsArray } from './store/selectors/statuses.selectors';
 
@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(new GetOrders());
     this.store.dispatch(new LoadStatuses());
-    this.store.dispatch(new GetServices());
+    this.store.dispatch(new LoadServices());
 
     this.store.select('orders').subscribe(
       (orders: Orders) => console.log(orders)
