@@ -1,6 +1,6 @@
 export enum StatusesActionTypes {
-  GetStatuses = '[Status] GetStatuses',
   LoadStatuses = '[Status] Load Statuses',
+  LoadStatusesSuccess = '[Status] Load Statuses Success',
   AddStatus = '[Status] Add Status',
   UpsertStatus = '[Status] Upsert Status',
   AddStatuss = '[Status] Add Statuss',
@@ -9,5 +9,6 @@ export enum StatusesActionTypes {
   UpdateStatuss = '[Status] Update Statuss',
   DeleteStatus = '[Status] Delete Status',
   DeleteStatuss = '[Status] Delete Statuss',
-  ClearStatuss = '[Status] Clear Statuss'
+  ClearStatuss = '[Status] Clear Statuss',
+  ErrorStatuses = '[Status] Error Statuses'
 }

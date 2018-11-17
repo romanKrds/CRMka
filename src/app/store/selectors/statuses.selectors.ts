@@ -1,6 +1,6 @@
-import { StatusesState } from './../../models/statuses-store.models';
-import { statusesAdapter } from "../reducers/statuses.reducer";
-import { createFeatureSelector, createSelector } from "@ngrx/store";
+import { StatusesState } from '../../models/statuses-state.model';
+import { statusesAdapter } from '../reducers/statuses.reducer';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 export const selectStateStatuses = createFeatureSelector<StatusesState>('statuses');
 
@@ -15,16 +15,16 @@ export const {
 export const selectAllStatuses = createSelector(
   selectStateStatuses,
   selectEntities
-)
+);
 
 const _selectAsArray = (statuses) => {
 
   return Object.keys(statuses).map((key) => {
     return statuses[key];
   });
-}
+};
 
 export const selectStatusesAsArray = createSelector(
   selectAllStatuses,
   _selectAsArray
-)
+);

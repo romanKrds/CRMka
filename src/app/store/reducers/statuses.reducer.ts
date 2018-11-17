@@ -1,19 +1,17 @@
-import { StatusesState } from './../../models/statuses-store.models';
 import { EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-import { Status } from '../../models/status.model';
-import { StatusesActionTypes } from '../constants/statuses.constants';
-import { StatusActions } from '../actions/statuses.actions';
-
+import { Status, StatusesState} from '@models/index';
+import { StatusesActionTypes } from '@constants/index';
+import { StatusActions } from '@actions/index';
 
 export const statusesAdapter: EntityAdapter<Status> = createEntityAdapter<Status>();
 
-export const initialStatusesState: StatusesState = statusesAdapter.getInitialState({
+export const statusesInitialState: StatusesState = statusesAdapter.getInitialState({
   // additional entity state properties
   errors: null
 });
 
 export function statusesReducers(
-  state = initialStatusesState,
+  state = statusesInitialState,
   action: StatusActions
 ): StatusesState {
   switch (action.type) {
@@ -49,12 +47,19 @@ export function statusesReducers(
       return statusesAdapter.removeMany(action.payload.ids, state);
     }
 
-    case StatusesActionTypes.LoadStatuses: {
+    case StatusesActionTypes.LoadStatusesSuccess: {
       return statusesAdapter.addAll(action.payload.statuses, state);
     }
 
     case StatusesActionTypes.ClearStatuss: {
       return statusesAdapter.removeAll(state);
+    }
+
+    case StatusesActionTypes.ErrorStatuses: {
+      return {
+        ...state,
+        errors: [...state.errors, ...action.payload.errors]
+      };
     }
 
     default: {
