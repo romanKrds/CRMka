@@ -1,3 +1,4 @@
+import { StatusesEffects } from './store/effects/statuses.effects';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -16,6 +17,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthEffects } from './store/effects/user.effects';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { OrdersEffects } from './store/effects/orders.effects';
+// import * as fromOrder from './order.reducer';
 
 @NgModule({
   declarations: [
@@ -30,8 +33,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
     AngularFireAuthModule,
     MaterialModules,
     StoreModule.forRoot(reducers, { metaReducers }),
-    EffectsModule.forRoot([AppEffects, ServiceEffects, AuthEffects]),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    EffectsModule.forRoot([AppEffects, ServiceEffects, StatusesEffects, OrdersEffects, AuthEffects]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]

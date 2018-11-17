@@ -1,7 +1,7 @@
-import { Service } from '.';
 import { EntityState } from '@ngrx/entity';
+import { Service } from '@models/*';
 
-export interface StateServices extends EntityState<Service> {
+export interface ServicesState extends EntityState<Service> {
   // additional entities state properties
   errors: string[] | null;
 }
