@@ -1,6 +1,6 @@
-export enum CustomerActionTypes {
-    GetCustomers = '[Customer] Get Customers',
+export enum CustomersActionTypes {
     LoadCustomers = '[Customer] Load Customers',
+    LoadCustomersSuccess = '[Customer] Load Success Customers',
     AddCustomer = '[Customer] Add Customer',
     UpsertCustomer = '[Customer] Upsert Customer',
     AddCustomers = '[Customer] Add Customers',
@@ -9,5 +9,7 @@ export enum CustomerActionTypes {
     UpdateCustomers = '[Customer] Update Customers',
     DeleteCustomer = '[Customer] Delete Customer',
     DeleteCustomers = '[Customer] Delete Customers',
-    ClearCustomers = '[Customer] Clear Customers'
+    ClearCustomers = '[Customer] Clear Customers',
+    ErrorCustomers = '[Customer] Error Customers'
+
 }

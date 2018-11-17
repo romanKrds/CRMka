@@ -1,13 +1,13 @@
-import { reducer, initialState } from './customer.reducer';
+import { customersReducer, customersInitialState } from './customers.reducer';
 
 describe('Customer Reducer', () => {
   describe('unknown action', () => {
     it('should return the initial state', () => {
       const action = {} as any;
 
-      const result = reducer(initialState, action);
+      const result = customersReducer(customersInitialState, action);
 
-      expect(result).toBe(initialState);
+      expect(result).toBe(customersInitialState);
     });
   });
 });

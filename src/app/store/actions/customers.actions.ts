@@ -1,76 +1,83 @@
 import { Action } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
 import { Customer } from '../../models/customer.model';
-import { CustomerActionTypes } from '../constants/customer.constants';
+import { CustomersActionTypes } from '@constants/*';
 
 
 
-export class GetCustomers implements Action {
-  readonly type = CustomerActionTypes.GetCustomers;
+export class LoadCustomers implements Action {
+  readonly type = CustomersActionTypes.LoadCustomers;
   constructor() { }
 }
 
 
-export class LoadCustomers implements Action {
-  readonly type = CustomerActionTypes.LoadCustomers;
+export class LoadCustomersSuccess implements Action {
+  readonly type = CustomersActionTypes.LoadCustomersSuccess;
 
   constructor(public payload: { customers: Customer[] }) {}
 }
 
 export class AddCustomer implements Action {
-  readonly type = CustomerActionTypes.AddCustomer;
+  readonly type = CustomersActionTypes.AddCustomer;
 
   constructor(public payload: { customer: Customer }) {}
 }
 
 export class UpsertCustomer implements Action {
-  readonly type = CustomerActionTypes.UpsertCustomer;
+  readonly type = CustomersActionTypes.UpsertCustomer;
 
   constructor(public payload: { customer: Customer }) {}
 }
 
 export class AddCustomers implements Action {
-  readonly type = CustomerActionTypes.AddCustomers;
+  readonly type = CustomersActionTypes.AddCustomers;
 
   constructor(public payload: { customers: Customer[] }) {}
 }
 
 export class UpsertCustomers implements Action {
-  readonly type = CustomerActionTypes.UpsertCustomers;
+  readonly type = CustomersActionTypes.UpsertCustomers;
 
   constructor(public payload: { customers: Customer[] }) {}
 }
 
 export class UpdateCustomer implements Action {
-  readonly type = CustomerActionTypes.UpdateCustomer;
+  readonly type = CustomersActionTypes.UpdateCustomer;
 
   constructor(public payload: { customer: Update<Customer> }) {}
 }
 
 export class UpdateCustomers implements Action {
-  readonly type = CustomerActionTypes.UpdateCustomers;
+  readonly type = CustomersActionTypes.UpdateCustomers;
 
   constructor(public payload: { customers: Update<Customer>[] }) {}
 }
 
 export class DeleteCustomer implements Action {
-  readonly type = CustomerActionTypes.DeleteCustomer;
+  readonly type = CustomersActionTypes.DeleteCustomer;
 
   constructor(public payload: { id: string }) {}
 }
 
 export class DeleteCustomers implements Action {
-  readonly type = CustomerActionTypes.DeleteCustomers;
+  readonly type = CustomersActionTypes.DeleteCustomers;
 
   constructor(public payload: { ids: string[] }) {}
 }
 
 export class ClearCustomers implements Action {
-  readonly type = CustomerActionTypes.ClearCustomers;
+  readonly type = CustomersActionTypes.ClearCustomers;
 }
 
-export type CustomerActions =
+export class ErrorCustomers implements Action {
+  readonly type = CustomersActionTypes.ErrorCustomers;
+
+  constructor(public payload: { errors: string[] }) { }
+}
+
+export type CustomersActions =
  LoadCustomers
+ | LoadCustomersSuccess
  | AddCustomer
  | UpsertCustomer
  | AddCustomers
@@ -79,4 +86,5 @@ export type CustomerActions =
  | UpdateCustomers
  | DeleteCustomer
  | DeleteCustomers
- | ClearCustomers;
+ | ClearCustomers
+ | ErrorCustomers;

@@ -8,14 +8,17 @@ import {
 import { environment } from '../../../environments/environment';
 import { AppStore } from 'src/app/models';
 import { reducerServices } from './services.reducer';
-// import { customersReducer } from './customers.redusers';
-import * as fromCustomer from './customer.reducer';
+
+import { statusesReducers } from './statuses.reducer';
+import { ordersReducer } from './orders.reducer';
+
+import { customersReducer } from './customers.reducer';
 
 export const reducers: ActionReducerMap<AppStore> = {
-
   services: reducerServices,
-  // customers: customersReducer
-  customers: fromCustomer.reducer,
+  statuses: statusesReducers,
+  orders: ordersReducer,
+  customers: customersReducer
 };
 
 

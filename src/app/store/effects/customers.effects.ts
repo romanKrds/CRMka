@@ -3,11 +3,11 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { startWith, switchMap, catchError, map, mergeMap, tap } from 'rxjs/operators';
+import {  map, mergeMap, tap } from 'rxjs/operators';
 
-import { CustomerActionTypes } from '../constants/customer.constants';
-import * as customersActions from '../actions/customer.actions';
-import { Customer } from 'src/app/models/customer.model';
+import { CustomersActionTypes } from '@constants/*';
+import { LoadCustomersSuccess } from '@actions/*';
+import { Customer } from '@models/*';
 // import { CustomersLoadSuccess } from '../actions/customer.actions';
 
 
@@ -17,7 +17,7 @@ export class CustomersEffects {
 
     @Effect()
     loadCustomersEffect$: Observable<Action> = this.actions$.pipe(
-            ofType(CustomerActionTypes.GetCustomers),
+            ofType(CustomersActionTypes.LoadCustomers),
             mergeMap(() => this.db.list<Customer>('/customers').snapshotChanges().pipe(
                     // If successful, dispatch success action with result
                     map(data => {
@@ -33,7 +33,7 @@ export class CustomersEffects {
                     }),
                     map((customer: Customer[]) => {
                         console.log('effect');
-                        return new customersActions.LoadCustomers({ customers: customer });
+                        return new LoadCustomersSuccess({ customers: customer });
                     }),
                     // If request fails, dispatch failed action
                     // catchError(_ => of({
