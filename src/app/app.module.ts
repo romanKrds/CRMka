@@ -15,7 +15,7 @@ import { ServiceEffects } from './store/effects/service.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppRoutingModule } from './app-routing.module';
 
-import { CustomersEffectsService } from './store/effects/customers.effects';
+import { CustomersEffects } from './store/effects/customers.effects';
 import * as fromCustomer from './store/reducers/customer.reducer';
 
 
@@ -31,10 +31,10 @@ import * as fromCustomer from './store/reducers/customer.reducer';
     AngularFireDatabaseModule,
     MaterialModules,
     StoreModule.forRoot(reducers, { metaReducers }),
-    EffectsModule.forRoot([AppEffects, ServiceEffects]),
+    EffectsModule.forRoot([AppEffects, ServiceEffects, CustomersEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot([CustomersEffectsService]),
-    StoreModule.forFeature('customer', fromCustomer.reducer),
+    EffectsModule.forRoot([CustomersEffects]),
+    // StoreModule.forFeature('customer', fromCustomer.reducer),
   ],
   providers: [],
   bootstrap: [AppComponent]
