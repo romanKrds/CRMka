@@ -1,16 +1,16 @@
 import { createEntityAdapter, EntityAdapter } from '@ngrx/entity';
-import { ServicesActions } from '../actions/services.actions';
-import { ServicesActionTypes } from '../constants/services.constants';
-import { Service, StateServices } from '../../models';
+import { ServicesActions } from '@actions/*';
+import { ServicesActionTypes } from '@constants/*';
+import { Service, ServicesState } from '@models/*';
 
 export const servicesAdapter: EntityAdapter<Service> = createEntityAdapter<Service>({});
 
-export const initialStateServices: StateServices = servicesAdapter.getInitialState({
+export const initialStateServices: ServicesState = servicesAdapter.getInitialState({
     // additional entity state properties
     errors: null
 });
 
-export function reducerServices(state = initialStateServices, action: ServicesActions): StateServices {
+export function reducerServices(state = initialStateServices, action: ServicesActions): ServicesState {
   switch (action.type) {
     case ServicesActionTypes.AddService: {
       return servicesAdapter.addOne(action.payload.service, state);

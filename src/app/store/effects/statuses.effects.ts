@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { LoadStatusesSuccess, ErrorStatuses } from '@actions/index';
-import { StatusesActionTypes } from '@constants/index';
-import { Status } from '@models/index';
+import { LoadStatusesSuccess, ErrorStatuses } from '@actions/*';
+import { StatusesActionTypes } from '@constants/*';
+import { Status } from '@models/*';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Observable, of } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';

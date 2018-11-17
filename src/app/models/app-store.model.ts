@@ -1,4 +1,4 @@
-import { OrdersState, StateServices, StatusesState } from '@models/*';
+import { OrdersState, ServicesState, StatusesState } from '@models/*';
 
 // Todo check for elvis operator. Is required?
 export interface AppStore {
@@ -7,5 +7,5 @@ export interface AppStore {
   orders: OrdersState;
   customers?: any;
   statuses: StatusesState;
-  services: StateServices;
+  services: ServicesState;
 }

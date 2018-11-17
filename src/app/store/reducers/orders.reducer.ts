@@ -1,7 +1,7 @@
 import { EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-import { Order, OrdersState } from '@models/index';
-import { OrderActions } from '@actions/index';
-import { OrderActionTypes } from '@constants/index';
+import { Order, OrdersState } from '@models/*';
+import { OrderActions } from '@actions/*';
+import { OrderActionTypes } from '@constants/*';
 
 
 export const ordersAdapter: EntityAdapter<Order> = createEntityAdapter<Order>();
