@@ -56,6 +56,13 @@ export function ordersReducer(
       return ordersAdapter.removeAll(state);
     }
 
+    case OrderActionTypes.ErrorOrders: {
+      return {
+        ...state,
+        errors: [...state.errors, ...action.payload.errors]
+      };
+    }
+
     default: {
       return state;
     }
