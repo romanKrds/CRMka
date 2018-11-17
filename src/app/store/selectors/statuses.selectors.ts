@@ -5,7 +5,7 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 export const selectStateStatuses = createFeatureSelector<StatusesState>('statuses');
 
 
-export const {
+const {
   selectIds,
   selectEntities,
   selectAll,
