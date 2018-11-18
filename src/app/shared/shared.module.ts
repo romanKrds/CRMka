@@ -13,6 +13,8 @@ const MODULES = [
   imports: [
     ...MODULES
   ],
-  declarations: []
+  exports: [
+    ...MODULES
+  ]
 })
 export class SharedModule { }
