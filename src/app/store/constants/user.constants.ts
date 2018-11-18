@@ -4,6 +4,7 @@ export enum UserActionTypes {
   NotAuthenticated = '[Auth] Not Authenticated',
   GoogleLogin = '[Auth] Google Login',
   EmailPasswordLogin = '[Auth] Email Password Login',
+  EmailPasswordRegister = '[Auth] Email Password Register',
   Logout = '[Auth] Logout',
   AuthError = '[Auth] Error'
 }

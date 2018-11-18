@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User, AppStore } from 'src/app/models';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { GetUser, GoogleLogin, Logout } from 'src/app/store/actions/user.actions';
+import { GetUser, GoogleLogin, Logout, PasswordLogin, PasswordRegister } from 'src/app/store/actions/user.actions';
 import { MatSnackBar } from '@angular/material';
 import { FormBuilder, Validators } from '@angular/forms';
 
@@ -31,7 +31,10 @@ export class UserComponent implements OnInit {
     this.state.dispatch(new GetUser());
   }
   onSubmit() {
-    console.log('form', this.loginForm.value);
+    this.state.dispatch(new PasswordLogin(this.loginForm.value));
+  }
+  onRegister() {
+    this.state.dispatch(new PasswordRegister(this.loginForm.value));
   }
 
   googleLogin() {
