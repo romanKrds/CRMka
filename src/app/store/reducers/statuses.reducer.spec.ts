@@ -1,13 +1,13 @@
-import { statusesReducers, initialState } from './statuses.reducer';
+import { statusesReducers, statusesInitialState } from './statuses.reducer';
 
 describe('Status Reducer', () => {
   describe('unknown action', () => {
     it('should return the initial state', () => {
       const action = {} as any;
 
-      const result = statusesReducers(initialState, action);
+      const result = statusesReducers(statusesInitialState, action);
 
-      expect(result).toBe(initialState);
+      expect(result).toBe(statusesInitialState);
     });
   });
 });
