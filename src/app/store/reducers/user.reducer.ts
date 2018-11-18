@@ -1,8 +1,7 @@
-import { UserActions } from '../actions/user.actions';
-import { UserActionTypes } from '../constants/user.constants';
-import { UserState } from '../../models';
+import { UserActions } from '@actions/*';
+import { UserActionTypes } from '@constants/*';
+import { UserState } from '@models/*';
 
-// TODO: Как проинициализировать пользователя если мне нужно только DisplayName и uid=null а самого пользователя я беру из Базы FireBase
 export const initialUserState: UserState = {
     uid: null,
     email: null,
