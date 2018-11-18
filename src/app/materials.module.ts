@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {
   MatCardModule,
@@ -14,7 +13,6 @@ import {
 
 const MODULES = [
   MatCardModule,
-  BrowserAnimationsModule,
   MatProgressSpinnerModule,
   MatSidenavModule,
   MatIconModule,

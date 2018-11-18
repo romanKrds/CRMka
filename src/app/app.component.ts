@@ -5,11 +5,8 @@ import { GetUser } from './store/actions/user.actions';
 
 import { AppStore, OrdersState } from '@models/*';
 
-import { LoadStatuses, LoadOrders, LoadServices } from '@actions/*';
+import { LoadStatuses, LoadOrders, LoadServices, LoadCustomers } from '@actions/*';
 import { selectStateServices, selectStatusesAsArray} from '@selectors/*';
-
-
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -49,6 +46,7 @@ export class AppComponent implements OnInit {
     this.store.dispatch(new LoadOrders());
     this.store.dispatch(new LoadStatuses());
     this.store.dispatch(new LoadServices());
+    this.store.dispatch(new LoadCustomers());
 
     this.store.select('orders').subscribe(
       (orders: OrdersState) => console.log(orders)

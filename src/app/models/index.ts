@@ -8,4 +8,6 @@ export * from './status.model';
 export * from './statuses-state.model';
 export * from './order.model';
 export * from './orders-state.model';
+export * from './customer.model';
+export * from './customers-state.model';
 
