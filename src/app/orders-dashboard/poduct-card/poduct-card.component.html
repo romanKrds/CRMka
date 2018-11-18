@@ -1,6 +1,19 @@
-<p>
-  poduct-card works!
-</p>
-<pre>
-  {{orders | json}}
-</pre>
+<mat-card *ngIf='order'>
+  <div class="header">
+    <h2>Service </h2>
+    <p>
+      {{+order.started_at | date:'LL/MM/yyyy'}}
+    </p>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="content">
+    <div class="name">
+      <h3>Клиент</h3>
+      <p>Name</p>
+    </div>
+    <div class="status">
+      <h3>Статус</h3>
+      <p>Status</p>
+    </div>
+  </div>
+</mat-card>

@@ -28,3 +28,13 @@ export const selectTotalOrders = createSelector(
   selectStateOrders,
   selectTotal
 );
+export const selectOrderById = createSelector(
+  selectStateOrders,
+  selectAll,
+
+);
+
+export const _selectById = (id) => {
+  
+  return 
+}
