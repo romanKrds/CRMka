@@ -15,37 +15,13 @@ import { selectStateServices, selectStatusesAsArray} from '@selectors/*';
 export class AppComponent implements OnInit {
 
   title = 'CRMka';
-  service;
-  sideNavMode = 'side'; // 'side' or 'over'
-  navList = [
-    {
-      path: '',
-      title:  'Home'
-    },
-    {
-      path: 'user',
-      title: 'User'
-    },
-    {
-      path: 'user/login',
-      title: 'Login'
-    },
-    {
-      path: 'user/register',
-      title: 'Register'
-    },
-    {
-      path: 'orders-dashboard',
-      title: 'Orders Dashboard'
-    }
-  ];
 
   constructor(private db: AngularFireDatabase, private store: Store<AppStore>) {}
 
   ngOnInit() {
     this.store.dispatch(new LoadOrders());
     this.store.dispatch(new LoadStatuses());
-    this.store.dispatch(new LoadServices());
+    // this.store.dispatch(new LoadServices());
     this.store.dispatch(new LoadCustomers());
     this.store.dispatch({type: '[CurentClient] Load Success', payload: '-LPvJ-bbed4CKM2LuHT0'});
     this.store.dispatch({type: '[CurentBusiness] Load Success', payload: '-LPvJ-sFiM7wXMMuJQRc'});
