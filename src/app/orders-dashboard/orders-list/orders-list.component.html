@@ -1,0 +1,5 @@
+<div *ngIf="ordersIds">
+  <div *ngFor="let orderId of ordersIds">
+    <app-poduct-card [orderId]="orderId"></app-poduct-card>
+  </div>
+</div>
