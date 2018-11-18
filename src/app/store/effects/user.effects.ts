@@ -3,22 +3,24 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { from, Observable, of, defer } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap, mergeMap } from 'rxjs/operators';
 import * as userActions from '../actions/user.actions';
 import { UserActionTypes } from '../constants/user.constants';
 import { auth } from 'firebase/app';
 import { LoadServices } from '@actions/*';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { User } from '@models/*';
 
 @Injectable()
 export class AuthEffects {
-  constructor(private actions$: Actions, private afAuth: AngularFireAuth) {}
+  constructor(private actions$: Actions, private afAuth: AngularFireAuth, private db: AngularFireDatabase) {}
 
   @Effect()
   getUser: Observable<Action> = this.actions$.pipe(
     ofType(UserActionTypes.GetUser),
     map((action: userActions.GetUser) => action),
     switchMap(payload => this.afAuth.authState),
-    switchMap(authData => {
+    mergeMap(authData => {
       if (authData) {
         const {
           displayName,
@@ -36,8 +38,11 @@ export class AuthEffects {
           providerId,
           uid
         };
-        of(new LoadServices());
-        return of(new userActions.Authenticated({ user }));
+        this.SetUserInfo(user);
+        return from([
+          new LoadServices(),
+          new userActions.Authenticated({ user })
+        ]);
       } else {
         return of(new userActions.NotAuthenticated());
       }
@@ -63,11 +68,9 @@ export class AuthEffects {
     ofType(UserActionTypes.EmailPasswordLogin),
     map((action: userActions.PasswordLogin) => action.payload),
     switchMap(action => {
-      console.log(action);
       return from(this.signInWithEmailAndPassword(action));
     }),
     map(credential => {
-      console.log(credential);
       return new userActions.GetUser();
     }),
     catchError(err => of(new userActions.AuthError({ error: err.message})))
@@ -78,7 +81,6 @@ export class AuthEffects {
     ofType(UserActionTypes.EmailPasswordRegister),
     map((action: userActions.PasswordLogin) => action.payload),
     switchMap(action => {
-      console.log(action);
       return from(this.createUserWithEmailAndPassword(action));
     }),
     map(credential => {
@@ -107,6 +109,14 @@ export class AuthEffects {
     return of(new userActions.GetUser());
   });
 
+  private SetUserInfo(user: User) {
+    // const newUser = credential.additionalUserInfo.isNewUser;
+    const uid = user.uid;
+    const dbRef = this.db.database.ref('/clients/' + uid);
+    return dbRef.set(user)
+    .then(val => console.log('success'))
+    .catch(err => console.log(err));
+  }
   private GoogleLogin() {
     const provider = new auth.GoogleAuthProvider();
     return this.afAuth.auth.signInWithPopup(provider);
