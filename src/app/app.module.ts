@@ -20,11 +20,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { OrdersEffects } from './store/effects/orders.effects';
 import { CustomersEffects } from './store/effects/customers.effects';
 import { SharedModule } from './shared/shared.module';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
