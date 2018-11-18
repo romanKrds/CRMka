@@ -9,7 +9,7 @@ export class SidebarComponent implements OnInit {
 
   navigationItems = [
     {
-      link: '',
+      link: 'orders-dashboard',
       text: 'Все заявки',
       icon: 'shopping_cart'
     },
