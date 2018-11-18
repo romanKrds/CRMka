@@ -40,8 +40,8 @@ export class AuthEffects {
         };
         this.SetUserInfo(user);
         return from([
-          new LoadServices(),
-          new userActions.Authenticated({ user })
+          new userActions.Authenticated({ user }),
+          new LoadServices()
         ]);
       } else {
         return of(new userActions.NotAuthenticated());
@@ -58,21 +58,6 @@ export class AuthEffects {
       return from(this.GoogleLogin());
     }),
     map(credential => {
-      const newUser = credential.additionalUserInfo.isNewUser;
-      const uid = credential.user.uid;
-      console.log(newUser);
-      const pushId = this.db.createPushId();
-      console.log(pushId);
-      const dbRef = this.db.database.ref('/clients/' + uid);
-      // dbRef.set({value: uid});
-      // dbRef.push({push: uid});
-      // this.db.object(`clients/${uid}`).set({ newUser: uid })
-      // .then(val => console.log('success'))
-      // .catch(err => console.log(err)      );
-      // dbRef.set(pushId + newUser);
-
-      // console.log(dbRef.set(pushId + newUser));
-
       return new userActions.GetUser();
     }),
     catchError(err => of(new userActions.AuthError({ error: err.message })))
