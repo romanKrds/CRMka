@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
-import { from, Observable, of } from 'rxjs';
+import { from, Observable, of, defer } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import * as userActions from '../actions/user.actions';
 import { UserActionTypes } from '../constants/user.constants';
 import { auth } from 'firebase/app';
+import { LoadServices } from '@actions/*';
 
 @Injectable()
 export class AuthEffects {
@@ -15,17 +16,33 @@ export class AuthEffects {
   @Effect()
   getUser: Observable<Action> = this.actions$.pipe(
     ofType(UserActionTypes.GetUser),
-    map((action: userActions.GetUser) => action.payload),
+    map((action: userActions.GetUser) => action),
     switchMap(payload => this.afAuth.authState),
-    map(authData => {
+    switchMap(authData => {
       if (authData) {
-        const {uid, displayName} = authData;
-        return new userActions.Authenticated(authData);
+        const {
+          displayName,
+          email,
+          phoneNumber,
+          photoURL,
+          providerId,
+          uid,
+          } = authData;
+        const user = {
+          displayName,
+          email,
+          phoneNumber,
+          photoURL,
+          providerId,
+          uid
+        };
+        of(new LoadServices());
+        return of(new userActions.Authenticated({ user }));
       } else {
-        return new userActions.NotAuthenticated();
+        return of(new userActions.NotAuthenticated());
       }
     }),
-    catchError(err => of(new userActions.AuthError()))
+    catchError(err => of(new userActions.AuthError({error: err.message})))
   );
 
   @Effect()
@@ -39,6 +56,35 @@ export class AuthEffects {
       return new userActions.GetUser();
     }),
     catchError(err => of(new userActions.AuthError({ error: err.message })))
+  );
+
+  @Effect()
+  loginPassword: Observable<Action> = this.actions$.pipe(
+    ofType(UserActionTypes.EmailPasswordLogin),
+    map((action: userActions.PasswordLogin) => action.payload),
+    switchMap(action => {
+      console.log(action);
+      return from(this.signInWithEmailAndPassword(action));
+    }),
+    map(credential => {
+      console.log(credential);
+      return new userActions.GetUser();
+    }),
+    catchError(err => of(new userActions.AuthError({ error: err.message})))
+  );
+
+  @Effect()
+  registerPassword: Observable<Action> = this.actions$.pipe(
+    ofType(UserActionTypes.EmailPasswordRegister),
+    map((action: userActions.PasswordLogin) => action.payload),
+    switchMap(action => {
+      console.log(action);
+      return from(this.createUserWithEmailAndPassword(action));
+    }),
+    map(credential => {
+      return new userActions.GetUser();
+    }),
+    catchError(err => of(new userActions.AuthError({ error: err.message})))
   );
 
   @Effect({dispatch: false})
@@ -55,40 +101,17 @@ export class AuthEffects {
     }),
     catchError(err => of(new userActions.AuthError({ error: err.message })))
   );
+
   @Effect()
-  loginPassword: Observable<Action> = this.actions$.pipe(
-    ofType(UserActionTypes.EmailPasswordLogin),
-    map((action: userActions.PasswordLogin) => action.payload),
-    switchMap(action => {
-      console.log(action);
-      return from(this.PasswordLogin(action));
-    }),
-    map(credential => {
-      console.log(credential);
-      return new userActions.GetUser();
-    }),
-    catchError(err => of(new userActions.AuthError({ error: err.message})))
-  );
-  @Effect()
-  registerPassword: Observable<Action> = this.actions$.pipe(
-    ofType(UserActionTypes.EmailPasswordRegister),
-    map((action: userActions.PasswordLogin) => action.payload),
-    switchMap(action => {
-      console.log(action);
-      return from(this.createUserWithEmailAndPassword(action));
-    }),
-    map(credential => {
-      console.log(credential);
-      return new userActions.GetUser();
-    }),
-    catchError(err => of(new userActions.AuthError({ error: err.message})))
-  );
+  init$: Observable<Action> = defer(() => {
+    return of(new userActions.GetUser());
+  });
 
   private GoogleLogin() {
     const provider = new auth.GoogleAuthProvider();
     return this.afAuth.auth.signInWithPopup(provider);
   }
-  private PasswordLogin(data) {
+  private signInWithEmailAndPassword(data) {
     console.log('PasswordLogin', data);
     return this.afAuth.auth.signInWithEmailAndPassword(data.email, data.password);
   }

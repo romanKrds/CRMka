@@ -27,7 +27,7 @@ export class UserComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.user$ = this.state.select(state => state.user.user);
+    this.user$ = this.state.select(state => state.user);
     this.state.dispatch(new GetUser());
   }
   onSubmit() {
