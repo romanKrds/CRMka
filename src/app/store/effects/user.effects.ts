@@ -114,7 +114,7 @@ export class AuthEffects {
     const uid = user.uid;
     const dbRef = this.db.database.ref('/clients/' + uid);
     return dbRef.set(user)
-    .then(val => console.log('success'))
+    .then(val => console.log('success SetUserInfo'))
     .catch(err => console.log(err));
   }
   private GoogleLogin() {
