@@ -4,7 +4,6 @@ import { User } from '../../models';
 
 export class GetUser implements Action {
   readonly type = UserActionTypes.GetUser;
-  constructor(public payload?: any) {}
 }
 export class Authenticated implements Action {
   readonly type = UserActionTypes.Authenticated;
