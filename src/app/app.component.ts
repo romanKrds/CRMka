@@ -23,6 +23,8 @@ export class AppComponent implements OnInit {
     this.store.dispatch(new LoadStatuses());
     this.store.dispatch(new LoadServices());
     this.store.dispatch(new LoadCustomers());
+    this.store.dispatch({type: '[CurentClient] Load Success', payload: '-LPvJ-bbed4CKM2LuHT0'});
+    this.store.dispatch({type: '[CurentBusiness] Load Success', payload: '-LPvJ-sFiM7wXMMuJQRc'});
 
     this.store.select('orders').subscribe(
       (orders: OrdersState) => console.log(orders)

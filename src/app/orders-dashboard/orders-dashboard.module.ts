@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { OrdersDashboardRoutingModule } from './orders-dashboard-routing.module';
 import { OrdersDashboardComponent } from './orders-dashboard.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
-    CommonModule,
+    SharedModule,
     OrdersDashboardRoutingModule
   ],
   declarations: [OrdersDashboardComponent, OrderDetailsComponent]
