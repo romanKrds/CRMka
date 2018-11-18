@@ -73,7 +73,7 @@ export class ErrorService implements Action {
 }
 
 export type ServicesActions =
-  LoadServices
+LoadServices
   | LoadServicesSuccess
   | AddService
   | UpsertService

@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
-// import { CustomerActionTypes } from './store/constants/customer.constants';
-// import { selectStateCustomers } from './store/selectors/customer.selectors';
-
 import { Store } from '@ngrx/store';
 
 import { AppStore, OrdersState } from '@models/*';
@@ -10,12 +7,12 @@ import { AppStore, OrdersState } from '@models/*';
 import { LoadStatuses, LoadOrders, LoadServices, LoadCustomers } from '@actions/*';
 import { selectStateServices, selectStatusesAsArray} from '@selectors/*';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-
 
 export class AppComponent implements OnInit {
 

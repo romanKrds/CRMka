@@ -17,8 +17,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppRoutingModule } from './app-routing.module';
 
 import { OrdersEffects } from './store/effects/orders.effects';
-
 import { CustomersEffects } from './store/effects/customers.effects';
+
 // import * as fromOrder from './order.reducer';
 
 @NgModule({
@@ -33,7 +33,6 @@ import { CustomersEffects } from './store/effects/customers.effects';
     AngularFireDatabaseModule,
     MaterialModules,
     StoreModule.forRoot(reducers, { metaReducers }),
-
     EffectsModule.forRoot([AppEffects, ServiceEffects, StatusesEffects, OrdersEffects, CustomersEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],

@@ -11,7 +11,6 @@ import { reducerServices } from './services.reducer';
 
 import { statusesReducers } from './statuses.reducer';
 import { ordersReducer } from './orders.reducer';
-
 import { customersReducer } from './customers.reducer';
 
 export const reducers: ActionReducerMap<AppStore> = {

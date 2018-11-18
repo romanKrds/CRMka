@@ -1,5 +1,4 @@
 export enum ServicesActionTypes {
-
   LoadServices = '[Service] Load Services',
   LoadServicesSuccess = '[Service] Load Services Success',
   AddService = '[Service] Add Service',
