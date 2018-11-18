@@ -18,6 +18,15 @@ export class GoogleLogin implements Action {
   readonly type = UserActionTypes.GoogleLogin;
   constructor(public payload?: any) {}
 }
+export class PasswordLogin implements Action {
+  readonly type = UserActionTypes.EmailPasswordLogin;
+  constructor(public payload: any) {}
+}
+export class PasswordRegister implements Action {
+  readonly type = UserActionTypes.EmailPasswordRegister;
+  constructor(public payload: any) {}
+}
+
 export class Logout implements Action {
   readonly type = UserActionTypes.Logout;
   constructor(public payload?: any) {}

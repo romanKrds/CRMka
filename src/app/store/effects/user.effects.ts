@@ -41,7 +41,7 @@ export class AuthEffects {
     catchError(err => of(new userActions.AuthError({ error: err.message })))
   );
 
-  @Effect()
+  @Effect({dispatch: false})
   logout: Observable<Action> = this.actions$.pipe(
     ofType(UserActionTypes.Logout),
     map((action: userActions.Logout) => {
@@ -55,9 +55,45 @@ export class AuthEffects {
     }),
     catchError(err => of(new userActions.AuthError({ error: err.message })))
   );
+  @Effect()
+  loginPassword: Observable<Action> = this.actions$.pipe(
+    ofType(UserActionTypes.EmailPasswordLogin),
+    map((action: userActions.PasswordLogin) => action.payload),
+    switchMap(action => {
+      console.log(action);
+      return from(this.PasswordLogin(action));
+    }),
+    map(credential => {
+      console.log(credential);
+      return new userActions.GetUser();
+    }),
+    catchError(err => of(new userActions.AuthError({ error: err.message})))
+  );
+  @Effect()
+  registerPassword: Observable<Action> = this.actions$.pipe(
+    ofType(UserActionTypes.EmailPasswordRegister),
+    map((action: userActions.PasswordLogin) => action.payload),
+    switchMap(action => {
+      console.log(action);
+      return from(this.createUserWithEmailAndPassword(action));
+    }),
+    map(credential => {
+      console.log(credential);
+      return new userActions.GetUser();
+    }),
+    catchError(err => of(new userActions.AuthError({ error: err.message})))
+  );
 
   private GoogleLogin() {
     const provider = new auth.GoogleAuthProvider();
     return this.afAuth.auth.signInWithPopup(provider);
+  }
+  private PasswordLogin(data) {
+    console.log('PasswordLogin', data);
+    return this.afAuth.auth.signInWithEmailAndPassword(data.email, data.password);
+  }
+  private createUserWithEmailAndPassword(data) {
+    console.log('CreateUser', data);
+    return this.afAuth.auth.createUserWithEmailAndPassword(data.email, data.password);
   }
 }
