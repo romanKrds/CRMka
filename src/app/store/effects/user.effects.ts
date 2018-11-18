@@ -8,10 +8,11 @@ import * as userActions from '../actions/user.actions';
 import { UserActionTypes } from '../constants/user.constants';
 import { auth } from 'firebase/app';
 import { LoadServices } from '@actions/*';
+import { AngularFireDatabase } from '@angular/fire/database';
 
 @Injectable()
 export class AuthEffects {
-  constructor(private actions$: Actions, private afAuth: AngularFireAuth) {}
+  constructor(private actions$: Actions, private afAuth: AngularFireAuth, private db: AngularFireDatabase) {}
 
   @Effect()
   getUser: Observable<Action> = this.actions$.pipe(
@@ -53,6 +54,21 @@ export class AuthEffects {
       return from(this.GoogleLogin());
     }),
     map(credential => {
+      const newUser = credential.additionalUserInfo.isNewUser;
+      const uid = credential.user.uid;
+      console.log(newUser);
+      const pushId = this.db.createPushId();
+      console.log(pushId);
+      const dbRef = this.db.database.ref('/clients/' + uid);
+      // dbRef.set({value: uid});
+      // dbRef.push({push: uid});
+      // this.db.object(`clients/${uid}`).set({ newUser: uid })
+      // .then(val => console.log('success'))
+      // .catch(err => console.log(err)      );
+      // dbRef.set(pushId + newUser);
+
+      // console.log(dbRef.set(pushId + newUser));
+
       return new userActions.GetUser();
     }),
     catchError(err => of(new userActions.AuthError({ error: err.message })))
