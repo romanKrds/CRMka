@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
-import { UserActionTypes } from '../constants/user.constants';
-import { User } from '../../models';
+import { UserActionTypes } from '@constants/*';
+import { User } from '@models/*';
 
 export class GetUser implements Action {
   readonly type = UserActionTypes.GetUser;

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Store } from '@ngrx/store';
-import { GetUser } from './store/actions/user.actions';
 
 import { AppStore, OrdersState } from '@models/*';
 
