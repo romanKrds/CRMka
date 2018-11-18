@@ -11,13 +11,14 @@ import { reducerServices } from './services.reducer';
 import { reducerUser } from './user.reducer';
 import { statusesReducers } from './statuses.reducer';
 import { ordersReducer } from './orders.reducer';
+import { customersReducer } from './customers.reducer';
 
 export const reducers: ActionReducerMap<AppStore> = {
   services: reducerServices,
-
   user: reducerUser,
   statuses: statusesReducers,
   orders: ordersReducer,
+  customers: customersReducer
 };
 
 
