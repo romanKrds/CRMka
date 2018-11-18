@@ -1,6 +1,6 @@
 export enum CustomersActionTypes {
     LoadCustomers = '[Customer] Load Customers',
-    LoadCustomersSuccess = '[Customer] Load Success Customers',
+    LoadCustomersSuccess = '[Customer] Load Customers Success',
     AddCustomer = '[Customer] Add Customer',
     UpsertCustomer = '[Customer] Upsert Customer',
     AddCustomers = '[Customer] Add Customers',
