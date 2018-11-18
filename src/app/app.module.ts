@@ -9,7 +9,6 @@ import { environment } from '../environments/environment';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { MaterialModules } from './materials.module';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './store/reducers';
 import { EffectsModule } from '@ngrx/effects';
@@ -20,8 +19,8 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { OrdersEffects } from './store/effects/orders.effects';
 import { CustomersEffects } from './store/effects/customers.effects';
+import { SharedModule } from './shared/shared.module';
 
-// import * as fromOrder from './order.reducer';
 
 @NgModule({
   declarations: [
@@ -32,12 +31,11 @@ import { CustomersEffects } from './store/effects/customers.effects';
     BrowserAnimationsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
-    // AngularFireDatabaseModule, // for database
     AngularFireDatabaseModule,
-    MaterialModules,
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([AppEffects, ServiceEffects, StatusesEffects, OrdersEffects, CustomersEffects]),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
