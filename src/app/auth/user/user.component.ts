@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { GetUser, GoogleLogin, Logout } from 'src/app/store/actions/user.actions';
 import { MatSnackBar } from '@angular/material';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-user',
@@ -14,11 +15,23 @@ export class UserComponent implements OnInit {
 
   user$: Observable<User>;
 
-  constructor(private state: Store<AppStore>, public snackBar: MatSnackBar) { }
+  loginForm = this.fb.group({
+    email: ['', Validators.required],
+    password: ['']
+  });
+
+  constructor(
+    private state: Store<AppStore>,
+    public snackBar: MatSnackBar,
+    private fb: FormBuilder
+    ) { }
 
   ngOnInit() {
     this.user$ = this.state.select(state => state.user.user);
     this.state.dispatch(new GetUser());
+  }
+  onSubmit() {
+    console.log('form', this.loginForm.value);
   }
 
   googleLogin() {
