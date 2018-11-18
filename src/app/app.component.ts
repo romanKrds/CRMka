@@ -45,7 +45,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     // this.store.dispatch(new LoadOrders());
     // this.store.dispatch(new LoadStatuses());
-    // this.store.dispatch(new LoadServices());
+    this.store.dispatch(new LoadServices());
     // this.store.dispatch(new LoadCustomers());
 
     // this.store.select('orders').subscribe(

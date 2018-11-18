@@ -6,12 +6,12 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyD15QXAPH10jgSTA1FY9COUAlm7LSE6y_U",
-    authDomain: "crmka-5641d.firebaseapp.com",
-    databaseURL: "https://crmka-5641d.firebaseio.com",
-    projectId: "crmka-5641d",
-    storageBucket: "crmka-5641d.appspot.com",
-    messagingSenderId: "876020124131"
+    apiKey: "AIzaSyAU71GWfwUqRfLEiX0oNUE4PRyZnXruJ0c",
+    authDomain: "crmka-ed5c0.firebaseapp.com",
+    databaseURL: "https://crmka-ed5c0.firebaseio.com",
+    projectId: "crmka-ed5c0",
+    storageBucket: "crmka-ed5c0.appspot.com",
+    messagingSenderId: "604957981157"
   }
 };
 /*
