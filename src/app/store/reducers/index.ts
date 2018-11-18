@@ -12,8 +12,12 @@ import { reducerUser } from './user.reducer';
 import { statusesReducers } from './statuses.reducer';
 import { ordersReducer } from './orders.reducer';
 import { customersReducer } from './customers.reducer';
+import { curentClientReducer } from './current-client.reducer';
+import { curentBusinessReducer } from './current-business.reducer';
 
 export const reducers: ActionReducerMap<AppStore> = {
+  currentClient: curentClientReducer,
+  currentBusiness: curentBusinessReducer,
   services: reducerServices,
   user: reducerUser,
   statuses: statusesReducers,

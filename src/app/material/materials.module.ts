@@ -4,30 +4,29 @@ import {
   MatCardModule,
   MatProgressSpinnerModule,
   MatSidenavModule,
-  MatIconModule,
-  MatToolbarModule,
   MatListModule,
-  MatButtonModule,
-  MatSnackBarModule,
+  MatIconModule,
   MatFormFieldModule,
-  MatInputModule
+  MatSnackBarModule,
+  MatInputModule,
+  MatButtonModule
+
 } from '@angular/material';
 
 const MODULES = [
   MatCardModule,
   MatProgressSpinnerModule,
   MatSidenavModule,
-  MatIconModule,
-  MatToolbarModule,
   MatListModule,
-  MatButtonModule,
-  MatSnackBarModule,
+  MatIconModule,
   MatFormFieldModule,
-  MatInputModule
+  MatSnackBarModule,
+  MatInputModule,
+  MatButtonModule
 ];
 
 @NgModule({
   imports: [...MODULES],
   exports: [...MODULES]
 })
-export class MaterialModules {}
+export class MaterialModule {}
