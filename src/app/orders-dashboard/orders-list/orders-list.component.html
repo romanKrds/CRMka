@@ -1,5 +1,5 @@
-<div *ngIf="ordersIds">
+<div *ngIf="ordersIds.length">
   <div *ngFor="let orderId of ordersIds">
-    <app-poduct-card [orderId]="orderId"></app-poduct-card>
+    <app-product-card [orderId]="orderId"></app-product-card>
   </div>
 </div>
