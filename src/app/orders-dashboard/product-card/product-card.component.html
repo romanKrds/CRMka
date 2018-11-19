@@ -1,6 +1,8 @@
 <mat-card *ngIf='order'>
   <div class="header">
-    <h2>Service </h2>
+    <h3>
+      {{order.service.title}}
+    </h3>
     <p>
       {{+order.started_at | date:'LL/MM/yyyy'}}
     </p>
@@ -9,11 +11,12 @@
   <div class="content">
     <div class="name">
       <h3>Клиент</h3>
-      <p>Name</p>
+      <p>{{order.customer.first_name}}</p>
     </div>
     <div class="status">
       <h3>Статус</h3>
-      <p>{{order.state}}</p>
+      <p>{{order.state.title}}</p>
     </div>
   </div>
+  <!-- <pre>{{order | json}}</pre> -->
 </mat-card>
