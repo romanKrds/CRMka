@@ -1,3 +1,22 @@
-<p>
-  login works!
-</p>
+<p>login works!</p>
+<div>
+  <button mat-raised-button [routerLink]="['/user/register']">go to register</button>
+</div>
+<br>
+<div>
+  <button mat-raised-button (click)="googleLogin()" [class.is-loading]="loading">
+    Sign in with Google
+  </button>
+</div>
+
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <div class="example-container">
+    <mat-form-field>
+      <input matInput placeholder="Email" formControlName="email" required />
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Password" formControlName="password" />
+    </mat-form-field>
+    <button mat-button>Login</button>
+  </div>
+</form>

@@ -33,20 +33,10 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {
     this.user$ = this.state.select(state => state.user);
-    this.state.dispatch(new GetUser());
+    // this.state.dispatch(new GetUser());
     this.state.select(state => state.user.error).subscribe(
     error => this.getErrorMessage(error)
     );
-  }
-  onSubmit() {
-    this.state.dispatch(new PasswordLogin(this.loginForm.value));
-  }
-  onRegister() {
-    this.state.dispatch(new PasswordRegister(this.loginForm.value));
-  }
-
-  googleLogin() {
-    this.state.dispatch(new GoogleLogin());
   }
 
   logout() {

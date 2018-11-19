@@ -1,25 +1,9 @@
+<p>
+  user works!
+</p>
+
 <div *ngIf="(user$ | async) as user">
   {{ user.displayName }} {{ user.uid }}
-  <button
-    *ngIf="!user.uid && !user.loading"
-    (click)="googleLogin()"
-    [class.is-loading]="loading"
-  >
-    Sign in with Google
-  </button>
-
   <button *ngIf="user.uid && !user.loading" (click)="logout()">Logout</button>
 </div>
 
-<form [formGroup]='loginForm' (ngSubmit)='onSubmit()'>
-  <div class="example-container">
-    <mat-form-field> 
-      <input matInput placeholder="Email" formControlName='email' required/> 
-    </mat-form-field>
-    <mat-form-field> 
-      <input matInput placeholder="Password" formControlName='password' /> 
-    </mat-form-field>
-    <button mat-button>Login</button>
-    <button mat-button type="button" (click)='onRegister()'>Register</button>
-  </div>
-</form>

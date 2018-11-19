@@ -2,21 +2,22 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { AppStore } from './models';
+import { AppStore } from '@models/*';
 import { selectUserUid } from '@selectors/*';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { GetUser } from '@actions/*';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class IsLogInGuard implements CanActivate {
 
   authState = null;
 
   constructor(private store: Store<AppStore>, private router: Router) {
+    this.store.dispatch(new GetUser());
     this.store.select(selectUserUid).subscribe( uid => {
 
-      console.log('subscribe');
+      console.log('subscribe IsLogInGuard');
       this.authState = uid;
     }
     );
@@ -25,14 +26,13 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-
-      console.log('auth guard called');
-      if (this.authState) {
-        console.warn('access granted!');
+      console.log('auth guard called is log in');
+      if (this.authState === null) {
+        console.warn('access granted! user not log in');
         return true;
       }
-      console.error('access denied!');
-      this.router.navigate(['user/login']);
+      console.error('access denied! user log in');
+      this.router.navigate(['user']);
       return false;
   }
 }
