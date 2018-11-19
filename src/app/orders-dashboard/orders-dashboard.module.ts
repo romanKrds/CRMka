@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { OrdersDashboardRoutingModule } from './orders-dashboard-routing.module';
 import { OrdersDashboardComponent } from './orders-dashboard.component';
-import { PoductCardComponent } from './poduct-card/poduct-card.component';
+import { ProductCardComponent } from './product-card/product-card.component';
 import { SharedModule } from '../shared/shared.module';
 import { OrdersListComponent } from './orders-list/orders-list.component';
 
@@ -12,6 +12,6 @@ import { OrdersListComponent } from './orders-list/orders-list.component';
     SharedModule,
     OrdersDashboardRoutingModule
   ],
-  declarations: [OrdersDashboardComponent, PoductCardComponent, OrdersListComponent]
+  declarations: [OrdersDashboardComponent, ProductCardComponent, OrdersListComponent]
 })
 export class OrdersDashboardModule { }

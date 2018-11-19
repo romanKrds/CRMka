@@ -25,11 +25,9 @@ export class OrdersListComponent implements OnInit {
           // console.log(this.ordersIds);
         }
       );
-    this.store.select(selectStateOrders)
-      .subscribe(value => console.log(value)
-      );
-
-
+    // this.store.select(selectStateOrders)
+    //   .subscribe(value => console.log(value)
+    //   );
   }
 
 }
