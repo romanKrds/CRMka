@@ -5,12 +5,17 @@ import {
   MatProgressSpinnerModule,
   MatSidenavModule,
   MatListModule,
-  MatIconModule
+  MatIconModule,
+  MatNativeDateModule,
+  DateAdapter
 } from '@angular/material';
 
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import {MatButtonModule} from '@angular/material/button';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+
 
 
 const MODULES = [
@@ -21,7 +26,10 @@ const MODULES = [
   MatIconModule,
   MatInputModule,
   MatFormFieldModule,
-  MatSelectModule
+  MatSelectModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatButtonModule
 ];
 
 @NgModule({

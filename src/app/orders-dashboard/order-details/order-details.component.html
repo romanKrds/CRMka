@@ -2,13 +2,48 @@
   order-details works!
 </p>
 <!-- <pre>
-  {{orders | json}}
+  {{statuses | json}}
 </pre> -->
-<mat-form-field>
-  <input matInput placeholder="Input">
-  <mat-select placeholder="Select">
-    <mat-option>Option1</mat-option>
-    <mat-option>Option2</mat-option>
-  </mat-select>
-  <input matInput>
-</mat-form-field>
+<h3>Детали заявки</h3>
+<form [formGroup]='orderForm' floatLabel="always">
+  <mat-form-field class="form-group">
+    <!-- <label for="name">Name</label> -->
+    <input matInput placeholder="Имя" type="text" class="form-control" id="name" formControlName='name'>
+  </mat-form-field>
+  <mat-form-field class="form-group">
+    <!-- <label for="phone">Phone</label> -->
+    <input matInput placeholder="Телефон" type="text" class="form-control" id="phone" formControlName='phone'>
+  </mat-form-field>
+  <br>
+  <mat-form-field class="form-group">
+      <input matInput [matDatepicker]="picker" placeholder="Дата создания" formControlName='date_open'>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="form-group">
+        <input matInput [matDatepicker]="picker2" placeholder="Дата выполнения" formControlName='date_finish'>
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+  <br>
+  <mat-form-field class="form-group">
+    <!-- <label for="comment">comment</label> -->
+    <textarea matInput placeholder="Комментарий" type="text" class="form-control" id="comment" formControlName='comment'></textarea>
+  </mat-form-field>
+  <br>
+  <mat-form-field class="form-group">
+    <!-- <label for="service">service</label> -->
+    <mat-select class="form-control" placeholder='Услуга' id="service" formControlName='service'>
+      <mat-option *ngFor="let serv of services" [value]="serv.title">{{serv.title | json}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="form-group">
+    <!-- <label for="status">status</label> -->
+    <mat-select class="form-control" placeholder='Статус' id="status" formControlName='status'>
+      <mat-option *ngFor="let state of statuses" [value]="state.title">{{state.title | json}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <button mat-flat-button type="reset">Отмена</button>
+  <button mat-flat-button type="submit">Сохранить</button>
+</form>
