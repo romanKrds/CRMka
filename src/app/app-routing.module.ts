@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   {
@@ -8,7 +9,8 @@ const routes: Routes = [
     redirectTo: 'orders-dashboard'
   }, {
     path: 'orders-dashboard',
-    loadChildren: './orders-dashboard/orders-dashboard.module#OrdersDashboardModule'
+    loadChildren: './orders-dashboard/orders-dashboard.module#OrdersDashboardModule',
+    canActivate: [AuthGuard]
   },
   {
     path: 'user',
