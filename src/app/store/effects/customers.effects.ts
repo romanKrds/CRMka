@@ -32,7 +32,7 @@ export class CustomersEffects {
 //                        payload: data
                     }),
                     map((customer: Customer[]) => {
-                        console.log('effect');
+                        // console.log('effect');
                         return new LoadCustomersSuccess({ customers: customer });
                     }),
                     // If request fails, dispatch failed action
@@ -40,7 +40,9 @@ export class CustomersEffects {
                     //     type: CustomersActionTypes.LOAD_CUSTOMERS_FAILED,
                     //     payload: []
                     // })),
-                    tap(data => console.log('loadCustomerEffect', data))
+                    tap(
+                        // data => console.log('loadCustomerEffect', data)
+                        )
                 )
             )
     );
