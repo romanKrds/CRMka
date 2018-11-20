@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'orders-dashboard'
+    component: LoginComponent
   }, {
-    path: 'orders-dashboard',
-    loadChildren: './orders-dashboard/orders-dashboard.module#OrdersDashboardModule'
+    path: 'base',
+    loadChildren: './base/base.module#BaseModule'
   }
 ];
 
