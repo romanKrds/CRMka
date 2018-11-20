@@ -25,27 +25,27 @@ export class OrderDetailsComponent implements OnInit {
   ngOnInit() {
     this.store.select(selectAllOrders)
       .subscribe(value => (this.currentOrder = value[0],
-           // this.currentOrder = value[0],
-        console.log(this.currentOrder)
+        // this.currentOrder = value[0],
+        console.log(this.currentOrder),
+        this.formInit(),
+        this.orderForm.valueChanges
+          .subscribe((valueChange: any) => {
+            console.log('form Value', valueChange);
+          })
         )
     );
     this.store.select(selectServicesAll)
       .subscribe(value => (this.services = value,
-           // this.currentOrder = value[0],
+        // this.currentOrder = value[0],
         console.log(this.services)
-        )
-    );
+      )
+      );
     this.store.select(selectStatusesAsArray)
       .subscribe(value => (this.statuses = value,
-           // this.currentOrder = value[0],
+        // this.currentOrder = value[0],
         console.log(this.statuses)
-        )
-    );
-    this.formInit();
-    this.orderForm.valueChanges
-    .subscribe((value: any) => {
-      console.log('form Value', value);
-    });
+      )
+      );
   }
 
   formInit(): void {
