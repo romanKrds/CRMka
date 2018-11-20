@@ -1,9 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppStore, Order, OrdersState } from '@models/*';
-import { getOrderById } from 'src/app/store/selectors/orders.selectors';
+import { getOrderById, selectCurrentOrder } from 'src/app/store/selectors/orders.selectors';
 import { getServiceById, getStatusById } from '@selectors/*';
 import { getCustomerById } from 'src/app/store/selectors/customers.selectors';
+import { ChangeCurrentOrder } from '@actions/*';
 
 @Component({
   selector: 'app-product-card',
@@ -13,13 +14,14 @@ import { getCustomerById } from 'src/app/store/selectors/customers.selectors';
 export class ProductCardComponent implements OnInit {
   @Input() orderId;
   order;
-  date: number;
-
+  currentOrder;
   constructor(
     private store: Store<AppStore>
   ) { }
 
   ngOnInit() {
+    this.store.select(selectCurrentOrder)
+      .subscribe(value => this.currentOrder = value);
     this.store.select(getOrderById(), this.orderId)
       .subscribe(value => {
         this.order = { ...value };
@@ -31,5 +33,9 @@ export class ProductCardComponent implements OnInit {
           .subscribe(state => this.order.state = { ...state });
       }
       );
+  }
+
+  choseCurrentOrder(): void {
+    this.store.dispatch(new  ChangeCurrentOrder(this.orderId));
   }
 }

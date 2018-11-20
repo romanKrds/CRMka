@@ -69,12 +69,16 @@ export class ClearOrders implements Action {
 export class ErrorOrders implements Action {
   readonly type = OrderActionTypes.ErrorOrders;
 
-  constructor(public payload: { errors: string[] }) {}
+  constructor(public payload: { errors: string[] }) { }
 }
 
+export class ChangeCurrentOrder implements Action {
+  readonly type = OrderActionTypes.ChangeCurrentOrder;
+  constructor(public payload: string | null) { }
+}
 
 export type OrderActions =
-LoadOrders
+  LoadOrders
   | LoadOrdersSuccess
   | AddOrder
   | UpsertOrder
@@ -85,4 +89,6 @@ LoadOrders
   | DeleteOrder
   | DeleteOrders
   | ClearOrders
-  | ErrorOrders;
+  | ErrorOrders
+  | ChangeCurrentOrder
+  ;
