@@ -29,6 +29,11 @@ export const selectTotalOrders = createSelector(
   selectTotal
 );
 
+export const selectCurrentOrder = createSelector (
+  selectStateOrders,
+  (orderState) => orderState.currentOrder,
+);
+
 export const getOrderById = () => createSelector(
   selectEntitiesOrders,
   (orders, orderId) => orders[orderId]

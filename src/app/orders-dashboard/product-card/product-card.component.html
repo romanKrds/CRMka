@@ -1,4 +1,4 @@
-<mat-card *ngIf='order'>
+<mat-card *ngIf='order' [class.active]='order.id === currentOrder' (click)='choseCurrentOrder()'>
   <div class="header">
     <h3>
       {{order.service.title}}
@@ -18,5 +18,7 @@
       <p>{{order.state.title}}</p>
     </div>
   </div>
-  <!-- <pre>{{order | json}}</pre> -->
+  <!-- <pre>
+    {{order | json}}
+  </pre> -->
 </mat-card>
