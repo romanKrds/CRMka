@@ -7,7 +7,6 @@ import {
   MatListModule,
   MatIconModule,
   MatNativeDateModule,
-  DateAdapter
 } from '@angular/material';
 
 import { MatInputModule } from '@angular/material/input';

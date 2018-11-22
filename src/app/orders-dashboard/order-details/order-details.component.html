@@ -33,14 +33,14 @@
   <br>
   <mat-form-field class="form-group">
     <!-- <label for="service">service</label> -->
-    <mat-select class="form-control" placeholder='Услуга' id="service" formControlName='service'>
-      <mat-option *ngFor="let serv of services" [value]="serv.title">{{serv.title | json}}</mat-option>
+    <mat-select class="form-control" placeholder='Услуга' id="service" [value]="currentOrder.service.title" formControlName='service'>
+      <mat-option *ngFor="let serv of services" [value]="serv.title">{{serv.title}}</mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field class="form-group">
     <!-- <label for="status">status</label> -->
-    <mat-select class="form-control" placeholder='Статус' id="status" formControlName='status'>
-      <mat-option *ngFor="let state of statuses" [value]="state.title">{{state.title | json}}</mat-option>
+    <mat-select class="form-control" placeholder='Статус' id="status" [value]="currentOrder.status.title" formControlName='status'>
+      <mat-option *ngFor="let stat of statuses" [value]="stat.title">{{stat.title | json}}</mat-option>
     </mat-select>
   </mat-form-field>
   <br>
