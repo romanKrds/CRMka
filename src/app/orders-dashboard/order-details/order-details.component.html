@@ -4,14 +4,15 @@
 <pre>
   {{currentOrder | json}}
 </pre>
+<pre>
+  {{statuses | json}}
+</pre>
 <h3>Детали заявки</h3>
-<form [formGroup]='orderForm' floatLabel="always">
+<form [formGroup]='orderForm' floatLabel="always" (ngSubmit)="onSubmit()">
   <mat-form-field class="form-group">
-    <!-- <label for="name">Name</label> -->
     <input matInput placeholder="Имя" type="text" class="form-control" id="name" formControlName='name'>
   </mat-form-field>
   <mat-form-field class="form-group">
-    <!-- <label for="phone">Phone</label> -->
     <input matInput placeholder="Телефон" type="text" class="form-control" id="phone" formControlName='phone'>
   </mat-form-field>
   <br>
@@ -27,18 +28,15 @@
       </mat-form-field>
   <br>
   <mat-form-field class="form-group">
-    <!-- <label for="comment">comment</label> -->
     <textarea matInput placeholder="Комментарий" type="text" class="form-control" id="comment" formControlName='comment'></textarea>
   </mat-form-field>
   <br>
   <mat-form-field class="form-group">
-    <!-- <label for="service">service</label> -->
     <mat-select class="form-control" placeholder='Услуга' id="service" [value]="currentOrder.service.title" formControlName='service'>
       <mat-option *ngFor="let serv of services" [value]="serv.title">{{serv.title}}</mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field class="form-group">
-    <!-- <label for="status">status</label> -->
     <mat-select class="form-control" placeholder='Статус' id="status" [value]="currentOrder.status.title" formControlName='status'>
       <mat-option *ngFor="let stat of statuses" [value]="stat.title">{{stat.title | json}}</mat-option>
     </mat-select>
