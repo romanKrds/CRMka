@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppStore, Order, OrdersState, StatusesState, Status } from '@models/*';
-import { selectServicesAll, selectAllStatuses, selectStatusesAsArray } from '@selectors/*';
+import { selectServicesAll, selectAllStatuses, selectStatusesAsArray, getServiceById, getStatusById } from '@selectors/*';
 import { selectAllOrders, selectCurrentOrder, getOrderById } from 'src/app/store/selectors/orders.selectors';
+import { getCustomerById } from 'src/app/store/selectors/customers.selectors';
+import { DateAdapter } from '@angular/material/core';
+
 
 @Component({
   selector: 'app-order-details',
@@ -19,7 +22,8 @@ export class OrderDetailsComponent implements OnInit {
 
   constructor(
     private store: Store<AppStore>,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private adapter: DateAdapter<any>
   ) { }
 
   ngOnInit() {
@@ -27,9 +31,16 @@ export class OrderDetailsComponent implements OnInit {
       .subscribe(value => {
         this.store.select(getOrderById(), value)
           .subscribe(valueOrder => (
-            this.currentOrder = {...valueOrder},
+            this.currentOrder = { ...valueOrder },
+            this.store.select(getCustomerById(), valueOrder && valueOrder.customerId)
+              .subscribe(customer => this.currentOrder.customer = { ...customer }),
+            this.store.select(getServiceById(), valueOrder && valueOrder.serviceId)
+              .subscribe(service => this.currentOrder.service = { ...service }),
+            this.store.select(getStatusById(), valueOrder && valueOrder.state)
+              .subscribe(status => this.currentOrder.status = { ...status }),
             this.orderForm && this.formFill()
           ));
+          this.adapter.setLocale('fr');
       }
       );
     // this.store.select(selectAllOrders)
@@ -70,13 +81,13 @@ export class OrderDetailsComponent implements OnInit {
 
   formFill(): void {
     this.orderForm.patchValue({
-      name: [''],
-      phone: [''],
-      date_open: [''],
-      date_finish: [''],
+      name: [this.currentOrder.customer.first_name],
+      phone: [this.currentOrder.customer.phone],
+      date_open: new Date(+this.currentOrder.started_at),
+      date_finish: new Date(+this.currentOrder.ended_at),
       comment: [this.currentOrder.comment],
-      service: [''],
-      status: ['']
+      service: [this.currentOrder.service.title],
+      status: [this.currentOrder.status.title]
     });
   }
 }
