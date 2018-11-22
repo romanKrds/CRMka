@@ -15,7 +15,7 @@ export class ProductCardComponent implements OnInit {
   @Input() orderId;
   order;
   currentOrder;
-  classTemplate: string;
+
   constructor(
     private store: Store<AppStore>
   ) { }
@@ -32,11 +32,9 @@ export class ProductCardComponent implements OnInit {
           .subscribe(customer => this.order.customer = { ...customer });
         this.store.select(getStatusById(), this.order.state)
           .subscribe(state => this.order.stateObj = { ...state });
-        this.classTemplate = `${this.order.state}`;
       }
       );
   }
-
   choseCurrentOrder(): void {
     this.store.dispatch(new ChangeCurrentOrder(this.orderId));
   }
