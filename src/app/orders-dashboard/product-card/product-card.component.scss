@@ -1,15 +1,29 @@
+@import 'variables';
 mat-card {
   // background: green;
   // max-width: 50%;
   border-radius: 10px 0 0 10px;
-  border-left: 10px solid green;
+  border-left: 10px solid transparent;
   padding-top: 5px; 
   padding-bottom: 5px; 
   margin-bottom: 10px;
-  
+  &.-LRrb5BXAtsNCPA1AD3v {
+    border-color: $statusOrderNew;
+  }
+  &.-LRrb5BbSUH9Z52jY_9K{
+    border-color: $statusOrderInWork;
+  }
+  &.-LRrb5Bcw-p7RoioUVMz {
+    border-color: $statusOrderRejected;
+  }
+  &.-LRrb5Bdg-2bVb6lqXxD {
+    border-color: $statusOrderСompleted;
+  }
 }
 .active {
-  margin-left: 15px;
+  margin-left:15px;
+  margin-right:15px;
+
 }
 .header {
   display: flex;

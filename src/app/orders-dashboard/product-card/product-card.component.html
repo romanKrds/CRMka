@@ -1,10 +1,10 @@
-<mat-card *ngIf='order' [class.active]='order.id === currentOrder' (click)='choseCurrentOrder()'>
+<mat-card *ngIf='order' [ngClass]="order.state" [class.active]='order.id === currentOrder' (click)='choseCurrentOrder()'>
   <div class="header">
     <h3>
       {{order.service.title}}
     </h3>
     <p>
-      {{+order.started_at | date:'LL/MM/yyyy'}}
+      {{+order.started_at | date:'dd/LL/yyyy'}}
     </p>
   </div>
   <mat-divider></mat-divider>
@@ -15,7 +15,7 @@
     </div>
     <div class="status">
       <h3>Статус</h3>
-      <p>{{order.state.title}}</p>
+      <p>{{order.stateObj.title}}</p>
     </div>
   </div>
   <!-- <pre>
