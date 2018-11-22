@@ -19,6 +19,7 @@ export class OrderDetailsComponent implements OnInit {
   services: any;
   orderForm: FormGroup;
   currentOrder;
+  changeOrder: Order;
 
   constructor(
     private store: Store<AppStore>,
@@ -40,30 +41,24 @@ export class OrderDetailsComponent implements OnInit {
               .subscribe(status => this.currentOrder.status = { ...status }),
             this.orderForm && this.formFill()
           ));
-          this.adapter.setLocale('fr');
+        this.adapter.setLocale('fr');
       }
       );
-    // this.store.select(selectAllOrders)
-    //   .subscribe(value => (this.currentOrder = value[0],
-    //     console.log(this.currentOrder)
-    //   )
-    // );
     this.store.select(selectServicesAll)
       .subscribe(value => (this.services = value,
-        // this.currentOrder = value[0],
         console.log(this.services)
       )
       );
     this.store.select(selectStatusesAsArray)
       .subscribe(value => (this.statuses = value,
-        // this.currentOrder = value[0],
         console.log(this.statuses)
       )
       );
     this.formInit(),
       this.orderForm.valueChanges
         .subscribe((valueChange: any) => {
-          console.log('form Value', valueChange);
+          // console.log('form Value', valueChange);
+          this.currentOrder.comment = valueChange.comment;
         });
   }
 
@@ -87,7 +82,27 @@ export class OrderDetailsComponent implements OnInit {
       date_finish: new Date(+this.currentOrder.ended_at),
       comment: [this.currentOrder.comment],
       service: [this.currentOrder.service.title],
-      status: [this.currentOrder.status.title]
+      status: this.currentOrder.status.title
     });
+  }
+
+  onSubmit(): void {
+    console.log(this.orderForm.value);
+    // console.log(this.currentOrder);
+    const stateid = this.statuses.findIndex(item => item.title === this.orderForm.value.status);
+    const result = {
+      id: this.currentOrder.id,
+      comment: this.orderForm.value.comment,
+      created_at: this.currentOrder.created_at,
+      customerId: this.currentOrder.customerId,
+      ended_at: Date.parse(this.orderForm.value.ended_at),
+      serviceId: this.currentOrder.serviceId,
+      started_at: this.currentOrder.started_at,
+      state: this.statuses[stateid].id
+    };
+    console.log(result);
+    // console.log(this.statuses);
+    // console.log(stateid);
+    // console.log(this.statuses[stateid]);
   }
 }
