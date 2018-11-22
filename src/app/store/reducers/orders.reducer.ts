@@ -67,7 +67,7 @@ export function ordersReducer(
       return {
         ...state,
         currentOrder: action.payload
-      }
+      };
     }
 
     default: {
