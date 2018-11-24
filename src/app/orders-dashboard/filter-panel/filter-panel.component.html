@@ -1,37 +1,78 @@
-<mat-card>  
- <mat-card-header>{{title}}</mat-card-header>
+<mat-card class="filterPanel">  
+ <mat-card-header><h2>{{title}}</h2></mat-card-header>
 
   <mat-card-content>
-    <form [formGroup]="filterForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="filterForm" 
+          (ngSubmit)="onSubmit()">
       <mat-form-field class="inputBlock">
-        <input matInput type="text" placeholder="Имя" formControlName="name">
+        <input matInput type="text" placeholder="Имя" formControlName="name" #Name>
+        <button mat-button *ngIf="Name.value" matSuffix mat-icon-button aria-label="Clear" 
+          (click)="onClear('name')">
+          <mat-icon>close</mat-icon>
+        </button>
+        <mat-hint align="start"><strong>Введите от 5 до 12 знаков для поиска</strong> </mat-hint>
       </mat-form-field>
       <mat-form-field class="inputBlock">
-        <input matInput type="text" placeholder="Телефон" formControlName="phone">
+        <input  matInput type="text" 
+                maxlength="12" 
+                placeholder="Телефон" 
+                formControlName="phone" 
+                #Phone
+                onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57">
+        <button mat-button *ngIf="Phone.value" matSuffix mat-icon-button aria-label="Clear" (click)="onClear('phone')">
+          <mat-icon>close</mat-icon>
+        </button>
+        <mat-hint align="start"><strong>Введите от 5 до 12 цифр для поиска</strong> </mat-hint>
       </mat-form-field>
-      <div *ngIf="isOrderFilter" class="orderFilterContainer">
+      <div *ngIf="FilterMode===filterMode.Orders" class="orderFilterContainer">
         <mat-form-field class="inputBlock">
-          <mat-select placeholder="Услуга" formControlName=service>
-            <mat-option *ngFor="let service of services" [value]="service.id">{{service.title}}</mat-option>
+          <mat-select placeholder="Услуга" 
+                      formControlName=service 
+                      matTooltip={{serviceTooltip}}
+                      >
+            <mat-option *ngFor="let service of services" 
+                        [value]="service.id" 
+                        #ServiceTooltip = "matTooltip"
+                        matTooltip={{service.description}} 
+                        (click)="serviceTooltip=ServiceTooltip.message">
+                        {{service.title}}
+            </mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field class="inputBlock">
-<<<<<<< HEAD
-          <mat-select  placeholder="Статус">
-            <mat-option *ngFor="let status of statuses" [value]="status.id"git pull>{{status.title}}</mat-option>
-=======
-          <mat-select  placeholder="Статус" formControlName="status">
-            <mat-option *ngFor="let status of statuses" [value]="status.id">{{status.title}}</mat-option>
->>>>>>> 8fddd979199e10b055fd70cb6e370149b1f028b9
+          <mat-select placeholder="Статус" 
+                      formControlName="status"
+                      matTooltip={{statusTooltip}}
+                      >
+            <mat-option *ngFor="let status of statuses" 
+                        [value]="status.id"
+                        #StatusTooltip ="matTooltip"
+                        matTooltip={{status.description}}
+                        (click)="statusTooltip=StatusTooltip.message"
+                        >
+                        {{status.title}}
+            </mat-option>
           </mat-select>
         </mat-form-field>
       </div>
     </form>
   </mat-card-content>
  
-  <mat-card-actions>
-    <button mat-button type="reset" (click)="onReset()">Отмена</button>
-    <button type="submit" mat-button (click)="onSubmit()">Найти</button>
+  <mat-card-actions class="actionsBar">
+    <button 
+            mat-button 
+            type="reset" 
+            (click)="onReset()"
+            [disabled]="!isCancelButtonEnabled()">
+            Отмена
+    </button>
+    <button 
+            type="submit" 
+            mat-button 
+            (click)="onSubmit()"
+            [disabled]="!isFindButtonEnabled()">
+            Найти
+    </button>
   </mat-card-actions>
  
 </mat-card>

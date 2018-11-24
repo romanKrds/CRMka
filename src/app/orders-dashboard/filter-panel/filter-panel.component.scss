@@ -5,3 +5,13 @@
 .inputBlock {
     margin-right: 5px;
 }
+
+.actionsBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.filterPanel {
+    max-width: 800px;
+}
