@@ -88,7 +88,7 @@ export class FilterPanelComponent implements OnInit {
   }
 
   isValidStatus(): boolean {
-    let result = true;
+    let result = false;
     if (this.FilterMode === this.filterMode.Orders) {
       result = (this.filterForm.value.status != null);
     }
@@ -96,7 +96,7 @@ export class FilterPanelComponent implements OnInit {
   }
 
   isValidService(): boolean {
-    let result = true;
+    let result = false;
     if (this.FilterMode === this.filterMode.Orders) {
       result = (this.filterForm.value.service != null);
     }
@@ -129,7 +129,7 @@ export class FilterPanelComponent implements OnInit {
                 (IS_PHONE_NULL || this.isValidPhone()) &&
                 (IS_SERVICE_NULL || this.isValidService()))
               );
-    // console.log(result, this.filterForm.value);
+     console.log(result, this.filterForm.value);
 
     return result;
   }

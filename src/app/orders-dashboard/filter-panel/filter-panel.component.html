@@ -1,4 +1,7 @@
-<mat-card class="filterPanel">  
+<mat-card 
+    [class.filterPanelOrders]="FilterMode === filterMode.Orders"
+    [class.filterPanelClients]="FilterMode === filterMode.Clients"
+>  
  <mat-card-header><h2>{{title}}</h2></mat-card-header>
 
   <mat-card-content>
@@ -10,7 +13,6 @@
           (click)="onClear('name')">
           <mat-icon>close</mat-icon>
         </button>
-        <mat-hint align="start"><strong>Введите от 5 до 12 знаков для поиска</strong> </mat-hint>
       </mat-form-field>
       <mat-form-field class="inputBlock">
         <input  matInput type="text" 
@@ -22,7 +24,6 @@
         <button mat-button *ngIf="Phone.value" matSuffix mat-icon-button aria-label="Clear" (click)="onClear('phone')">
           <mat-icon>close</mat-icon>
         </button>
-        <mat-hint align="start"><strong>Введите от 5 до 12 цифр для поиска</strong> </mat-hint>
       </mat-form-field>
       <div *ngIf="FilterMode===filterMode.Orders" class="orderFilterContainer">
         <mat-form-field class="inputBlock">
