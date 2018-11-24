@@ -87,7 +87,7 @@ export class OrderDetailsComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.orderForm.value);
+    // console.log(this.orderForm.value);
     // console.log(this.currentOrder);
     const stateid = this.statuses.findIndex(item => item.title === this.orderForm.value.status);
     const result = {
