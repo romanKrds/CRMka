@@ -28,3 +28,9 @@ export const selectStatusesAsArray = createSelector(
   selectAllStatuses,
   _selectAsArray
 );
+
+
+export const getStatusById = () => createSelector(
+  selectAllStatuses,
+  (services, id) => services[id]
+);
