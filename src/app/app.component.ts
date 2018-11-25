@@ -16,7 +16,7 @@ import { selectStateServices, selectStatusesAsArray} from '@selectors/*';
 
 export class AppComponent implements OnInit {
 
-  constructor(private db: AngularFireDatabase, private store: Store<AppStore>) {}
+  constructor(private db: AngularFireDatabase, private store: Store<AppStore>) { }
 
   ngOnInit() {
     this.store.dispatch(new LoadOrders());

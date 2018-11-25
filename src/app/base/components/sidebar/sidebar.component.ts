@@ -31,7 +31,7 @@ export class SidebarComponent implements OnInit {
     icon: 'account_circle'
   };
 
-  small = false;
+  small = true;
 
   constructor() { }
 

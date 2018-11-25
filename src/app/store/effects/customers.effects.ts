@@ -3,7 +3,7 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import {  map, mergeMap, tap } from 'rxjs/operators';
+import { map, mergeMap, tap } from 'rxjs/operators';
 
 import { CustomersActionTypes } from '@constants/*';
 import { LoadCustomersSuccess } from '@actions/*';
