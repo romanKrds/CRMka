@@ -31,16 +31,16 @@ export class CustomersEffects {
 //                        type: CustomersActionTypes.LOAD_CUSTOMERS_SUCCESS,
 //                        payload: data
                     }),
-                    map((customer: Customer[]) => {
-                        console.log('effect');
-                        return new LoadCustomersSuccess({ customers: customer });
+                    map((customers: Customer[]) => {
+                        // console.log('effect');
+                        return new LoadCustomersSuccess({ customers });
                     }),
                     // If request fails, dispatch failed action
                     // catchError(_ => of({
                     //     type: CustomersActionTypes.LOAD_CUSTOMERS_FAILED,
                     //     payload: []
                     // })),
-                    tap(data => console.log('loadCustomerEffect', data))
+                    // tap(data => console.log('loadCustomerEffect', data))
                 )
             )
     );
