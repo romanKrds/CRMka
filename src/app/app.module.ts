@@ -23,6 +23,7 @@ import { SharedModule } from './shared/shared.module';
 import { LoginComponent } from './components/login/login.component';
 import { AuthEffects } from './store/effects/user.effects';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { BusinessEffects } from './store/effects/business.effects';
 
 
 @NgModule({
@@ -39,7 +40,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
       AngularFireAuthModule,
       StoreModule.forRoot(reducers,
       {metaReducers}),
-    EffectsModule.forRoot([AppEffects, ServiceEffects, StatusesEffects, OrdersEffects, CustomersEffects, AuthEffects]),
+    EffectsModule.forRoot([AppEffects, ServiceEffects, StatusesEffects, OrdersEffects, CustomersEffects, AuthEffects, BusinessEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     SharedModule
   ],
