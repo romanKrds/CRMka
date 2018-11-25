@@ -1,5 +1,6 @@
 <mat-card class="container">
   <h2>Детали заявки</h2>
+  
   <form [formGroup]='orderForm' floatLabel="always" (ngSubmit)="onSubmit()" class="form-details">
     <mat-form-field class="form-group">
       <input matInput placeholder="Имя" type="text" class="form-control" id="name" formControlName='name'>

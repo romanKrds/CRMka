@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { filterMode } from 'src/app/orders-dashboard/filter-panel/filter-panel.constants';
+import { filterMode } from './components/filter-panel/filter-panel.constants';
 
 @Component({
   selector: 'app-orders-dashboard',

@@ -6,6 +6,7 @@ import { selectServicesAll, selectAllStatuses, selectStatusesAsArray, getService
 import { selectAllOrders, selectCurrentOrder, getOrderById } from 'src/app/store/selectors/orders.selectors';
 import { getCustomerById } from 'src/app/store/selectors/customers.selectors';
 import { DateAdapter } from '@angular/material/core';
+import { UpdateOrder, UpsertOrder } from '@actions/*';
 
 
 @Component({
@@ -41,7 +42,7 @@ export class OrderDetailsComponent implements OnInit {
               .subscribe(status => this.currentOrder.status = { ...status }),
             this.orderForm && this.formFill()
           ));
-        this.adapter.setLocale('fr');
+        // this.adapter.setLocale('fr');
       }
       );
     this.store.select(selectServicesAll)
@@ -90,17 +91,18 @@ export class OrderDetailsComponent implements OnInit {
     // console.log(this.orderForm.value);
     // console.log(this.currentOrder);
     const stateid = this.statuses.findIndex(item => item.title === this.orderForm.value.status);
-    const result = {
+    const result: Order = {
       id: this.currentOrder.id,
       comment: this.orderForm.value.comment,
       created_at: this.currentOrder.created_at,
       customerId: this.currentOrder.customerId,
-      ended_at: Date.parse(this.orderForm.value.ended_at),
+      ended_at: this.orderForm.value.ended_at,
       serviceId: this.currentOrder.serviceId,
       started_at: this.currentOrder.started_at,
       state: this.statuses[stateid].id
     };
     console.log(result);
+    this.store.dispatch(new UpsertOrder({ order: result}));
     // console.log(this.statuses);
     // console.log(stateid);
     // console.log(this.statuses[stateid]);
