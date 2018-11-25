@@ -26,7 +26,7 @@ export class SidebarComponent implements OnInit {
   ];
 
   account = {
-    link: '/account',
+    link: 'account',
     text: 'Ваш аккаунт',
     icon: 'account_circle'
   };

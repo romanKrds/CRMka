@@ -21,6 +21,8 @@ import { OrdersEffects } from './store/effects/orders.effects';
 import { CustomersEffects } from './store/effects/customers.effects';
 import { SharedModule } from './shared/shared.module';
 import { LoginComponent } from './components/login/login.component';
+import { AuthEffects } from './store/effects/user.effects';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 
 @NgModule({
@@ -34,9 +36,10 @@ import { LoginComponent } from './components/login/login.component';
       AppRoutingModule,
       AngularFireModule.initializeApp(environment.firebase),
       AngularFireDatabaseModule,
+      AngularFireAuthModule,
       StoreModule.forRoot(reducers,
       {metaReducers}),
-    EffectsModule.forRoot([AppEffects, ServiceEffects, StatusesEffects, OrdersEffects, CustomersEffects]),
+    EffectsModule.forRoot([AppEffects, ServiceEffects, StatusesEffects, OrdersEffects, CustomersEffects, AuthEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     SharedModule
   ],
