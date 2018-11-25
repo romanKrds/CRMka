@@ -23,7 +23,7 @@ export const reducers: ActionReducerMap<AppStore> = {
   statuses: statusesReducers,
   orders: ordersReducer,
   customers: customersReducer,
-  business: reducerBusiness
+  clientBusinesses: reducerBusiness
 };
 
 

@@ -9,5 +9,5 @@ export interface AppStore {
   customers: CustomersState;
   statuses: StatusesState;
   services: ServicesState;
-  business: BusinessState;
+  clientBusinesses: BusinessState;
 }
