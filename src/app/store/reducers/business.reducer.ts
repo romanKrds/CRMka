@@ -11,7 +11,7 @@ export const initialBusinessState: BusinessState = businessAdapter.getInitialSta
   errors: null
 });
 
-export function reducer(
+export function reducerBusiness(
   state = initialBusinessState,
   action: BusinessActions
 ): BusinessState {
@@ -48,7 +48,7 @@ export function reducer(
       return businessAdapter.removeMany(action.payload.ids, state);
     }
 
-    case BusinessActionTypes.LoadBusinesses: {
+    case BusinessActionTypes.LoadBusinessSuccess: {
       return businessAdapter.addAll(action.payload.businesses, state);
     }
 

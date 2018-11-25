@@ -3,8 +3,12 @@ import { Update } from '@ngrx/entity';
 import { Business } from '@models/*';
 import { BusinessActionTypes } from '@constants/*';
 
-export class LoadBusinesses implements Action {
+export class LoadBusiness implements Action {
   readonly type = BusinessActionTypes.LoadBusinesses;
+}
+
+export class LoadBusinessesSuccess implements Action {
+  readonly type = BusinessActionTypes.LoadBusinessSuccess;
 
   constructor(public payload: { businesses: Business[] }) {}
 }
@@ -61,14 +65,21 @@ export class ClearBusinesses implements Action {
   readonly type = BusinessActionTypes.ClearBusinesses;
 }
 
+export class ErrorBusiness implements Action {
+  readonly type = BusinessActionTypes.ErrorBusiness;
+  constructor(public payload: { errors: string[] }) {}
+}
+
 export type BusinessActions =
- LoadBusinesses
- | AddBusiness
- | UpsertBusiness
- | AddBusinesses
- | UpsertBusinesses
- | UpdateBusiness
- | UpdateBusinesses
- | DeleteBusiness
- | DeleteBusinesses
- | ClearBusinesses;
+  | LoadBusiness
+  | LoadBusinessesSuccess
+  | AddBusiness
+  | UpsertBusiness
+  | AddBusinesses
+  | UpsertBusinesses
+  | UpdateBusiness
+  | UpdateBusinesses
+  | DeleteBusiness
+  | DeleteBusinesses
+  | ClearBusinesses
+  | ErrorBusiness;

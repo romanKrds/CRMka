@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 
 import { AppStore, OrdersState } from '@models/*';
 
-import { LoadStatuses, LoadOrders, LoadServices, LoadCustomers } from '@actions/*';
+import { LoadStatuses, LoadOrders, LoadServices, LoadCustomers, LoadBusiness } from '@actions/*';
 import { selectStateServices, selectStatusesAsArray} from '@selectors/*';
 
 
@@ -23,6 +23,7 @@ export class AppComponent implements OnInit {
     // this.store.dispatch(new LoadStatuses());
     // this.store.dispatch(new LoadServices());
     // this.store.dispatch(new LoadCustomers());
+    this.store.dispatch(new LoadBusiness());
     // this.store.dispatch({type: '[CurentClient] Load Success', payload: '1FHrxAIqCubegtQCZLR648FZLQh1'});
     this.store.dispatch({type: '[CurentBusiness] Load Success', payload: '-LRrb5BmtO6LilxN-khs'});
 
@@ -45,5 +46,9 @@ export class AppComponent implements OnInit {
     //   .list('/clients')
     //   .valueChanges()
     //   .subscribe(value => console.log('CLIENTS: ', value));
+    this.db
+      .list('/business')
+      .valueChanges()
+      .subscribe(value => console.log('business: ', value));
   }
 }
