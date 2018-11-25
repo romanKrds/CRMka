@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { OrdersDashboardRoutingModule } from './orders-dashboard-routing.module';
 import { OrdersDashboardComponent } from './orders-dashboard.component';
+import { OrderDetailsComponent } from './order-details/order-details.component';
 
 import { FilterPanelComponent } from './filter-panel/filter-panel.component';
 
@@ -16,6 +16,6 @@ import { OrdersListComponent } from './orders-list/orders-list.component';
     SharedModule,
     OrdersDashboardRoutingModule
   ],
-  declarations: [OrdersDashboardComponent, ProductCardComponent, OrdersListComponent, FilterPanelComponent]
+  declarations: [OrdersDashboardComponent, ProductCardComponent, OrdersListComponent, OrderDetailsComponent, FilterPanelComponent]
 })
 export class OrdersDashboardModule { }

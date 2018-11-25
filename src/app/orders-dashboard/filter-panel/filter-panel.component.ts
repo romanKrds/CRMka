@@ -62,7 +62,7 @@ export class FilterPanelComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.filterForm.value);
+    // console.log(this.filterForm.value);
   }
 
   onReset(): void {
@@ -129,7 +129,7 @@ export class FilterPanelComponent implements OnInit {
                 (IS_PHONE_NULL || this.isValidPhone()) &&
                 (IS_SERVICE_NULL || this.isValidService()))
               );
-     console.log(result, this.filterForm.value);
+    //  console.log(result, this.filterForm.value);
 
     return result;
   }
