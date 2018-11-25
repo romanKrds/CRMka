@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as fm from './filter-panel/filter-panel.constants';
+import { filterMode } from 'src/app/orders-dashboard/filter-panel/filter-panel.constants';
 
 @Component({
   selector: 'app-orders-dashboard',
@@ -8,7 +8,7 @@ import * as fm from './filter-panel/filter-panel.constants';
 })
 export class OrdersDashboardComponent implements OnInit {
 
-  filterMode = fm.filterMode;
+  filterMode = filterMode;
 
   constructor() { }
 

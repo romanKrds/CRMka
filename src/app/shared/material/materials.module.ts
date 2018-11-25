@@ -6,12 +6,17 @@ import {
   MatSidenavModule,
   MatListModule,
   MatIconModule,
-  MatFormFieldModule,
-  MatSelectModule,
-  MatInputModule,
-  MatButtonModule,
+  MatNativeDateModule,
   MatTooltipModule
 } from '@angular/material';
+
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+
+
 
 const MODULES = [
   MatCardModule,
@@ -19,9 +24,11 @@ const MODULES = [
   MatSidenavModule,
   MatListModule,
   MatIconModule,
+  MatInputModule,
   MatFormFieldModule,
   MatSelectModule,
-  MatInputModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
   MatButtonModule,
   MatTooltipModule
 ];

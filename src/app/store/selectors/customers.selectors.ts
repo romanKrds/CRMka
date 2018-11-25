@@ -30,6 +30,6 @@ export const selectCustomersTotal = createSelector(
 );
 
 export const getCustomerById = () => createSelector(
-    selectServicesEntities,
+    selectStateCustomers,
     (customers, id) => customers[id]
 );
