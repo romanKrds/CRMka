@@ -4,7 +4,7 @@ import { customersAdapter } from '../reducers/customers.reducer';
 
 export const selectStateCustomers = createFeatureSelector<CustomersState>('customers');
 
-export const {
+const {
     selectIds,
     selectEntities,
     selectAll,
@@ -12,19 +12,24 @@ export const {
 } = customersAdapter.getSelectors();
 
 
-export const selectServicesIds = createSelector(
+export const selectCustomersIds = createSelector(
     selectStateCustomers,
     selectIds
 );
-export const selectServicesEntities = createSelector(
+export const selectCustomersEntities = createSelector(
     selectStateCustomers,
     selectEntities
 );
-export const selectServicesAll = createSelector(
+export const selectCustomersAll = createSelector(
     selectStateCustomers,
     selectAll
 );
-export const selectServicesTotal = createSelector(
+export const selectCustomersTotal = createSelector(
     selectStateCustomers,
     selectTotal
+);
+
+export const getCustomerById = () => createSelector(
+    selectStateCustomers,
+    (customers, id) => customers[id]
 );

@@ -49,7 +49,6 @@ export function customersReducer(
     }
 
     case CustomersActionTypes.LoadCustomersSuccess: {
-      console.log('Load Customers reducer', action, state);
       return customersAdapter.addAll(action.payload.customers, state);
     }
 
