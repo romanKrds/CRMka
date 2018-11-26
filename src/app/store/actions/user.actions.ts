@@ -24,7 +24,7 @@ export class GoogleLogin implements Action {
 }
 export class PasswordLogin implements Action {
   readonly type = UserActionTypes.EmailPasswordLogin;
-  constructor(public payload: any) {}
+  constructor(public payload: {email: string, password: string}) {}
 }
 export class PasswordRegister implements Action {
   readonly type = UserActionTypes.EmailPasswordRegister;
