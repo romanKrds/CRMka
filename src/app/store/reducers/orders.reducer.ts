@@ -8,7 +8,8 @@ export const ordersAdapter: EntityAdapter<Order> = createEntityAdapter<Order>();
 
 export const initialState: OrdersState = ordersAdapter.getInitialState({
   // additional entity state properties
-  errors: null
+  errors: null,
+  currentOrder: null,
 });
 
 export function ordersReducer(
@@ -60,6 +61,12 @@ export function ordersReducer(
       return {
         ...state,
         errors: [...state.errors, ...action.payload.errors]
+      };
+    }
+    case OrderActionTypes.ChangeCurrentOrder: {
+      return {
+        ...state,
+        currentOrder: action.payload
       };
     }
 
