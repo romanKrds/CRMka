@@ -25,13 +25,13 @@ export class UpsertStatus implements Action {
   constructor(public payload: { status: Status }) {}
 }
 
-export class AddStatuss implements Action {
+export class AddStatuses implements Action {
   readonly type = StatusesActionTypes.AddStatuss;
 
   constructor(public payload: { statuss: Status[] }) {}
 }
 
-export class UpsertStatuss implements Action {
+export class UpsertStatuses implements Action {
   readonly type = StatusesActionTypes.UpsertStatuss;
 
   constructor(public payload: { statuss: Status[] }) {}
@@ -43,7 +43,7 @@ export class UpdateStatus implements Action {
   constructor(public payload: { status: Update<Status> }) {}
 }
 
-export class UpdateStatuss implements Action {
+export class UpdateStatuses implements Action {
   readonly type = StatusesActionTypes.UpdateStatuss;
 
   constructor(public payload: { statuss: Update<Status>[] }) {}
@@ -55,13 +55,13 @@ export class DeleteStatus implements Action {
   constructor(public payload: { id: string }) {}
 }
 
-export class DeleteStatuss implements Action {
+export class DeleteStatuses implements Action {
   readonly type = StatusesActionTypes.DeleteStatuss;
 
   constructor(public payload: { ids: string[] }) {}
 }
 
-export class ClearStatuss implements Action {
+export class ClearStatuses implements Action {
   readonly type = StatusesActionTypes.ClearStatuss;
 }
 
@@ -76,11 +76,11 @@ LoadStatuses
  | LoadStatusesSuccess
  | AddStatus
  | UpsertStatus
- | AddStatuss
- | UpsertStatuss
+ | AddStatuses
+ | UpsertStatuses
  | UpdateStatus
- | UpdateStatuss
+ | UpdateStatuses
  | DeleteStatus
- | DeleteStatuss
- | ClearStatuss
+ | DeleteStatuses
+ | ClearStatuses
  | ErrorStatuses;

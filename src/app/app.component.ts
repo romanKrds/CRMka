@@ -23,32 +23,8 @@ export class AppComponent implements OnInit {
     // this.store.dispatch(new LoadOrders());
     // this.store.dispatch(new LoadStatuses());
     // this.store.dispatch(new LoadServices());
-    this.store.dispatch(new LoadCustomers());
+    // this.store.dispatch(new LoadCustomers());
     // this.store.dispatch(new LoadBusiness());
     // this.store.dispatch({type: '[CurentClient] Load Success', payload: '1FHrxAIqCubegtQCZLR648FZLQh1'});
-
-    // this.store.select('orders').subscribe(
-    //   (orders: OrdersState) => console.log(orders)
-    // );
-
-    // this.store
-    //   .select(selectStatusesAsArray)
-    //   .subscribe( statuses => {
-    //       console.log('STATUSES: ', statuses);
-    //       // this.statuses = statuses;
-    //     }
-    //   );
-
-    // this.store
-    //   .select(selectStateServices)
-    //   .subscribe(value => console.log('SERVICES: ', value));
-    // this.db
-    //   .list('/clients')
-    //   .valueChanges()
-    //   .subscribe(value => console.log('CLIENTS: ', value));
-    // this.db
-    //   .list('/business')
-    //   .valueChanges()
-    //   .subscribe(value => console.log('business: ', value));
   }
 }

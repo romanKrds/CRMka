@@ -15,7 +15,16 @@ import {
   GoogleLogin,
   PasswordLogin,
   Logout,
-  LoadUserData
+  LoadUserData,
+  LoadStatuses,
+  LoadOrders,
+  LoadCustomers,
+  LoadBusiness,
+  ClearOrders,
+  ClearServices,
+  ClearCustomers,
+  ClearBusinesses,
+  ClearStatuses
 } from '@actions/*';
 import { AngularFireDatabase } from '@angular/fire/database';
 // import { User, } from '@models/*';
@@ -74,9 +83,25 @@ export class AuthEffects {
     }),
     switchMap((user: UserState) => {
       if (user) {
-        return from([new Authenticated({ user })]);
+        this.router.navigate(['/base']);
+        return from([
+          new Authenticated({ user }),
+          new LoadStatuses(),
+          new LoadOrders(),
+          new LoadServices(),
+          new LoadCustomers(),
+          new LoadBusiness()
+        ]);
       } else {
-        return of(new NotAuthenticated());
+        this.router.navigate(['']);
+        return from([
+          new NotAuthenticated(),
+          new ClearStatuses(),
+          new ClearOrders(),
+          new ClearServices(),
+          new ClearCustomers(),
+          new ClearBusinesses()
+        ]);
       }
     }),
     catchError(err => of(new AuthError({ error: err.message })))
