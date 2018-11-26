@@ -68,7 +68,7 @@ export class CustomersEffects {
           .snapshotChanges();
       }),
       map(customers => {
-        console.log('list', customers);
+        // console.log('list', customers);
           return customers.map(customer => {
             const data = customer.payload.val();
             const id = customer.payload.key;
@@ -76,7 +76,7 @@ export class CustomersEffects {
           });
       }),
       map((customers: Customer[]) => {
-        console.log('DISPATCH', customers);
+        // console.log('DISPATCH', customers);
         return new LoadCustomersSuccess({ customers });
       }),
       catchError(errors => of(new ErrorCustomers({ errors })))
