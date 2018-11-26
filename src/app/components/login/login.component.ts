@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   user$: Observable<User>;
 
   loginForm = this.fb.group({
-    email: ['', Validators.required],
+    email: [''],
     password: ['']
   });
 
@@ -28,7 +28,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.user$ = this.state.select(selectStateUser);
-    this.state.dispatch(new GetUser());
     this.state.select(state => state.currentClient.error).subscribe(
       error => this.getErrorMessage(error)
       );
