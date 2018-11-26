@@ -24,26 +24,32 @@ import { AuthEffects } from './store/effects/user.effects';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { BusinessEffects } from './store/effects/business.effects';
 
-
 @NgModule({
-   declarations: [
-      AppComponent,
-      LoginComponent
-   ],
-   imports: [
-      BrowserModule,
-      BrowserAnimationsModule,
-      AppRoutingModule,
-      AngularFireModule.initializeApp(environment.firebase),
-      AngularFireDatabaseModule,
-      AngularFireAuthModule,
-      StoreModule.forRoot(reducers,
-      {metaReducers}),
-    EffectsModule.forRoot([AppEffects, ServiceEffects, StatusesEffects, OrdersEffects, CustomersEffects, AuthEffects, BusinessEffects]),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+  declarations: [AppComponent, LoginComponent],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    StoreModule.forRoot(reducers, { metaReducers }),
+    EffectsModule.forRoot([
+      AppEffects,
+      ServiceEffects,
+      StatusesEffects,
+      OrdersEffects,
+      CustomersEffects,
+      AuthEffects,
+      BusinessEffects
+    ]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production
+    }),
     SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
