@@ -46,13 +46,13 @@ export class OrderDetailsComponent implements OnInit {
       }
       );
     this.store.select(selectServicesAll)
-      .subscribe(value => (this.services = value,
-        console.log(this.services)
+      .subscribe(value => (this.services = value
+        // console.log(this.services)
       )
       );
     this.store.select(selectStatusesAsArray)
-      .subscribe(value => (this.statuses = value,
-        console.log(this.statuses)
+      .subscribe(value => (this.statuses = value
+        // console.log(this.statuses)
       )
       );
     this.formInit(),
