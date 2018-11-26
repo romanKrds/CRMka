@@ -3,7 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { from, Observable, of, defer } from 'rxjs';
-import { catchError, map, switchMap, mergeMap, tap } from 'rxjs/operators';
+import { catchError, map, switchMap, mergeMap, tap, pluck } from 'rxjs/operators';
 import { UserActionTypes } from '@constants/*';
 import { auth, UserInfo } from 'firebase/app';
 import {
@@ -83,7 +83,6 @@ export class AuthEffects {
     }),
     switchMap((user: UserState) => {
       if (user) {
-        this.router.navigate(['/base']);
         return from([
           new Authenticated({ user }),
           new LoadStatuses(),
@@ -93,7 +92,7 @@ export class AuthEffects {
           new LoadBusiness()
         ]);
       } else {
-        this.router.navigate(['']);
+        // this.router.navigate(['']);
         return from([
           new NotAuthenticated(),
           new ClearStatuses(),
@@ -108,14 +107,36 @@ export class AuthEffects {
   );
 
   @Effect({dispatch: false})
-  loginPassword: Observable<Action> = this.actions$.pipe(
-    ofType(UserActionTypes.EmailPasswordLogin),
-    map((action: PasswordLogin) => action.payload),
-    tap(action => {
-      return of(this.signInWithEmailAndPassword(action));
-    }),
-    catchError(err => of(new AuthError({ error: err.message })))
+  authenticated$ = this.actions$.pipe(
+    ofType<Authenticated>(UserActionTypes.Authenticated),
+    tap(_ => this.router.navigate(['base'])),
+    catchError(err => {
+      console.log('authenticatedError', err);
+      return err;
+    })
   );
+  @Effect({dispatch: false})
+  notAuthenticated$ = this.actions$.pipe((
+    ofType<NotAuthenticated>(UserActionTypes.NotAuthenticated),
+    tap(_ => {
+      this.router.navigate(['login']);
+    }),
+    catchError(err => {
+      console.log('notAuthenticatedError', err);
+      return err;
+    })
+  ));
+
+  @Effect({dispatch: false})
+  loginPassword = this.actions$.pipe(
+    ofType<PasswordLogin>(UserActionTypes.EmailPasswordLogin),
+    pluck('payload'),
+    tap(loginData => {
+      return this.signInWithEmailAndPassword(loginData);
+    }),
+    catchError(err => {
+      return of(new AuthError({ error: err.message }));
+  }));
 
   @Effect({ dispatch: false })
   logout: Observable<Action> = this.actions$.pipe(
@@ -123,13 +144,15 @@ export class AuthEffects {
     map((action: Logout) => {
       return action.payload;
     }),
-    switchMap(payload => {
+    switchMap(_ => {
       return of(this.afAuth.auth.signOut());
     }),
-    map(authData => {
+    map(_ => {
       return new NotAuthenticated();
     }),
-    catchError(err => of(new AuthError({ error: err.message })))
+    catchError(err => {
+      return of(new AuthError({ error: err.message }));
+  })
   );
 
   @Effect()
