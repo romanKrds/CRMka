@@ -53,7 +53,6 @@ export function curentClientReducer(
       };
     }
     case UserActionTypes.AuthError: {
-      console.log(action);
       return {
         ...state,
           error: action.payload.error,

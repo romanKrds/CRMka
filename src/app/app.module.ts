@@ -24,6 +24,7 @@ import { AuthEffects } from './store/effects/user.effects';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { BusinessEffects } from './store/effects/business.effects';
 import { BREAKPOINT, FlexLayoutModule } from '@angular/flex-layout';
+import { SelectCurrentBusinessComponent } from './components/select-current-business/select-current-business.component';
 
 const PRINT_BREAKPOINTS = [{
   alias: 'xs.print',
@@ -33,7 +34,7 @@ const PRINT_BREAKPOINTS = [{
 }];
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent],
+  declarations: [AppComponent, LoginComponent, SelectCurrentBusinessComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
