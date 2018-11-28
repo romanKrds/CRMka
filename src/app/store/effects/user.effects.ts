@@ -150,6 +150,7 @@ export class AuthEffects {
     ofType<PasswordLogin>(UserActionTypes.EmailPasswordLogin),
     map((action: PasswordLogin) => action.payload),
     switchMap(loginData => {
+      console.log('loginData', loginData);
       return this.signInWithEmailAndPassword(loginData);
     }),
     switchMap(_ => of(new GetUser())),
