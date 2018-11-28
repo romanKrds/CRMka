@@ -14,7 +14,7 @@ export const initialUserState: UserState = {
     phone: null
 };
 
-export function curentClientReducer(
+export function currentClientReducer(
   state = initialUserState,
   action: UserActions
 ): UserState {

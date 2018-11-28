@@ -25,6 +25,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { BusinessEffects } from './store/effects/business.effects';
 import { BREAKPOINT, FlexLayoutModule } from '@angular/flex-layout';
 import { SelectCurrentBusinessComponent } from './components/select-current-business/select-current-business.component';
+import { CurrentBusinessEffects } from './store/effects/current-business.effects';
 
 const PRINT_BREAKPOINTS = [{
   alias: 'xs.print',
@@ -50,7 +51,8 @@ const PRINT_BREAKPOINTS = [{
       OrdersEffects,
       CustomersEffects,
       AuthEffects,
-      BusinessEffects
+      BusinessEffects,
+      CurrentBusinessEffects
     ]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
