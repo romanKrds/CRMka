@@ -14,7 +14,7 @@ export const initialUserState: UserState = {
     phone: null
 };
 
-export function curentClientReducer(
+export function currentClientReducer(
   state = initialUserState,
   action: UserActions
 ): UserState {
@@ -53,7 +53,6 @@ export function curentClientReducer(
       };
     }
     case UserActionTypes.AuthError: {
-      console.log(action);
       return {
         ...state,
           error: action.payload.error,

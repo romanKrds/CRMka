@@ -1,18 +1,22 @@
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-  <div class="example-container">
-    <mat-form-field>
-      <input matInput placeholder="Email" formControlName="email" required />
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="Password" formControlName="password" />
-    </mat-form-field>
-    <button mat-button>Login</button>
-  </div>
-</form>
+<div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
+  <mat-card>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" fxLayout="row wrap" fxLayoutAlign='end'>
+      <mat-form-field fxFlex="100%">
+        <input matInput placeholder="Email" formControlName="email" required />
+      </mat-form-field>
+      <mat-form-field fxFlex="100%">
+        <input matInput placeholder="Password" formControlName="password" />
+      </mat-form-field>
+      <button mat-raised-button>Login</button>
+    </form>
 
-<P>client1@crmka.com</P>
+    <p>client1@crmka.loc</p>
 
-<div *ngIf="(user$ | async) as user">
-  {{ user.displayName }} {{ user.uid }}
-  <button *ngIf="user.uid && !user.loading" (click)="logout()">Logout</button>
+    <div *ngIf="(user$ | async) as user">
+      {{ user.displayName }} {{ user.uid }}
+      <button *ngIf="user.uid && !user.loading" (click)="logout()">
+        Logout
+      </button>
+    </div>
+  </mat-card>
 </div>

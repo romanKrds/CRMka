@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { AppStore, OrdersState } from '@models/*';
 
 import { LoadStatuses, LoadOrders, LoadServices, LoadCustomers, LoadBusiness } from '@actions/*';
-import { selectStateServices, selectStatusesAsArray} from '@selectors/*';
+import { selectStateClientBusinesses, selectStatusesAsArray} from '@selectors/*';
 
 
 @Component({
@@ -16,10 +16,12 @@ import { selectStateServices, selectStatusesAsArray} from '@selectors/*';
 
 export class AppComponent implements OnInit {
 
-  constructor(private db: AngularFireDatabase, private store: Store<AppStore>) { }
+  constructor(
+    private db: AngularFireDatabase,
+    private store: Store<AppStore>
+  ) { }
 
   ngOnInit() {
-    this.store.dispatch({type: '[CurentBusiness] Load Success', payload: '-LRrb5BmtO6LilxN-khs'});
     // this.store.dispatch(new LoadOrders());
     // this.store.dispatch(new LoadStatuses());
     // this.store.dispatch(new LoadServices());

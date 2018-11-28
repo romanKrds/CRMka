@@ -1,4 +1,4 @@
-import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
+import { EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { Business } from '../../models/business.model';
 import { BusinessActions } from '@actions/*';
 import { BusinessActionTypes } from '@constants/*';
