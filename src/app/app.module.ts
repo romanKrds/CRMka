@@ -23,6 +23,14 @@ import { LoginComponent } from './components/login/login.component';
 import { AuthEffects } from './store/effects/user.effects';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { BusinessEffects } from './store/effects/business.effects';
+import { BREAKPOINT, FlexLayoutModule } from '@angular/flex-layout';
+
+const PRINT_BREAKPOINTS = [{
+  alias: 'xs.print',
+  suffix: 'XsPrint',
+  mediaQuery: 'print and (max-width: 297px)',
+  overlapping: false
+}];
 
 @NgModule({
   declarations: [AppComponent, LoginComponent],
@@ -47,7 +55,9 @@ import { BusinessEffects } from './store/effects/business.effects';
       maxAge: 25,
       logOnly: environment.production
     }),
-    SharedModule
+    SharedModule,
+    FlexLayoutModule.withConfig({useColumnBasisZero: false}),
+
   ],
   providers: [],
   bootstrap: [AppComponent]

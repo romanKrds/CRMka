@@ -37,7 +37,7 @@ export class Logout implements Action {
 }
 export class AuthError implements Action {
   readonly type = UserActionTypes.AuthError;
-  constructor(public payload?: any) {}
+  constructor(public payload: {error: string}) {}
 }
 
 export type UserActions =
