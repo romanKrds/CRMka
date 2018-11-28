@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
+import { SelectCurrentBusinessComponent } from './components/select-current-business/select-current-business.component';
 
 const routes: Routes = [
   {
@@ -10,6 +11,9 @@ const routes: Routes = [
   }, {
     path: 'base',
     loadChildren: './base/base.module#BaseModule'
+  }, {
+    path: 'select-business',
+    component : SelectCurrentBusinessComponent
   }
 ];
 

@@ -45,7 +45,7 @@ export class AuthEffects {
   ) {}
 
   @Effect()
-  getUser: Observable<Action> = this.actions$.pipe(
+  getUser: Observable<Action | {}> = this.actions$.pipe(
     ofType(UserActionTypes.GetUser),
     map((action: GetUser) => action),
     switchMap(_ => this.afAuth.authState),
@@ -94,41 +94,43 @@ export class AuthEffects {
     catchError(err => of(new AuthError({ error: err.message })))
   );
 
-  @Effect({ dispatch: false })
+  @Effect()
   authenticated$ = this.actions$.pipe(
     ofType<Authenticated>(UserActionTypes.Authenticated),
     tap(_ => {
-      return from([
-        new LoadStatuses(),
-        new LoadOrders(),
-        new LoadServices(),
-        new LoadCustomers(),
-        new LoadBusiness()
-      ]);
+      this.router.navigate(['select-business']);
+      // return from([
+      //   new LoadStatuses(),
+      //   new LoadOrders(),
+      //   new LoadServices(),
+      //   new LoadCustomers(),
+      //   new LoadBusiness()
+      // ]);
     }),
-    tap(_ => this.router.navigate(['base'])),
+    map(() => new LoadBusiness()),
     catchError(err => {
       console.log('authenticatedError', err);
       return err;
     })
   );
-  @Effect({ dispatch: false })
+  @Effect()
   notAuthenticated$ = this.actions$.pipe(
-    (ofType<NotAuthenticated>(UserActionTypes.NotAuthenticated),
-    tap(_ => {
-      return from([
-        new ClearStatuses(),
-        new ClearOrders(),
-        new ClearServices(),
-        new ClearCustomers(),
-        new ClearBusinesses()
-      ]);
+    ofType<NotAuthenticated>(UserActionTypes.NotAuthenticated),
+    tap(_ => this.router.navigate([''])),
+    map(_ => {
+      return new ClearBusinesses();
+      // return from([
+        // new ClearStatuses(),
+        // new ClearOrders(),
+        // new ClearServices(),
+        // new ClearCustomers(),
+        // new ClearBusinesses()
+      // ]);
     }),
-    tap(_ => this.router.navigate(['login'])),
     catchError(err => {
       console.log('notAuthenticatedError', err);
       return err;
-    }))
+    })
   );
   @Effect({ dispatch: false })
   logout: Observable<Action> = this.actions$.pipe(

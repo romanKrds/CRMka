@@ -11,3 +11,4 @@ export * from './user.model';
 export * from './user-store.model';
 export * from './business.model';
 export * from './business-state.models';
+export * from './current-business-state';

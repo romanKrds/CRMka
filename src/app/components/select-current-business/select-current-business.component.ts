@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Business, AppStore } from '@models/*';
+import { select, Store } from '@ngrx/store';
+import { selectClientBusinessesAll } from '@selectors/*';
+import { SelectCurrentBusiness } from '@actions/*';
 
 @Component({
   selector: 'app-select-current-business',
@@ -7,9 +12,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SelectCurrentBusinessComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
+  business$: Observable<Business[]>;
+  constructor(
+    private state: Store<AppStore>
+  ) {
   }
 
+  ngOnInit() {
+    this.business$ = this.state.pipe(select(selectClientBusinessesAll));
+  }
+  onSelect(business) {
+    this.state.dispatch(new SelectCurrentBusiness(business));
+  }
 }
