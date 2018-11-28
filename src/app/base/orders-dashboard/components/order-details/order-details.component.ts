@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppStore, Order, OrdersState, StatusesState, Status } from '@models/*';
-import { selectServicesAll, selectAllStatuses, selectStatusesAsArray, getServiceById, getStatusById } from '@selectors/*';
+import { selectClientBusinessesAll, selectAllStatuses, selectStatusesAsArray, getServiceById, getStatusById } from '@selectors/*';
 import { selectAllOrders, selectCurrentOrder, getOrderById } from 'src/app/store/selectors/orders.selectors';
 import { getCustomerById } from 'src/app/store/selectors/customers.selectors';
 import { DateAdapter } from '@angular/material/core';
@@ -45,7 +45,7 @@ export class OrderDetailsComponent implements OnInit {
         // this.adapter.setLocale('fr');
       }
       );
-    this.store.select(selectServicesAll)
+    this.store.select(selectClientBusinessesAll)
       .subscribe(value => (this.services = value
         // console.log(this.services)
       )

@@ -1,0 +1,17 @@
+<!-- <pre>{{ business$ | async | json }}</pre> -->
+<br />
+<div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="20px">
+  <mat-card *ngFor="let business of (business$ | async)" fxLayout="column">
+    <mat-card-header>
+      {{ business.title }}
+    </mat-card-header>
+    <mat-divider> </mat-divider>
+    <mat-card-content>
+      {{ business.description }}
+    </mat-card-content>
+    <mat-card-actions fxFlexAlign="end">
+        <mat-divider> </mat-divider>
+      <button mat-raised-button (click)="onSelect(business)">Select</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
