@@ -3,8 +3,8 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Observable } from 'rxjs';
 import { Action } from '@ngrx/store';
 import { CurrentBusiness } from '@constants/*';
-import { SelectCurrentBusiness } from '@actions/*';
-import { tap, catchError } from 'rxjs/operators';
+import { SelectCurrentBusiness, LoadCustomers } from '@actions/*';
+import { tap, catchError, map, switchMap, mergeMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 
@@ -16,12 +16,13 @@ export class CurrentBusinessEffects {
     private router: Router
   ) {}
 
-  @Effect({dispatch: false})
+  @Effect()
   selectCurrentBusiness: Observable<Action | {}> = this.actions$.pipe(
     ofType<SelectCurrentBusiness>(CurrentBusiness.SelectBusiness),
     tap(() => {
       this.router.navigate(['base']);
     }),
+    map(() => new LoadCustomers()),
     catchError(errors => {
       console.log(errors);
       return errors;
