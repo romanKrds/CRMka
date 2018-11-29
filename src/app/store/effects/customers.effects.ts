@@ -2,25 +2,22 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action, State, select } from '@ngrx/store';
 import { Injectable } from '@angular/core';
-import { Observable, of, from } from 'rxjs';
+import { Observable, of, from, merge } from 'rxjs';
 import { map, mergeMap, switchMap, catchError } from 'rxjs/operators';
 
 import { CustomersActionTypes } from '@constants/*';
-import { LoadCustomersSuccess, ErrorCustomers, AddCustomer } from '@actions/*';
+import { LoadCustomersSuccess, ErrorCustomers, AddCustomer, LoadCustomers } from '@actions/*';
 import { Customer, AppStore } from '@models/*';
+import { selectStateCurrentBusiness, selectCurrentBusinessId } from '@selectors/*';
 
 @Injectable()
 export class CustomersEffects {
-  private currentBusiness: string;
 
   constructor(
     private db: AngularFireDatabase,
     private actions$: Actions,
     private state: State<AppStore>
   ) {
-    this.state
-      .pipe(select('currentBusiness'))
-      .subscribe(val => (this.currentBusiness = val));
   }
 
   // @Effect()
@@ -62,9 +59,14 @@ export class CustomersEffects {
     @Effect()
     // V2
     loadCustomersEffect$: Observable<Action> = this.actions$.pipe(
-      ofType(CustomersActionTypes.LoadCustomers),
-      switchMap(_ => {
-          return this.db.list('/customers', ref => ref.orderByChild('businessId').equalTo(this.currentBusiness))
+      ofType<LoadCustomers>(CustomersActionTypes.LoadCustomers),
+      switchMap(() => {
+        console.log('test');
+        return this.state.pipe(select(selectCurrentBusinessId));
+      }),
+      switchMap(currentBusiness => {
+        console.log(currentBusiness);
+          return this.db.list('/customers', ref => ref.orderByChild('businessId').equalTo(currentBusiness))
           .snapshotChanges();
       }),
       map(customers => {

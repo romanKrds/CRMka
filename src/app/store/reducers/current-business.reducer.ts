@@ -2,7 +2,12 @@ import { CurrentBusiness } from '@constants/*';
 import { CurrentBusinessActions } from '../actions/currentBusiness.actions';
 import { CurrentBusinessState } from 'src/app/models/current-business-state';
 
-const initialCurrentBusinessState: CurrentBusinessState = null;
+const initialCurrentBusinessState: CurrentBusinessState = {
+  id: null,
+  clientId: null,
+  description: null,
+  title: null
+};
 
 export function currentBusinessReducer(
   state = initialCurrentBusinessState,

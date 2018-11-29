@@ -1,6 +1,6 @@
 export interface Business {
-  id: string;
-  description: string;
-  title: string;
-  clientId: string;
+  id: string | null;
+  description: string | null;
+  title: string | null;
+  clientId: string | null;
 }
