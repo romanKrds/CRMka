@@ -1,8 +1,8 @@
 
 <app-filter-panel class="filterPanel" [FilterMode]="filterMode.Orders"></app-filter-panel>
 
-<div fxLayout="row" fxLayoutGap="15px">
-  <app-orders-list></app-orders-list>
-  <app-order-details></app-order-details>
+<div fxLayout="row" fxLayoutGap="15px" class="main-list">
+  <app-orders-list fxFlex='1 1 800px' fxFlex.lt-lg='2 2 400px'></app-orders-list>
+  <app-order-details fxFlex='1 1 100%' fxFlex.lt-lg='2 2 100%'></app-order-details>
   <!-- <router-outlet></router-outlet> -->
 </div>
