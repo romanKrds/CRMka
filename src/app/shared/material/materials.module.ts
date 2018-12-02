@@ -7,7 +7,9 @@ import {
   MatListModule,
   MatIconModule,
   MatNativeDateModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatSnackBarModule,
+  MatPaginatorModule
 } from '@angular/material';
 
 import { MatInputModule } from '@angular/material/input';
@@ -30,7 +32,17 @@ const MODULES = [
   MatDatepickerModule,
   MatNativeDateModule,
   MatButtonModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatCardModule,
+  MatProgressSpinnerModule,
+  MatSidenavModule,
+  MatListModule,
+  MatIconModule,
+  MatFormFieldModule,
+  MatSnackBarModule,
+  MatInputModule,
+  MatButtonModule,
+  MatPaginatorModule
 ];
 
 @NgModule({

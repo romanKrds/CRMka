@@ -59,7 +59,6 @@ const PRINT_BREAKPOINTS = [{
       logOnly: environment.production
     }),
     SharedModule,
-    FlexLayoutModule.withConfig({useColumnBasisZero: false}),
 
   ],
   providers: [],

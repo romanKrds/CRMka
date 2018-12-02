@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { AppStore, Order } from '@models/*';
 import { selectAllOrders, selectIdsOrders, selectEntitiesOrders, selectStateOrders } from 'src/app/store/selectors/orders.selectors';
+import { PageEvent } from '@angular/material';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-orders-list',
@@ -10,24 +12,20 @@ import { selectAllOrders, selectIdsOrders, selectEntitiesOrders, selectStateOrde
 })
 export class OrdersListComponent implements OnInit {
 
-  ordersIds: (string | number)[];
+  ordersIds$: Observable<(string | number)[]>;
+  length = 100;
+  pageSize = 10;
+  pageSizeOptions: number[] = [5, 10, 25, 100];
 
   constructor(
     private store: Store<AppStore>
   ) { }
 
   ngOnInit() {
-    this.store.select(selectIdsOrders)
-      .subscribe(
-        ordersIds => {
-          this.ordersIds = [...ordersIds];
-          this.ordersIds = this.ordersIds.splice(0, 10);
-          // console.log(this.ordersIds);
-        }
-      );
-    // this.store.select(selectStateOrders)
-    //   .subscribe(value => console.log(value)
-    //   );
+    this.ordersIds$ = this.store.pipe(
+      select(selectIdsOrders),
+    );
   }
+  pageEvent: PageEvent;
 
 }
