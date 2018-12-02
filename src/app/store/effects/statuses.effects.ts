@@ -6,7 +6,7 @@ import { StatusesActionTypes } from '@constants/*';
 import { Status } from '@models/*';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Observable, of } from 'rxjs';
-import { catchError, map, mergeMap } from 'rxjs/operators';
+import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
 
 
 
@@ -18,7 +18,7 @@ export class StatusesEffects {
   @Effect()
   loadStatuses$: Observable<Action> = this.actions$.pipe(
     ofType(StatusesActionTypes.LoadStatuses),
-    mergeMap( _ => this.db.list('/states').snapshotChanges()),
+    switchMap( _ => this.db.list('/states').snapshotChanges()),
     map(
       (statuses: any[]) => {
         return statuses.map(

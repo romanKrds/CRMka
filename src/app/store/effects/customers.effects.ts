@@ -17,8 +17,7 @@ export class CustomersEffects {
     private db: AngularFireDatabase,
     private actions$: Actions,
     private state: State<AppStore>
-  ) {
-  }
+  ) { }
 
   // @Effect()
   // // V1
@@ -61,11 +60,9 @@ export class CustomersEffects {
     loadCustomersEffect$: Observable<Action> = this.actions$.pipe(
       ofType<LoadCustomers>(CustomersActionTypes.LoadCustomers),
       switchMap(() => {
-        console.log('test');
         return this.state.pipe(select(selectCurrentBusinessId));
       }),
       switchMap(currentBusiness => {
-        console.log(currentBusiness);
           return this.db.list('/customers', ref => ref.orderByChild('businessId').equalTo(currentBusiness))
           .snapshotChanges();
       }),
