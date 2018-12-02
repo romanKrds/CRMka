@@ -150,7 +150,8 @@ export class AuthEffects {
   @Effect()
   loginPassword: Observable<Action> = this.actions$.pipe(
     ofType<PasswordLogin>(UserActionTypes.EmailPasswordLogin),
-    map((action: PasswordLogin) => action.payload),
+    pluck('payload'),
+    // map((action: PasswordLogin) => action.payload),
     switchMap(loginData => {
       console.log('loginData', loginData);
       return this.signInWithEmailAndPassword(loginData);
