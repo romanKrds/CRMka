@@ -1,14 +1,16 @@
+:host {
+  position: sticky;
+  top: 0;
+  height: 100%;
+}
+
 .container {
-  display: flex;
-  flex-wrap: wrap;
   max-width: 450px;
-  justify-content: space-between;
 }
 
 .form-details {
   display: flex;
   flex-wrap: wrap;
-  max-width: 450px;
   justify-content: space-between;
 }
 

@@ -1,6 +1,8 @@
-<app-order-details></app-order-details>
 
 <app-filter-panel class="filterPanel" [FilterMode]="filterMode.Orders"></app-filter-panel>
-<app-orders-list></app-orders-list>
-<router-outlet></router-outlet>
 
+<div fxLayout="row" fxLayoutGap="15px">
+  <app-orders-list></app-orders-list>
+  <app-order-details></app-order-details>
+  <!-- <router-outlet></router-outlet> -->
+</div>

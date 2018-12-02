@@ -36,7 +36,8 @@ export class SidebarComponent implements OnInit {
 
   constructor(breakpointObserver: BreakpointObserver) {
     breakpointObserver.observe([
-      Breakpoints.Medium
+      Breakpoints.Medium,
+      Breakpoints.Large
     ]).subscribe(result => {
       if (result.matches) {
         this.small = false;
