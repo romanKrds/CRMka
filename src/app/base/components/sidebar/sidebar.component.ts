@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
-  selector: 'sidebar',
+  selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
@@ -31,9 +32,20 @@ export class SidebarComponent implements OnInit {
     icon: 'account_circle'
   };
 
-  small = true;
+  small: boolean;
 
-  constructor() { }
+  constructor(breakpointObserver: BreakpointObserver) {
+    breakpointObserver.observe([
+      Breakpoints.Medium
+    ]).subscribe(result => {
+      if (result.matches) {
+        this.small = false;
+      } else {
+        this.small = true;
+      }
+
+    });
+   }
 
   ngOnInit() {
 
