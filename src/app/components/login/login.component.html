@@ -12,11 +12,5 @@
 
     <p>client1@crmka.com</p>
 
-    <div *ngIf="(user$ | async) as user">
-      {{ user.displayName }} {{ user.uid }}
-      <button *ngIf="user.uid && !user.loading" (click)="logout()">
-        Logout
-      </button>
-    </div>
   </mat-card>
 </div>

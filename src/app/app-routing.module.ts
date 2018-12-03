@@ -14,6 +14,10 @@ const routes: Routes = [
   }, {
     path: 'select-business',
     component : SelectCurrentBusinessComponent
+  },
+  {
+    path: 'account',
+    loadChildren: './account/account.module#AccountModule'
   }
 ];
 
