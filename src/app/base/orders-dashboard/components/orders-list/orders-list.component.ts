@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Store, select } from '@ngrx/store';
-import { AppStore, Order } from '@models/*';
-import { selectAllOrders, selectIdsOrders, selectEntitiesOrders, selectStateOrders } from 'src/app/store/selectors/orders.selectors';
 import { PageEvent } from '@angular/material';
+import { AppStore } from '@models/*';
+import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { selectIdsOrders } from 'src/app/store/selectors/orders.selectors';
 
 @Component({
   selector: 'app-orders-list',

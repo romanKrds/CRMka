@@ -1,6 +1,6 @@
-import { StatusesState } from '../../models/statuses-state.model';
 import { statusesAdapter } from '../reducers/statuses.reducer';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { StatusesState } from '@models/*';
 
 export const selectStateStatuses = createFeatureSelector<StatusesState>('statuses');
 

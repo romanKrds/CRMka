@@ -1,14 +1,14 @@
-import { AngularFireDatabase } from '@angular/fire/database';
-import { Actions, Effect, ofType } from '@ngrx/effects';
-import { Action, State, select } from '@ngrx/store';
+import { ErrorCustomers, LoadCustomers, LoadCustomersSuccess } from '@actions/*';
 import { Injectable } from '@angular/core';
-import { Observable, of, from, merge } from 'rxjs';
-import { map, mergeMap, switchMap, catchError } from 'rxjs/operators';
-
+import { AngularFireDatabase } from '@angular/fire/database';
 import { CustomersActionTypes } from '@constants/*';
-import { LoadCustomersSuccess, ErrorCustomers, AddCustomer, LoadCustomers } from '@actions/*';
-import { Customer, AppStore } from '@models/*';
-import { selectStateCurrentBusiness, selectCurrentBusinessId } from '@selectors/*';
+import { AppStore, Customer } from '@models/*';
+import { Actions, Effect, ofType } from '@ngrx/effects';
+import { Action, select, State } from '@ngrx/store';
+import { selectCurrentBusinessId } from '@selectors/*';
+import { Observable, of } from 'rxjs';
+import { catchError, map, switchMap } from 'rxjs/operators';
+
 
 @Injectable()
 export class CustomersEffects {

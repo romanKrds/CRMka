@@ -1,39 +1,14 @@
+import { Authenticated, AuthError, ClearBusinesses, GetUser, LoadBusiness, Logout, NotAuthenticated, PasswordLogin } from '@actions/*';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Actions, Effect, ofType } from '@ngrx/effects';
-import { Action } from '@ngrx/store';
-import { from, Observable, of, defer } from 'rxjs';
-import {
-  catchError,
-  map,
-  switchMap,
-  mergeMap,
-  tap,
-  pluck,
-  concatMap
-} from 'rxjs/operators';
-import { UserActionTypes } from '@constants/*';
-import {
-  LoadServices,
-  GetUser,
-  Authenticated,
-  NotAuthenticated,
-  AuthError,
-  PasswordLogin,
-  Logout,
-  LoadStatuses,
-  LoadOrders,
-  LoadCustomers,
-  LoadBusiness,
-  ClearOrders,
-  ClearServices,
-  ClearCustomers,
-  ClearBusinesses,
-  ClearStatuses
-} from '@actions/*';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Router } from '@angular/router';
+import { UserActionTypes } from '@constants/*';
+import { Actions, Effect, ofType } from '@ngrx/effects';
+import { Action } from '@ngrx/store';
 import { User } from 'firebase/app';
+import { defer, from, Observable, of } from 'rxjs';
+import { catchError, map, pluck, switchMap, tap } from 'rxjs/operators';
 
 @Injectable()
 export class AuthEffects {

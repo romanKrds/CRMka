@@ -1,17 +1,11 @@
+import { LoadCustomers, LoadOrders, LoadServices, LoadStatuses, SelectCurrentBusiness } from '@actions/*';
 import { Injectable } from '@angular/core';
-import { Actions, Effect, ofType } from '@ngrx/effects';
-import { Observable, from } from 'rxjs';
-import { Action } from '@ngrx/store';
-import { CurrentBusiness } from '@constants/*';
-import {
-  SelectCurrentBusiness,
-  LoadCustomers,
-  LoadServices,
-  LoadOrders,
-  LoadStatuses
-} from '@actions/*';
-import { tap, catchError, map, switchMap, mergeMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { CurrentBusiness } from '@constants/*';
+import { Actions, Effect, ofType } from '@ngrx/effects';
+import { Action } from '@ngrx/store';
+import { from, Observable } from 'rxjs';
+import { catchError, mergeMap, tap } from 'rxjs/operators';
 
 @Injectable()
 export class CurrentBusinessEffects {
