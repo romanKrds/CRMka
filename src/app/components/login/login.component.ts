@@ -1,11 +1,11 @@
+import { GoogleLogin, Logout, PasswordLogin } from '@actions/*';
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormBuilder } from '@angular/forms';
-import { Store } from '@ngrx/store';
-import { AppStore, User } from '@models/*';
+import { FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { PasswordLogin, GoogleLogin, GetUser, Logout } from '@actions/*';
-import { Observable } from 'rxjs';
+import { AppStore, User } from '@models/*';
+import { select, Store } from '@ngrx/store';
 import { selectStateUser } from '@selectors/*';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -27,8 +27,8 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.user$ = this.state.select(selectStateUser);
-    this.state.select(state => state.currentClient.error).subscribe(
+    this.user$ = this.state.pipe(select(selectStateUser));
+    this.state.pipe(select(state => state.currentClient.error)).subscribe(
       error => this.getErrorMessage(error)
       );
   }
@@ -46,9 +46,6 @@ export class LoginComponent implements OnInit {
         duration: 10000
       });
     }
-  }
-  logout() {
-    this.state.dispatch(new Logout());
   }
 
 }

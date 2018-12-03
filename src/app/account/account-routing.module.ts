@@ -4,14 +4,8 @@ import { AccountComponent } from './account.component';
 
 const routes: Routes = [
   {
-    path: 'account',
-    component: AccountComponent,
-    children: []
-  },
-  {
     path: '',
-    component: AccountComponent,
-    children: []
+    component: AccountComponent
   }
 ];
 

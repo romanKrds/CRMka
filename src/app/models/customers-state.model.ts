@@ -1,5 +1,5 @@
-import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { Customer } from '@models/*';
+import { EntityState } from '@ngrx/entity';
 
 // export const customerAdapter: EntityAdapter<Customer> = createEntityAdapter<Customer>({
 //         selectId: model => model.id,

@@ -1,10 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { AppStore, Order, OrdersState } from '@models/*';
-import { getOrderById, selectCurrentOrder } from 'src/app/store/selectors/orders.selectors';
+import { ChangeCurrentOrder } from '@actions/*';
+import { Component, Input, OnInit } from '@angular/core';
+import { AppStore } from '@models/*';
+import { select, Store } from '@ngrx/store';
 import { getServiceById, getStatusById } from '@selectors/*';
 import { getCustomerById } from 'src/app/store/selectors/customers.selectors';
-import { ChangeCurrentOrder } from '@actions/*';
+import { getOrderById, selectCurrentOrder } from 'src/app/store/selectors/orders.selectors';
 
 @Component({
   selector: 'app-product-card',
@@ -21,7 +21,7 @@ export class ProductCardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.store.select(selectCurrentOrder)
+    this.store.pipe(select(selectCurrentOrder))
       .subscribe(value => this.currentOrder = value);
     this.store.select(getOrderById(), this.orderId)
       .subscribe(value => {

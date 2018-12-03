@@ -1,13 +1,13 @@
+import { ErrorBusiness, LoadBusinessesSuccess } from '@actions/*';
 import { Injectable } from '@angular/core';
-import { Actions, Effect, ofType } from '@ngrx/effects';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase } from '@angular/fire/database';
-import { Observable, of } from 'rxjs';
-import { Action } from '@ngrx/store';
-import { mergeMap, map, catchError, switchMap } from 'rxjs/operators';
 import { BusinessActionTypes } from '@constants/*';
 import { Business } from '@models/*';
-import { ErrorBusiness, LoadBusinessesSuccess } from '@actions/*';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { Actions, Effect, ofType } from '@ngrx/effects';
+import { Action } from '@ngrx/store';
+import { Observable, of } from 'rxjs';
+import { catchError, map, switchMap } from 'rxjs/operators';
 
 
 @Injectable()
