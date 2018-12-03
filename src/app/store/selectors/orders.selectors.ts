@@ -1,7 +1,7 @@
-import { ordersAdapter } from '../reducers/orders.reducer';
-import { createFeatureSelector, createSelector } from '@ngrx/store';
-
 import { OrdersState } from '@models/*';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { ordersAdapter } from '../reducers/orders.reducer';
+
 
 const {
   selectIds,
