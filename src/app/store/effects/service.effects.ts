@@ -1,13 +1,13 @@
+import { ErrorService, LoadServices, LoadServicesSuccess } from '@actions/*';
 import { Injectable } from '@angular/core';
-import { Actions, Effect, ofType } from '@ngrx/effects';
-import { Action, State, select } from '@ngrx/store';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { ServicesActionTypes } from '@constants/*';
-import { LoadServicesSuccess, ErrorService, LoadServices } from '@actions/*';
-import { Service, AppStore } from '@models/*';
-import { Observable, of } from 'rxjs';
-import { map, mergeMap, catchError, switchMap } from 'rxjs/operators';
+import { AppStore, Service } from '@models/*';
+import { Actions, Effect, ofType } from '@ngrx/effects';
+import { Action, select, State } from '@ngrx/store';
 import { selectCurrentBusinessId } from '@selectors/*';
+import { Observable, of } from 'rxjs';
+import { catchError, map, switchMap } from 'rxjs/operators';
 
 
 @Injectable()

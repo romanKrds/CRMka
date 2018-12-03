@@ -1,12 +1,12 @@
+import { ErrorStatuses, LoadStatusesSuccess } from '@actions/*';
 import { Injectable } from '@angular/core';
-import { Action } from '@ngrx/store';
-import { Actions, Effect, ofType } from '@ngrx/effects';
-import { LoadStatusesSuccess, ErrorStatuses } from '@actions/*';
+import { AngularFireDatabase } from '@angular/fire/database';
 import { StatusesActionTypes } from '@constants/*';
 import { Status } from '@models/*';
-import { AngularFireDatabase } from '@angular/fire/database';
+import { Actions, Effect, ofType } from '@ngrx/effects';
+import { Action } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
-import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 
 
 

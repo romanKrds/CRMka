@@ -1,11 +1,5 @@
-import {
-  ActionReducer,
-  ActionReducerMap,
-  createFeatureSelector,
-  createSelector,
-  MetaReducer
-} from '@ngrx/store';
 import { UserState } from '@models/*';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 export const selectStateUser = createFeatureSelector<UserState>('currentClient');
 
