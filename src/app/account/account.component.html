@@ -1,0 +1,7 @@
+<div *ngIf="(user$ | async) as user">
+  {{ user.displayName }} {{ user.uid }}
+  <button *ngIf="user.uid && !user.loading" (click)="logout()">
+    Logout
+  </button>
+</div>
+<router-outlet></router-outlet>

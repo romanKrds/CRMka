@@ -9,10 +9,6 @@ const routes: Routes = [
     component: BaseComponent,
     children: [
       {
-        path: 'account',
-        loadChildren: './account/account.module#AccountModule'
-      },
-      {
         path: '',
         loadChildren: './orders-dashboard/orders-dashboard.module#OrdersDashboardModule'
       }

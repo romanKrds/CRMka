@@ -47,8 +47,5 @@ export class LoginComponent implements OnInit {
       });
     }
   }
-  logout() {
-    this.state.dispatch(new Logout());
-  }
 
 }
