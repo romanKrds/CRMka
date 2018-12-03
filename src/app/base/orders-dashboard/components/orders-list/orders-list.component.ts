@@ -26,6 +26,8 @@ export class OrdersListComponent implements OnInit {
       select(selectIdsOrders),
     );
   }
-  pageEvent: PageEvent;
+  pageEvent(event: PageEvent) {
+    console.log(event);
+  }
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Status, Service, AppStore, StatusesState } from '@models/*';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { map } from 'rxjs/operators';
 import { selectStatusesAsArray, selectClientBusinessesAll } from '@selectors/*';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -51,11 +51,11 @@ export class FilterPanelComponent implements OnInit {
 
   loadDataForSelects(): void {
 
-    this.store.select(selectStatusesAsArray)
+    this.store.pipe(select(selectStatusesAsArray))
     .subscribe(
       (statuses: Status[] ) => this.statuses = statuses);
 
-    this.store.select(selectClientBusinessesAll)
+    this.store.pipe(select(selectClientBusinessesAll))
       .subscribe(
         (services: any) => services.map(key => this.services = [key, ...this.services])
       );

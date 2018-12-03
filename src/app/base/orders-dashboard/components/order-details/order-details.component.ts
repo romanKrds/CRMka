@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { AppStore, Order, OrdersState, StatusesState, Status } from '@models/*';
 import { selectClientBusinessesAll, selectAllStatuses, selectStatusesAsArray, getServiceById, getStatusById } from '@selectors/*';
 import { selectAllOrders, selectCurrentOrder, getOrderById } from 'src/app/store/selectors/orders.selectors';
@@ -29,7 +29,7 @@ export class OrderDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.store.select(selectCurrentOrder)
+    this.store.pipe(select(selectCurrentOrder))
       .subscribe(value => {
         this.store.select(getOrderById(), value)
           .subscribe(valueOrder => (
@@ -45,12 +45,12 @@ export class OrderDetailsComponent implements OnInit {
         // this.adapter.setLocale('fr');
       }
       );
-    this.store.select(selectClientBusinessesAll)
+    this.store.pipe(select(selectClientBusinessesAll))
       .subscribe(value => (this.services = value
         // console.log(this.services)
       )
       );
-    this.store.select(selectStatusesAsArray)
+    this.store.pipe(select(selectStatusesAsArray))
       .subscribe(value => (this.statuses = value
         // console.log(this.statuses)
       )

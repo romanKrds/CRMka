@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { AppStore, Order, OrdersState } from '@models/*';
 import { getOrderById, selectCurrentOrder } from 'src/app/store/selectors/orders.selectors';
 import { getServiceById, getStatusById } from '@selectors/*';
@@ -21,7 +21,7 @@ export class ProductCardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.store.select(selectCurrentOrder)
+    this.store.pipe(select(selectCurrentOrder))
       .subscribe(value => this.currentOrder = value);
     this.store.select(getOrderById(), this.orderId)
       .subscribe(value => {
