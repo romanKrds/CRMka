@@ -15,7 +15,7 @@ export class CurrentBusinessEffects {
   selectCurrentBusiness: Observable<Action | {}> = this.actions$.pipe(
     ofType<SelectCurrentBusiness>(CurrentBusiness.SelectBusiness),
     tap(() => {
-      this.router.navigate(['base']);
+      this.router.navigate(['orders']);
     }),
     mergeMap(() =>
       from([

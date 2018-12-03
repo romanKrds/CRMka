@@ -17,8 +17,11 @@ export function currentBusinessReducer(
     case CurrentBusiness.SelectBusiness: {
       return action.payload;
     }
+    case CurrentBusiness.ClearCurrentBusiness: {
+      return initialCurrentBusinessState;
+    }
 
     default:
-    return state;
+      return state;
   }
 }

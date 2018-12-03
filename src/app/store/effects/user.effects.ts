@@ -1,4 +1,18 @@
-import { Authenticated, AuthError, ClearBusinesses, GetUser, LoadBusiness, Logout, NotAuthenticated, PasswordLogin } from '@actions/*';
+import {
+  Authenticated,
+  AuthError,
+  ClearBusinesses,
+  GetUser,
+  LoadBusiness,
+  Logout,
+  NotAuthenticated,
+  PasswordLogin,
+  ClearStatuses,
+  ClearOrders,
+  ClearServices,
+  ClearCustomers,
+  ClearCurrentBusiness
+} from '@actions/*';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase } from '@angular/fire/database';
@@ -8,7 +22,14 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { User } from 'firebase/app';
 import { defer, from, Observable, of } from 'rxjs';
-import { catchError, map, pluck, switchMap, tap } from 'rxjs/operators';
+import {
+  catchError,
+  map,
+  pluck,
+  switchMap,
+  tap,
+  mergeMap
+} from 'rxjs/operators';
 
 @Injectable()
 export class AuthEffects {
@@ -91,17 +112,19 @@ export class AuthEffects {
   @Effect()
   notAuthenticated$ = this.actions$.pipe(
     ofType<NotAuthenticated>(UserActionTypes.NotAuthenticated),
-    tap(_ => this.router.navigate([''])),
-    map(_ => {
-      return new ClearBusinesses();
-      // return from([
-        // new ClearStatuses(),
-        // new ClearOrders(),
-        // new ClearServices(),
-        // new ClearCustomers(),
-        // new ClearBusinesses()
-      // ]);
+    tap(() => {
+      this.router.navigate(['']);
     }),
+    mergeMap(() =>
+      from([
+        new ClearOrders(),
+        new ClearCustomers(),
+        new ClearCurrentBusiness(),
+        new ClearStatuses(),
+        new ClearServices(),
+        new ClearBusinesses()
+      ])
+    ),
     catchError(err => {
       console.log('notAuthenticatedError', err);
       return err;
@@ -140,7 +163,9 @@ export class AuthEffects {
     return of(new GetUser());
   });
 
-  private signInWithEmailAndPassword(data): Observable<firebase.auth.UserCredential> {
+  private signInWithEmailAndPassword(
+    data
+  ): Observable<firebase.auth.UserCredential> {
     console.log('PasswordLogin', data);
     return from(
       this.afAuth.auth.signInWithEmailAndPassword(data.email, data.password)

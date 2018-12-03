@@ -6,5 +6,10 @@ export class SelectCurrentBusiness implements Action {
   readonly type = CurrentBusiness.SelectBusiness;
   constructor(public payload: Business) {}
 }
+export class ClearCurrentBusiness implements Action {
+  readonly type = CurrentBusiness.ClearCurrentBusiness;
+}
 
-export type CurrentBusinessActions = SelectCurrentBusiness;
+export type CurrentBusinessActions =
+  | SelectCurrentBusiness
+  | ClearCurrentBusiness;

@@ -9,7 +9,7 @@ const routes: Routes = [
     pathMatch: 'full',
     component: LoginComponent
   }, {
-    path: 'base',
+    path: 'orders',
     loadChildren: './base/base.module#BaseModule'
   }, {
     path: 'select-business',
