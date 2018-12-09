@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 
 import { AppStore, OrdersState } from '@models/*';
 
@@ -19,10 +19,9 @@ export class AppComponent implements OnInit {
   constructor(private db: AngularFireDatabase, private store: Store<AppStore>) { }
 
   ngOnInit() {
-    this.store.dispatch(new LoadOrders());
+    // this.store.dispatch(new LoadOrders());
     this.store.dispatch(new LoadStatuses());
-    this.store.dispatch(new LoadServices());
-    this.store.dispatch(new LoadCustomers());
+    // this.store.dispatch(new LoadServices());
     this.store.dispatch({type: '[CurentClient] Load Success', payload: '1FHrxAIqCubegtQCZLR648FZLQh1'});
     this.store.dispatch({type: '[CurentBusiness] Load Success', payload: '-LRrb5BmtO6LilxN-khs'});
 
@@ -30,24 +29,28 @@ export class AppComponent implements OnInit {
       // (orders: OrdersState) => console.log(orders)
     );
 
-    this.store
-      .select(selectStatusesAsArray)
-      .subscribe(statuses => {
-        // console.log('STATUSES: ', statuses);
-        // this.statuses = statuses;
-      }
-      );
+    this.store.pipe(
+      select('currentBusiness')
+    )
+    .subscribe((value: string) => this.store.dispatch(new LoadCustomers()));
+    // this.store
+    //   .select(selectStatusesAsArray)
+    //   .subscribe(statuses => {
+    //     // console.log('STATUSES: ', statuses);
+    //     // this.statuses = statuses;
+    //   }
+    //   );
 
-    this.store
-      .select(selectStateServices)
-      .subscribe(
-        // value => console.log('SERVICES: ', value)
-      );
-    this.db
-      .list('/clients')
-      .valueChanges()
-      .subscribe(
-        // value => console.log('CLIENTS: ', value)
-      );
+    // this.store
+    //   .select(selectStateServices)
+    //   .subscribe(
+    //     // value => console.log('SERVICES: ', value)
+    //   );
+    // this.db
+    //   .list('/clients')
+    //   .valueChanges()
+    //   .subscribe(
+    //     // value => console.log('CLIENTS: ', value)
+    //   );
   }
 }
