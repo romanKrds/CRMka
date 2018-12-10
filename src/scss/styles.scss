@@ -1,4 +1,16 @@
 @import './variables';
+// Imports functions, variables, and mixins that are needed by other Bootstrap files
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+// Import Roboot
+@import "~bootstrap/scss/reboot";
+@import "./reset";
+
 @import './mixins';
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mb-0 {
+  margin-bottom: 0 !important;
+}
