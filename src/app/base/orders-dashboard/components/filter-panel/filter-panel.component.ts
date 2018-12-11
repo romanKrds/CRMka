@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { AppStore, Service, Status } from '@models/*';
 import { select, Store } from '@ngrx/store';
-import { selectClientBusinessesAll, selectStatusesAsArray } from '@selectors/*';
+import { selectClientBusinessesAll, selectStatusesAll } from '@selectors/*';
 import * as fm from './filter-panel.constants';
 
 
@@ -49,7 +49,7 @@ export class FilterPanelComponent implements OnInit {
 
   loadDataForSelects(): void {
 
-    this.store.pipe(select(selectStatusesAsArray))
+    this.store.pipe(select(selectStatusesAll))
     .subscribe(
       (statuses: Status[] ) => this.statuses = statuses);
 
