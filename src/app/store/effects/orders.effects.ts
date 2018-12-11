@@ -2,7 +2,7 @@ import { AddOrders, ErrorOrders, LoadOrders } from '@actions/*';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { OrderActionTypes } from '@constants/*';
-import { AppStore, Order } from '@models/*';
+import { AppStore, Order, OrderWithId } from '@models/*';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action, select, State } from '@ngrx/store';
 import { selectCustomersIds } from '@selectors/*';
@@ -39,7 +39,7 @@ export class OrdersEffects {
           return { id, ...data };
         });
       }),
-    map((orders: Order[]) => {
+    map((orders: OrderWithId[]) => {
       return new AddOrders({ orders });
     }),
     catchError(errors => of(new ErrorOrders({ errors })))
