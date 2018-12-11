@@ -1,9 +1,9 @@
 import { EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-import { Status, StatusesState} from '@models/*';
+import { Status, StatusesState, StatusWithId} from '@models/*';
 import { StatusesActionTypes } from '@constants/*';
 import { StatusActions } from '@actions/*';
 
-export const statusesAdapter: EntityAdapter<Status> = createEntityAdapter<Status>();
+export const statusesAdapter: EntityAdapter<StatusWithId> = createEntityAdapter<StatusWithId>();
 
 export const statusesInitialState: StatusesState = statusesAdapter.getInitialState({
   // additional entity state properties

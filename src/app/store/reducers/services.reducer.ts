@@ -1,9 +1,9 @@
 import { createEntityAdapter, EntityAdapter } from '@ngrx/entity';
 import { ServicesActions } from '@actions/*';
 import { ServicesActionTypes } from '@constants/*';
-import { Service, ServicesState } from '@models/*';
+import { Service, ServicesState, ServiceWithId } from '@models/*';
 
-export const servicesAdapter: EntityAdapter<Service> = createEntityAdapter<Service>({});
+export const servicesAdapter: EntityAdapter<ServiceWithId> = createEntityAdapter<ServiceWithId>({});
 
 export const initialStateServices: ServicesState = servicesAdapter.getInitialState({
     // additional entity state properties
