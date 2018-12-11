@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
-import { Service } from '@models/*';
+import { Service, ServiceWithId } from '@models/*';
 import { ServicesActionTypes } from '@constants/*';
 
 export class LoadServices implements Action {
@@ -11,7 +11,7 @@ export class LoadServices implements Action {
 export class LoadServicesSuccess implements Action {
   readonly type = ServicesActionTypes.LoadServicesSuccess;
 
-  constructor(public payload: { services: Service[] }) {}
+  constructor(public payload: { services: ServiceWithId[] }) {}
 }
 
 export class AddService implements Action {

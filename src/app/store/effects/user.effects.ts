@@ -20,7 +20,7 @@ import { Router } from '@angular/router';
 import { UserActionTypes } from '@constants/*';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
-import { User } from 'firebase/app';
+import { User as UserFireBase } from 'firebase/app';
 import { defer, from, Observable, of } from 'rxjs';
 import {
   catchError,
@@ -30,6 +30,7 @@ import {
   tap,
   mergeMap
 } from 'rxjs/operators';
+import { User } from '@models/';
 
 @Injectable()
 export class AuthEffects {
@@ -45,7 +46,7 @@ export class AuthEffects {
     ofType(UserActionTypes.GetUser),
     map((action: GetUser) => action),
     switchMap(_ => this.afAuth.authState),
-    switchMap((authData: User) => {
+    switchMap((authData: UserFireBase) => {
       if (authData) {
         let first_name, last_name, displayName;
         if (authData.displayName) {
@@ -64,7 +65,7 @@ export class AuthEffects {
           last_name = null;
           displayName = 'NoName';
         }
-        const currentUser = {
+        const currentUser: User = {
           first_name: first_name,
           last_name: last_name,
           displayName: displayName,
@@ -74,13 +75,13 @@ export class AuthEffects {
           providerId: authData.providerId,
           uid: authData.uid
         };
-        const userListRef = this.db.object('/clients/' + authData.uid);
+        const userListRef = this.db.object<User>('/clients/' + authData.uid);
         userListRef.update(currentUser);
         return userListRef.valueChanges();
       }
       return of(null);
     }),
-    map(user => {
+    map((user: User) => {
       if (user) {
         return new Authenticated({ user });
       } else {

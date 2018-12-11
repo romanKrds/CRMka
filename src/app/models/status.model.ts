@@ -1,5 +1,8 @@
 export interface Status {
-  id: string;
   description: string;
   title: string;
+}
+
+export interface StatusWithId extends Status {
+  id: string;
 }

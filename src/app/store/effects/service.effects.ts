@@ -1,8 +1,8 @@
 import { ErrorService, LoadServices, LoadServicesSuccess } from '@actions/*';
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireDatabase, DatabaseSnapshot, AngularFireAction } from '@angular/fire/database';
 import { ServicesActionTypes } from '@constants/*';
-import { AppStore, Service } from '@models/*';
+import { AppStore, Service, ServiceWithId } from '@models/*';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action, select, State } from '@ngrx/store';
 import { selectCurrentBusinessId } from '@selectors/*';
@@ -25,16 +25,17 @@ export class ServiceEffects {
     switchMap(() => {
       return this.state.pipe(select(selectCurrentBusinessId));
     }),
-    switchMap(currentBusiness => this.db.list<Service>('/services', ref => ref.orderByChild('businessId').equalTo(currentBusiness))
-    .snapshotChanges()),
-    map(list => {
-      return list.map(service => {
+    switchMap((currentBusiness: string) => this.db.list<Service>(
+      '/services', ref => ref.orderByChild('businessId').equalTo(currentBusiness)
+      ).snapshotChanges()),
+    map((list: AngularFireAction<DatabaseSnapshot<Service>>[]) => {
+      return list.map((service: AngularFireAction<DatabaseSnapshot<Service>>) => {
         const data = service.payload.val();
         const id = service.payload.key;
         return { id, ...data };
       });
     }),
-    map((services: Service[]) => {
+    map((services: ServiceWithId[]) => {
       return new LoadServicesSuccess({ services });
     }),
     catchError(errors => of(new ErrorService({ errors })))

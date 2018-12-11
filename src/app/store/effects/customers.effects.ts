@@ -2,7 +2,7 @@ import { ErrorCustomers, LoadCustomers, LoadCustomersSuccess } from '@actions/*'
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { CustomersActionTypes } from '@constants/*';
-import { AppStore, Customer } from '@models/*';
+import { AppStore, CustomerWithId } from '@models/*';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action, select, State } from '@ngrx/store';
 import { selectCurrentBusinessId } from '@selectors/*';
@@ -74,7 +74,7 @@ export class CustomersEffects {
             return { id, ...data };
           });
       }),
-      map((customers: Customer[]) => {
+      map((customers: CustomerWithId[]) => {
         // console.log('DISPATCH', customers);
         return new LoadCustomersSuccess({ customers });
       }),
