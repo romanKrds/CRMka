@@ -1,6 +1,6 @@
 <mat-card class="container">
   <h2>Детали заявки</h2>
-  
+
   <form [formGroup]='orderForm' floatLabel="always" (ngSubmit)="onSubmit()" class="form-details">
     <mat-form-field class="form-group">
       <input matInput placeholder="Имя" type="text" class="form-control" id="name" formControlName='name'>
@@ -28,9 +28,9 @@
       </mat-select>
     </mat-form-field>
     <mat-form-field class="form-group">
-      <mat-select class="form-control" placeholder='Статус' id="status" [value]="currentOrder.status.title"
+      <mat-select class="form-control" placeholder='Статус' id="status" [value]="currentOrder.status.id"
         formControlName='status'>
-        <mat-option *ngFor="let stat of statuses" [value]="stat.title">{{stat.title | json}}</mat-option>
+        <mat-option *ngFor="let stat of statuses" [value]="stat.id">{{stat.title}}</mat-option>
       </mat-select>
     </mat-form-field>
     <div class="buttons">
