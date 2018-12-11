@@ -2,9 +2,9 @@ import { UpsertOrder } from '@actions/*';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
-import { AppStore, Order, OrdersState } from '@models/*';
+import { AppStore, Order, OrdersState, CustomerWithId, ServiceWithId, StatusWithId, OrderWithId } from '@models/*';
 import { Store, select } from '@ngrx/store';
-import { getServiceById, getStatusById, selectClientBusinessesAll, selectStatusesAsArray } from '@selectors/*';
+import { getServiceById, getStatusById, selectClientBusinessesAll, selectStatusesAll } from '@selectors/*';
 import { getCustomerById } from 'src/app/store/selectors/customers.selectors';
 import { getOrderById, selectCurrentOrder } from 'src/app/store/selectors/orders.selectors';
 
@@ -35,26 +35,20 @@ export class OrderDetailsComponent implements OnInit {
           .subscribe(valueOrder => (
             this.currentOrder = { ...valueOrder },
             this.store.select(getCustomerById(), valueOrder && valueOrder.customerId)
-              .subscribe(customer => this.currentOrder.customer = { ...customer }),
+              .subscribe((customer: CustomerWithId) => this.currentOrder.customer = { ...customer }),
             this.store.select(getServiceById(), valueOrder && valueOrder.serviceId)
-              .subscribe(service => this.currentOrder.service = { ...service }),
+              .subscribe((service: ServiceWithId) => this.currentOrder.service = { ...service }),
             this.store.select(getStatusById(), valueOrder && valueOrder.state)
-              .subscribe(status => this.currentOrder.status = { ...status }),
+              .subscribe((status: StatusWithId) => this.currentOrder.status = { ...status }),
             this.orderForm && this.formFill()
           ));
         // this.adapter.setLocale('fr');
       }
       );
     this.store.pipe(select(selectClientBusinessesAll))
-      .subscribe(value => (this.services = value
-        // console.log(this.services)
-      )
-      );
-    this.store.pipe(select(selectStatusesAsArray))
-      .subscribe(value => (this.statuses = value
-        // console.log(this.statuses)
-      )
-      );
+      .subscribe(value => this.services = value);
+    this.store.pipe(select(selectStatusesAll))
+      .subscribe(value => this.statuses = value);
     this.formInit(),
       this.orderForm.valueChanges
         .subscribe((valueChange: any) => {
@@ -91,7 +85,7 @@ export class OrderDetailsComponent implements OnInit {
     // console.log(this.orderForm.value);
     // console.log(this.currentOrder);
     const stateid = this.statuses.findIndex(item => item.title === this.orderForm.value.status);
-    const result: Order = {
+    const result: OrderWithId = {
       id: this.currentOrder.id,
       comment: this.orderForm.value.comment,
       created_at: this.currentOrder.created_at,

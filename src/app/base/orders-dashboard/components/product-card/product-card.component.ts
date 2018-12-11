@@ -1,6 +1,6 @@
 import { ChangeCurrentOrder } from '@actions/*';
 import { Component, Input, OnInit } from '@angular/core';
-import { AppStore } from '@models/*';
+import { AppStore, ServiceWithId, CustomerWithId, StatusWithId } from '@models/*';
 import { select, Store } from '@ngrx/store';
 import { getServiceById, getStatusById } from '@selectors/*';
 import { getCustomerById } from 'src/app/store/selectors/customers.selectors';
@@ -12,9 +12,9 @@ import { getOrderById, selectCurrentOrder } from 'src/app/store/selectors/orders
   styleUrls: ['./product-card.component.scss']
 })
 export class ProductCardComponent implements OnInit {
-  @Input() orderId;
+  @Input() orderId: string;
   order;
-  currentOrder;
+  currentOrder: string;
 
   constructor(
     private store: Store<AppStore>
@@ -27,11 +27,11 @@ export class ProductCardComponent implements OnInit {
       .subscribe(value => {
         this.order = { ...value };
         this.store.select(getServiceById(), this.order.serviceId)
-          .subscribe(service => this.order.service = { ...service });
+          .subscribe((service: ServiceWithId) => this.order.service = { ...service });
         this.store.select(getCustomerById(), this.order.customerId)
-          .subscribe(customer => this.order.customer = { ...customer });
+          .subscribe((customer: CustomerWithId) => this.order.customer = { ...customer });
         this.store.select(getStatusById(), this.order.state)
-          .subscribe(state => this.order.stateObj = { ...state });
+          .subscribe((state: StatusWithId) => this.order.stateObj = { ...state });
       }
       );
   }
