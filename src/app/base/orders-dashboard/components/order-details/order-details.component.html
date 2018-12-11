@@ -19,18 +19,16 @@
       <mat-datepicker #picker2></mat-datepicker>
     </mat-form-field>
     <mat-form-field class="form-group comment">
-      <textarea matInput placeholder="Комментарий" cols="40" type="text" class="form-control" id="comment" formControlName='comment'></textarea>
+      <textarea matInput placeholder="Комментарий" cols="40" type="text" class="form-control" formControlName='comment'></textarea>
     </mat-form-field>
     <mat-form-field class="form-group">
-      <mat-select class="form-control" placeholder='Услуга' id="service" [value]="currentOrder.service.title"
-        formControlName='service'>
-        <mat-option *ngFor="let serv of services" [value]="serv.title">{{serv.title}}</mat-option>
+      <mat-select class="form-control" placeholder='Услуга' name="serv" formControlName='service'>
+        <mat-option *ngFor="let serv of services$ | async" [value]="serv.id">{{serv.title}}</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field class="form-group">
-      <mat-select class="form-control" placeholder='Статус' id="status" [value]="currentOrder.status.id"
-        formControlName='status'>
-        <mat-option *ngFor="let stat of statuses" [value]="stat.id">{{stat.title}}</mat-option>
+      <mat-select class="form-control" placeholder='Статус' formControlName='status'>
+        <mat-option *ngFor="let status of statuses$ | async" [value]="status.id">{{status.title}}</mat-option>
       </mat-select>
     </mat-form-field>
     <div class="buttons">

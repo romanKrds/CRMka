@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
-import { Status } from '@models/*';
+import { StatusWithId } from '@models/*';
 import { StatusesActionTypes } from '@constants/*';
 
 export class LoadStatuses implements Action {
@@ -10,43 +10,43 @@ export class LoadStatuses implements Action {
 export class LoadStatusesSuccess implements Action {
   readonly type = StatusesActionTypes.LoadStatusesSuccess;
 
-  constructor(public payload: { statuses: Status[] }) {}
+  constructor(public payload: { statuses: StatusWithId[] }) {}
 }
 
 export class AddStatus implements Action {
   readonly type = StatusesActionTypes.AddStatus;
 
-  constructor(public payload: { status: Status }) {}
+  constructor(public payload: { status: StatusWithId }) {}
 }
 
 export class UpsertStatus implements Action {
   readonly type = StatusesActionTypes.UpsertStatus;
 
-  constructor(public payload: { status: Status }) {}
+  constructor(public payload: { status: StatusWithId }) {}
 }
 
 export class AddStatuses implements Action {
   readonly type = StatusesActionTypes.AddStatuss;
 
-  constructor(public payload: { statuss: Status[] }) {}
+  constructor(public payload: { statuss: StatusWithId[] }) {}
 }
 
 export class UpsertStatuses implements Action {
   readonly type = StatusesActionTypes.UpsertStatuss;
 
-  constructor(public payload: { statuss: Status[] }) {}
+  constructor(public payload: { statuss: StatusWithId[] }) {}
 }
 
 export class UpdateStatus implements Action {
   readonly type = StatusesActionTypes.UpdateStatus;
 
-  constructor(public payload: { status: Update<Status> }) {}
+  constructor(public payload: { status: Update<StatusWithId> }) {}
 }
 
 export class UpdateStatuses implements Action {
   readonly type = StatusesActionTypes.UpdateStatuss;
 
-  constructor(public payload: { statuss: Update<Status>[] }) {}
+  constructor(public payload: { statuss: Update<StatusWithId>[] }) {}
 }
 
 export class DeleteStatus implements Action {
