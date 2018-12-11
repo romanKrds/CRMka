@@ -1,6 +1,8 @@
 export interface Service {
-  id: string;
   businessId: string;
   description: string;
   title: string;
+}
+export interface ServiceWithId extends Service {
+  id: string;
 }
