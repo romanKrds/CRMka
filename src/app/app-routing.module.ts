@@ -6,18 +6,37 @@ import { SelectCurrentBusinessComponent } from './components/select-current-busi
 const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
-    component: LoginComponent
-  }, {
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'login',
+      },
+      {
+        path: 'login',
+        component: LoginComponent
+      },
+      // {
+        // path: 'registration',
+        // component: RegistratioComponent
+      // },
+      {
+        path: 'select-business',
+        component : SelectCurrentBusinessComponent
+      }
+    ]
+  },
+  {
     path: 'orders',
     loadChildren: './base/base.module#BaseModule'
-  }, {
-    path: 'select-business',
-    component : SelectCurrentBusinessComponent
   },
   {
     path: 'account',
     loadChildren: './account/account.module#AccountModule'
+  },
+  {
+    path: '**',
+    redirectTo: ''
   }
 ];
 

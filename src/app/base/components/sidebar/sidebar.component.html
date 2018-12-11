@@ -1,15 +1,15 @@
-<mat-sidenav-container 
-  hasBackdrop="false" 
-  autosize 
+<mat-sidenav-container
+  hasBackdrop="false"
+  autosize
   (dblclick)="onResizeSidebar()"
   >
-  <mat-sidenav 
-    mode="push" 
+  <mat-sidenav
+    mode="push"
     opened
-    #sidebar 
+    #sidebar
     [class.small]="small"
     >
-    
+
     <mat-nav-list>
       <div class="logo-container">
         <img src="assets/img/default-company-icon.png">
@@ -33,7 +33,7 @@
     </mat-nav-list>
 
   </mat-sidenav>
-  
+
   <mat-sidenav-content>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
