@@ -96,8 +96,8 @@ export class OrderDetailsComponent implements OnInit {
       customerId: this.currentOrder.customerId,
       created_at: this.currentOrder.created_at,
       comment: this.orderForm.value.comment,
-      started_at: this.orderForm.value.date_open,
-      ended_at: this.orderForm.value.date_finish,
+      started_at: String(new Date(this.orderForm.value.date_open / 1000).getTime()),
+      ended_at: String(new Date(this.orderForm.value.date_finish / 1000).getTime()),
       serviceId: this.orderForm.value.service,
       state: this.orderForm.value.status
     };

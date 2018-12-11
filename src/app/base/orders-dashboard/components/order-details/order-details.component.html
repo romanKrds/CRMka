@@ -3,10 +3,10 @@
 
   <form [formGroup]='orderForm' floatLabel="always" (ngSubmit)="onSubmit()" class="form-details">
     <mat-form-field class="form-group">
-      <input matInput placeholder="Имя" type="text" class="form-control" id="name" formControlName='name'>
+      <input matInput placeholder="Имя" type="text" class="form-control" formControlName='name'>
     </mat-form-field>
     <mat-form-field class="form-group">
-      <input matInput placeholder="Телефон" type="text" class="form-control" id="phone" formControlName='phone'>
+      <input matInput placeholder="Телефон" type="text" class="form-control" formControlName='phone'>
     </mat-form-field>
     <mat-form-field class="form-group">
       <input matInput [matDatepicker]="picker" placeholder="Дата создания" formControlName='date_open'>
@@ -22,8 +22,8 @@
       <textarea matInput placeholder="Комментарий" cols="40" type="text" class="form-control" formControlName='comment'></textarea>
     </mat-form-field>
     <mat-form-field class="form-group">
-      <mat-select class="form-control" placeholder='Услуга' name="serv" formControlName='service'>
-        <mat-option *ngFor="let serv of services$ | async" [value]="serv.id">{{serv.title}}</mat-option>
+      <mat-select class="form-control" placeholder='Услуга' name="service" formControlName='service'>
+        <mat-option *ngFor="let service of services$ | async" [value]="service.id">{{service.title}}</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field class="form-group">
