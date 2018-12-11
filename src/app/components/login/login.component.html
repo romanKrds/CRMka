@@ -2,12 +2,19 @@
   <mat-card>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" fxLayout="row wrap" fxLayoutAlign='end'>
       <mat-form-field fxFlex="100%">
-        <input matInput placeholder="Email" formControlName="email" required />
+        <input matInput placeholder="Email" formControlName="email" />
+          <mat-error *ngIf="loginForm.get('email').invalid">{{getErrorMessageInput('email')}}</mat-error>
       </mat-form-field>
       <mat-form-field fxFlex="100%">
         <input matInput placeholder="Password" formControlName="password" />
+        <mat-error *ngIf="loginForm.get('password').invalid">{{getErrorMessageInput('password')}}</mat-error>
       </mat-form-field>
-      <button mat-raised-button>Login</button>
+      <button
+        mat-raised-button
+        [disabled]="loginForm.invalid"
+      >
+        Login
+      </button>
     </form>
 
     <p>client1@crmka.com</p>
