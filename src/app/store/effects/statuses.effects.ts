@@ -2,7 +2,7 @@ import { ErrorStatuses, LoadStatusesSuccess } from '@actions/*';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { StatusesActionTypes } from '@constants/*';
-import { Status, StatusWithId } from '@models/*';
+import { StatusWithId } from '@models/*';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Observable, of } from 'rxjs';

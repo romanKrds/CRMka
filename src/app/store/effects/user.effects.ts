@@ -96,13 +96,6 @@ export class AuthEffects {
     ofType<Authenticated>(UserActionTypes.Authenticated),
     tap(_ => {
       this.router.navigate(['select-business']);
-      // return from([
-      //   new LoadStatuses(),
-      //   new LoadOrders(),
-      //   new LoadServices(),
-      //   new LoadCustomers(),
-      //   new LoadBusiness()
-      // ]);
     }),
     map(() => new LoadBusiness()),
     catchError(err => {
@@ -118,10 +111,10 @@ export class AuthEffects {
     }),
     mergeMap(() =>
       from([
-        new ClearOrders(),
         new ClearCustomers(),
-        new ClearCurrentBusiness(),
+        new ClearOrders(),
         new ClearStatuses(),
+        new ClearCurrentBusiness(),
         new ClearServices(),
         new ClearBusinesses()
       ])
@@ -150,8 +143,7 @@ export class AuthEffects {
   loginPassword: Observable<Action> = this.actions$.pipe(
     ofType<PasswordLogin>(UserActionTypes.EmailPasswordLogin),
     pluck('payload'),
-    // map((action: PasswordLogin) => action.payload),
-    switchMap(loginData => {
+    switchMap((loginData: { email: string; password: string }) => {
       console.log('loginData', loginData);
       return this.signInWithEmailAndPassword(loginData);
     }),
@@ -164,9 +156,10 @@ export class AuthEffects {
     return of(new GetUser());
   });
 
-  private signInWithEmailAndPassword(
-    data
-  ): Observable<firebase.auth.UserCredential> {
+  private signInWithEmailAndPassword(data: {
+    email: string;
+    password: string;
+  }): Observable<firebase.auth.UserCredential> {
     console.log('PasswordLogin', data);
     return from(
       this.afAuth.auth.signInWithEmailAndPassword(data.email, data.password)

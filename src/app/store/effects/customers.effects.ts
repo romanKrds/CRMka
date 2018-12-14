@@ -19,42 +19,6 @@ export class CustomersEffects {
     private state: State<AppStore>
   ) { }
 
-  // @Effect()
-  // // V1
-  // loadCustomersEffect$: Observable<Action> = this.actions$.pipe(
-  //   ofType(CustomersActionTypes.LoadCustomers),
-  //   switchMap(() => {
-  //     return this.db
-  //     // .object('/')
-  //       .object('/customersPerBusiness/' + this.currentBusiness)
-  //       .snapshotChanges();
-  //   }),
-  //   mergeMap(snapshot => {
-  //     // console.log('snapshot', snapshot);
-  //     console.log('snapshot', snapshot.payload.val());
-  //     return from(Object.keys(snapshot.payload.val()));
-  //     // return of(snapshot.payload.val());
-  //   }),
-  //   mergeMap((data: string) => {
-  //     console.log('data', data);
-  //       return this.db.list('/customers', ref => ref.orderByKey().equalTo(data))
-  //       .snapshotChanges();
-  //   }),
-  //   map(customers => {
-  //     console.log('list', customers[0]);
-  //       // return customers.map(customer => {
-  //         const data = customers[0].payload.val();
-  //         const id = customers[0].payload.key;
-  //         return { id, ...data };
-  //       // });
-  //   }),
-  //   map((customer: Customer) => {
-  //     console.log('DISPATCH', customer);
-  //     return new AddCustomer({ customer });
-  //   }),
-  //   catchError(errors => of(new ErrorCustomers({ errors })))
-  // );
-
     @Effect()
     // V2
     loadCustomersEffect$: Observable<Action> = this.actions$.pipe(
@@ -67,7 +31,6 @@ export class CustomersEffects {
           .snapshotChanges();
       }),
       map(customers => {
-        // console.log('list', customers);
           return customers.map(customer => {
             const data = customer.payload.val();
             const id = customer.payload.key;
@@ -75,7 +38,6 @@ export class CustomersEffects {
           });
       }),
       map((customers: CustomerWithId[]) => {
-        // console.log('DISPATCH', customers);
         return new LoadCustomersSuccess({ customers });
       }),
       catchError(errors => of(new ErrorCustomers({ errors })))
