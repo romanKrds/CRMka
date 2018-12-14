@@ -21,7 +21,7 @@ export class SelectCurrentBusinessComponent implements OnInit {
   ngOnInit() {
     this.business$ = this.state.pipe(select(selectClientBusinessesAll));
   }
-  onSelect(business) {
+  onSelect(business: Business) {
     this.state.dispatch(new SelectCurrentBusiness(business));
   }
 }
