@@ -9,7 +9,6 @@ import { selectCurrentBusinessId } from '@selectors/*';
 import { Observable, of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 
-
 @Injectable()
 export class CustomersEffects {
 
