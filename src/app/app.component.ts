@@ -20,11 +20,5 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.store.dispatch(new LoadOrders());
-    // this.store.dispatch(new LoadStatuses());
-    // this.store.dispatch(new LoadServices());
-    // this.store.dispatch(new LoadCustomers());
-    // this.store.dispatch(new LoadBusiness());
-    // this.store.dispatch({type: '[CurentClient] Load Success', payload: '1FHrxAIqCubegtQCZLR648FZLQh1'});
   }
 }
