@@ -1,9 +1,9 @@
 <mat-card *ngIf="ordersIds$ | async as ordersIds" class="container">
-  <cdk-virtual-scroll-viewport itemSize="140" class="example-viewport">
-    <div *cdkVirtualFor="let orderId of ordersIds" class="itemCard">
+  <div itemSize="140" class="example-viewport">
+    <div *ngFor="let orderId of ordersIds" class="itemCard">
       <app-product-card [orderId]="orderId"></app-product-card>
     </div>
-  </cdk-virtual-scroll-viewport>
+  </div>
   <mat-paginator [length]="length"
               [pageSize]="pageSize"
               [pageSizeOptions]="pageSizeOptions"

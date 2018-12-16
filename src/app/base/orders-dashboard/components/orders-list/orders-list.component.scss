@@ -1,16 +1,15 @@
 .example-viewport {
   height: 100%;
   width: 100%;
-}
-.cdk-virtual-scroll-content-wrapper {
-  padding-right: 1.5rem;
+  overflow-y: scroll;
 }
 
 .container {
   display: flex;
   max-width: 800px;
   flex-direction: column;
-  height: calc(100% - 15px - 16px);
+  justify-content: space-between;
+  height: calc(100% - 15px);
 }
 .itemCard {
   height: 140px;
