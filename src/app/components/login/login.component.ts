@@ -24,13 +24,13 @@ export class LoginComponent implements OnInit {
     private state: Store<AppStore>,
     public snackBar: MatSnackBar,
     private fb: FormBuilder
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.user$ = this.state.pipe(select(selectStateUser));
-    this.state.pipe(select(state => state.currentClient.error)).subscribe(
-      (error: string) => this.getErrorMessage(error)
-      );
+    this.state
+      .pipe(select(state => state.currentClient.error))
+      .subscribe((error: string) => this.getErrorMessage(error));
   }
   onSubmit(): void {
     this.state.dispatch(new PasswordLogin(this.loginForm.value));
@@ -47,14 +47,20 @@ export class LoginComponent implements OnInit {
       });
     }
   }
-  getErrorMessageInput(input): string | null {
-    if (this.loginForm.getError('required', [input])) { return 'You must enter a value'; }
-    if (this.loginForm.getError('email', [input])) { return 'Not a valid email'; }
-    if (this.loginForm.getError('minlength', [input])) {
-      const { actualLength, requiredLength} = this.loginForm.get(input).errors.minlength;
+  getErrorMessageInput(input: string): string | null {
+    if (this.loginForm.hasError('required', [input])) {
+      return 'You must enter a value';
+    }
+    if (this.loginForm.hasError('email', [input])) {
+      return 'Not a valid email';
+    }
+    if (this.loginForm.hasError('minlength', [input])) {
+      const { actualLength, requiredLength } = this.loginForm.getError(
+        'minlength',
+        [input]
+      );
       return `Min length is ${requiredLength}, you enter ${actualLength}`;
     }
     return null;
   }
-
 }
