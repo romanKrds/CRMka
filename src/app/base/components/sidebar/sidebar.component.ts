@@ -7,7 +7,6 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-
   navigationItems = [
     {
       link: '/orders',
@@ -35,22 +34,18 @@ export class SidebarComponent implements OnInit {
   small: boolean;
 
   constructor(breakpointObserver: BreakpointObserver) {
-    breakpointObserver.observe([
-      Breakpoints.Medium,
-      Breakpoints.Large
-    ]).subscribe(result => {
-      if (result.matches) {
-        this.small = false;
-      } else {
-        this.small = true;
-      }
-
-    });
-   }
-
-  ngOnInit() {
-
+    breakpointObserver
+      .observe([Breakpoints.Medium, Breakpoints.Large])
+      .subscribe(result => {
+        if (result.matches) {
+          this.small = false;
+        } else {
+          this.small = true;
+        }
+      });
   }
+
+  ngOnInit() {}
 
   onResizeSidebar() {
     this.small = !this.small;
