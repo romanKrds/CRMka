@@ -1,20 +1,7 @@
-mat-sidenav-container{
-  height: 100%;
-
-  mat-sidenav{
-    width: 250px;
-  }
-
-  mat-sidenav-content{
-    padding: 0 2%;
-    margin-right: 0 !important;
-  }
-}
-
 .logo-container{
   padding: 0 16px;
   img{
-    width: 60%;
+    width: 100%;
     height: auto;
   }
   p{
@@ -34,17 +21,7 @@ mat-list-item{
   }
 }
 
-.small{
-  width: 90px !important;
-  img{
-    width: 100%;
-    height: auto;
-    margin-bottom: 100%;
-  }
-}
-
 .nav-bottom{
   position: absolute;
   bottom: 3%;
 }
-

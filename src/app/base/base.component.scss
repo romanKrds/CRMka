@@ -1,0 +1,22 @@
+mat-sidenav-container{
+  height: 100%;
+
+  mat-sidenav{
+    width: 250px;
+  }
+
+  mat-sidenav-content{
+    padding: 0 2%;
+  }
+}
+
+.small{
+  width: 90px !important;
+  img{
+    width: 100%;
+    height: auto;
+    margin-bottom: 100%;
+  }
+}
+
+

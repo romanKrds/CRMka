@@ -15,7 +15,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { OrdersEffects } from './store/effects/orders.effects';
 import { CustomersEffects } from './store/effects/customers.effects';
 import { SharedModule } from './shared/shared.module';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { reducers, metaReducers } from './store/reducers';
 import { StatusesEffects } from './store/effects/statuses.effects';
 import { LoginComponent } from './components/login/login.component';
@@ -29,7 +28,6 @@ import { BusinessEffects } from './store/effects/business.effects';
 @NgModule({
   declarations: [
     AppComponent,
-    SidebarComponent,
     LoginComponent,
     SelectCurrentBusinessComponent
   ],

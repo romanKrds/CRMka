@@ -36,7 +36,6 @@ const MODULES = [
   MatTooltipModule,
   MatCardModule,
   MatProgressSpinnerModule,
-  MatSidenavModule,
   MatListModule,
   MatIconModule,
   MatFormFieldModule,
