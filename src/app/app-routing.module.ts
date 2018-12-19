@@ -27,12 +27,8 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'orders',
+    path: 'app',
     loadChildren: './base/base.module#BaseModule'
-  },
-  {
-    path: 'account',
-    loadChildren: './account/account.module#AccountModule'
   },
   {
     path: '**',

@@ -11,24 +11,24 @@ export class SidebarComponent {
 
   navigationItems = [
     {
-      link: '/orders',
+      link: 'orders',
       text: 'Все заявки',
       icon: 'shopping_cart'
     },
     {
-      link: '/clients',
+      link: 'clients',
       text: 'Клиенты',
       icon: 'people'
     },
     {
-      link: '/settings',
+      link: 'settings',
       text: 'Настройки',
       icon: 'settings'
     }
   ];
 
   account = {
-    link: '/account',
+    link: 'account',
     text: 'Ваш аккаунт',
     icon: 'account_circle'
   };

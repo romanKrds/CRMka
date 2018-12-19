@@ -4,13 +4,17 @@
     <p *ngIf="!small">Название компании</p>
   </div>
 
-  <mat-list-item [routerLink]="link.link" *ngFor="let link of navigationItems">
-    <mat-icon mat-list-icon>{{ link.icon }}</mat-icon>
-    <span matLine *ngIf="!small">{{ link.text }}</span>
-  </mat-list-item>
+  <a [routerLink]="link.link" *ngFor="let link of navigationItems">
+    <mat-list-item>
+      <mat-icon mat-list-icon>{{ link.icon }}</mat-icon>
+      <span matLine *ngIf="!small">{{ link.text }}</span>
+    </mat-list-item>
+  </a>
 
-  <mat-list-item class="nav-bottom" [routerLink]="account.link">
-    <mat-icon mat-list-icon>{{ account.icon }}</mat-icon>
-    <span matLine *ngIf="!small">{{ account.text }}</span>
-  </mat-list-item>
+  <a class="nav-bottom" [routerLink]="account.link">
+    <mat-list-item>
+      <mat-icon mat-list-icon>{{ account.icon }}</mat-icon>
+      <span matLine *ngIf="!small">{{ account.text }}</span>
+    </mat-list-item>
+  </a>
 </mat-nav-list>

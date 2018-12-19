@@ -5,12 +5,28 @@ import { BaseComponent } from './base.component';
 const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
     component: BaseComponent,
     children: [
       {
         path: '',
+        pathMatch: 'full',
+        redirectTo: 'orders'
+      },
+      {
+        path: 'orders',
         loadChildren: './orders-dashboard/orders-dashboard.module#OrdersDashboardModule'
+      },
+      {
+        path: 'account',
+        loadChildren: './account/account.module#AccountModule'
+      },
+      {
+        path: 'settings',
+        loadChildren: './settings/settings.module#SettingsModule'
+      },
+      {
+        path: 'clients',
+        loadChildren: './clients-dashboard/clients-dashboard.module#ClientsDashboardModule'
       }
     ]
   }

@@ -34,14 +34,7 @@ const MODULES = [
   MatNativeDateModule,
   MatButtonModule,
   MatTooltipModule,
-  MatCardModule,
-  MatProgressSpinnerModule,
-  MatListModule,
-  MatIconModule,
-  MatFormFieldModule,
   MatSnackBarModule,
-  MatInputModule,
-  MatButtonModule,
   MatPaginatorModule,
   ScrollingModule
 ];
