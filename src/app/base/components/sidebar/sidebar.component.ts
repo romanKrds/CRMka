@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent {
+
+  @Input() small: boolean;
+
   navigationItems = [
     {
       link: '/orders',
@@ -31,23 +33,4 @@ export class SidebarComponent implements OnInit {
     icon: 'account_circle'
   };
 
-  small: boolean;
-
-  constructor(breakpointObserver: BreakpointObserver) {
-    breakpointObserver
-      .observe([Breakpoints.Medium, Breakpoints.Large])
-      .subscribe(result => {
-        if (result.matches) {
-          this.small = false;
-        } else {
-          this.small = true;
-        }
-      });
-  }
-
-  ngOnInit() {}
-
-  onResizeSidebar() {
-    this.small = !this.small;
-  }
 }
