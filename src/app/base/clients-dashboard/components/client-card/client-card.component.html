@@ -1,0 +1,33 @@
+<div *ngIf="(customer$ | async) as customer">
+  <mat-card>
+    <mat-card-title>
+      {{ customer.first_name }} {{ customer.last_name }}
+    </mat-card-title>
+    <mat-divider inset="true"></mat-divider>
+    <mat-card-content>
+      <!-- <mat-grid-list cols="2" rowHeight="16px"> -->
+      <div
+        fxLayout="row wrap"
+        fxLayout.xs="column"
+        fxLayoutAlign="space-between start"
+        fxLayoutGap="0px"
+      >
+        <div fxFlex="50%" fxFlex.xs="100%" fxFlexFill fxLayout="column" fxLayout.xs="row"  fxLayoutAlign.xs="space-between">
+          <p>Телефон:</p>
+          <p>{{ customer.phone }}</p>
+        </div>
+        <div fxFlex="50%" fxFlex.xs="100%" fxFlexFill fxLayout="column" fxLayout.xs="row"  fxLayoutAlign.xs="space-between">
+          <p class="text-right">Заявок:</p>
+          <p class="text-right">#</p>
+        </div>
+      </div>
+      <!-- <mat-grid-tile>
+          <p style="width: 100%; text-align: left; margin-bottom: 0;">Телефон:</p>
+        </mat-grid-tile>
+        <mat-grid-tile>Заявок:</mat-grid-tile>
+        <mat-grid-tile style="width: 100%; text-align: left; margin-bottom: 0;">{{ customer.phone }}</mat-grid-tile>
+        <mat-grid-tile>4</mat-grid-tile> -->
+      <!-- </mat-grid-list> -->
+    </mat-card-content>
+  </mat-card>
+</div>

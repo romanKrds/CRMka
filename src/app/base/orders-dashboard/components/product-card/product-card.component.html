@@ -5,7 +5,9 @@
   (click)="choseCurrentOrder()"
 >
   <mat-card-header fxLayout="column">
-    <mat-card-title class="text-nowrap"> {{ order.service.title }} </mat-card-title>
+    <mat-card-title class="text-nowrap">
+      {{ order.service.title }}
+    </mat-card-title>
     <mat-card-title-group fxFlexAlign="end">
       <mat-card-subtitle class="mb-0">
         {{ +order.started_at * 1000 | date: 'dd/LL/yyyy' }}
