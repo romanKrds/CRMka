@@ -1,5 +1,5 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
-import { CustomersState } from '@models/*';
+import { CustomersState, CustomerWithId } from '@models/*';
 import { customersAdapter } from '../reducers/customers.reducer';
 
 export const selectStateCustomers = createFeatureSelector<CustomersState>(
@@ -32,5 +32,5 @@ export const selectCustomersTotal = createSelector(
 
 export const getCustomerById = () => createSelector(
   selectCustomersEntities,
-  (customers, customerId) => customers[customerId]
+  (customers: { [x: string]: CustomerWithId; }, customerId: string | number): CustomerWithId => customers[customerId]
 );

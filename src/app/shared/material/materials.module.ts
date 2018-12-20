@@ -9,7 +9,8 @@ import {
   MatNativeDateModule,
   MatTooltipModule,
   MatSnackBarModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+  MatGridListModule
 } from '@angular/material';
 
 import { MatInputModule } from '@angular/material/input';
@@ -36,7 +37,8 @@ const MODULES = [
   MatTooltipModule,
   MatSnackBarModule,
   MatPaginatorModule,
-  ScrollingModule
+  ScrollingModule,
+  MatGridListModule
 ];
 
 @NgModule({
