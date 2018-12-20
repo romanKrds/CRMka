@@ -1,22 +1,24 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { MaterialModule } from '../material/materials.module';
+import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from './material/materials.module';
 
 const MODULES = [
   CommonModule,
   ReactiveFormsModule,
+  FormsModule,
   MaterialModule,
-  FormsModule
 ];
 
 @NgModule({
   imports: [
-    ...MODULES
+    ...MODULES,
+    FlexLayoutModule.withConfig({useColumnBasisZero: false})
   ],
   exports: [
-    ...MODULES
-  ],
-  declarations: []
+    ...MODULES,
+    FlexLayoutModule
+  ]
 })
-export class SharedModule { }
+export class SharedModule {}

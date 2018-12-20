@@ -1,0 +1,10 @@
+<mat-card *ngIf="(clientsIds$ | async) as clientsIds">
+  <h2>
+    <strong> Клиенты: {{ clientsIds.length }} </strong>
+  </h2>
+  <cdk-virtual-scroll-viewport itemSize="130" class="example-viewport">
+    <div *cdkVirtualFor="let clientId of clientsIds" class="example-item">
+      <app-client-card [clientId]="clientId"></app-client-card>
+    </div>
+  </cdk-virtual-scroll-viewport>
+</mat-card>

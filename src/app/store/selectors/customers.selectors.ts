@@ -1,35 +1,36 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
-import { CustomersState } from '@models/*';
+import { CustomersState, CustomerWithId } from '@models/*';
 import { customersAdapter } from '../reducers/customers.reducer';
 
-export const selectStateCustomers = createFeatureSelector<CustomersState>('customers');
+export const selectStateCustomers = createFeatureSelector<CustomersState>(
+  'customers'
+);
 
-export const {
-    selectIds,
-    selectEntities,
-    selectAll,
-    selectTotal,
+const {
+  selectIds,
+  selectEntities,
+  selectAll,
+  selectTotal
 } = customersAdapter.getSelectors();
 
-
-export const selectServicesIds = createSelector(
-    selectStateCustomers,
-    selectIds
+export const selectCustomersIds = createSelector(
+  selectStateCustomers,
+  selectIds
 );
-export const selectServicesEntities = createSelector(
-    selectStateCustomers,
-    selectEntities
+export const selectCustomersEntities = createSelector(
+  selectStateCustomers,
+  selectEntities
 );
-export const selectServicesAll = createSelector(
-    selectStateCustomers,
-    selectAll
+export const selectCustomersAll = createSelector(
+  selectStateCustomers,
+  selectAll
 );
-export const selectServicesTotal = createSelector(
-    selectStateCustomers,
-    selectTotal
+export const selectCustomersTotal = createSelector(
+  selectStateCustomers,
+  selectTotal
 );
 
 export const getCustomerById = () => createSelector(
-    selectServicesEntities,
-    (customers, id) => customers[id]
+  selectCustomersEntities,
+  (customers: { [x: string]: CustomerWithId; }, customerId: string | number): CustomerWithId => customers[customerId]
 );

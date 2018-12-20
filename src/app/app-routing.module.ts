@@ -1,14 +1,38 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './components/login/login.component';
+import { SelectCurrentBusinessComponent } from './components/select-current-business/select-current-business.component';
 
 const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
-    redirectTo: 'orders-dashboard'
-  }, {
-    path: 'orders-dashboard',
-    loadChildren: './orders-dashboard/orders-dashboard.module#OrdersDashboardModule'
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'login',
+      },
+      {
+        path: 'login',
+        component: LoginComponent
+      },
+      // {
+        // path: 'registration',
+        // component: RegistratioComponent
+      // },
+      {
+        path: 'select-business',
+        component : SelectCurrentBusinessComponent
+      }
+    ]
+  },
+  {
+    path: 'app',
+    loadChildren: './base/base.module#BaseModule'
+  },
+  {
+    path: '**',
+    redirectTo: ''
   }
 ];
 

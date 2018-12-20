@@ -1,14 +1,12 @@
+import { ErrorStatuses, LoadStatusesSuccess } from '@actions/*';
 import { Injectable } from '@angular/core';
-import { Action } from '@ngrx/store';
-import { Actions, Effect, ofType } from '@ngrx/effects';
-import { LoadStatusesSuccess, ErrorStatuses } from '@actions/*';
-import { StatusesActionTypes } from '@constants/*';
-import { Status } from '@models/*';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { StatusesActionTypes } from '@constants/*';
+import { StatusWithId } from '@models/*';
+import { Actions, Effect, ofType } from '@ngrx/effects';
+import { Action } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
-import { catchError, map, mergeMap } from 'rxjs/operators';
-
-
+import { catchError, map, switchMap } from 'rxjs/operators';
 
 @Injectable()
 export class StatusesEffects {
@@ -18,7 +16,7 @@ export class StatusesEffects {
   @Effect()
   loadStatuses$: Observable<Action> = this.actions$.pipe(
     ofType(StatusesActionTypes.LoadStatuses),
-    mergeMap( _ => this.db.list('/states').snapshotChanges()),
+    switchMap( _ => this.db.list('/states').snapshotChanges()),
     map(
       (statuses: any[]) => {
         return statuses.map(
@@ -31,7 +29,7 @@ export class StatusesEffects {
       }
     ),
     map(
-      (statuses: Status[]) => {
+      (statuses: StatusWithId[]) => {
         return new LoadStatusesSuccess({statuses});
       }
     ),

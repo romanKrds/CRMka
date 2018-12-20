@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
-import { Service } from '@models/*';
+import { Service, ServiceWithId } from '@models/*';
 import { ServicesActionTypes } from '@constants/*';
 
 export class LoadServices implements Action {
@@ -11,43 +11,43 @@ export class LoadServices implements Action {
 export class LoadServicesSuccess implements Action {
   readonly type = ServicesActionTypes.LoadServicesSuccess;
 
-  constructor(public payload: { services: Service[] }) {}
+  constructor(public payload: { services: ServiceWithId[] }) {}
 }
 
 export class AddService implements Action {
   readonly type = ServicesActionTypes.AddService;
 
-  constructor(public payload: { service: Service }) {}
+  constructor(public payload: { service: ServiceWithId }) {}
 }
 
 export class UpsertService implements Action {
   readonly type = ServicesActionTypes.UpsertService;
 
-  constructor(public payload: { service: Service }) {}
+  constructor(public payload: { service: ServiceWithId }) {}
 }
 
 export class AddServices implements Action {
   readonly type = ServicesActionTypes.AddServices;
 
-  constructor(public payload: { services: Service[] }) {}
+  constructor(public payload: { services: ServiceWithId[] }) {}
 }
 
 export class UpsertServices implements Action {
   readonly type = ServicesActionTypes.UpsertServices;
 
-  constructor(public payload: { services: Service[] }) {}
+  constructor(public payload: { services: ServiceWithId[] }) {}
 }
 
 export class UpdateService implements Action {
   readonly type = ServicesActionTypes.UpdateService;
 
-  constructor(public payload: { service: Update<Service> }) {}
+  constructor(public payload: { service: Update<ServiceWithId> }) {}
 }
 
 export class UpdateServices implements Action {
   readonly type = ServicesActionTypes.UpdateServices;
 
-  constructor(public payload: { services: Update<Service>[] }) {}
+  constructor(public payload: { services: Update<ServiceWithId>[] }) {}
 }
 
 export class DeleteService implements Action {

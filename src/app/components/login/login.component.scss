@@ -1,0 +1,23 @@
+.container {
+  height: 100vh;
+  display: flex;
+}
+.login {
+  max-width: 550px;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: relative;
+}
+
+.form-field-wrapper {
+  width: 100%;
+}
+:host {
+height: 100vh;
+}
+.login-form-wrapper {
+  height: 100%;
+}

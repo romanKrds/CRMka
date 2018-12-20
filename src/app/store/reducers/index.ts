@@ -1,27 +1,22 @@
-import {
-  ActionReducer,
-  ActionReducerMap,
-  createFeatureSelector,
-  createSelector,
-  MetaReducer
-} from '@ngrx/store';
-import { environment } from '../../../environments/environment';
+import { ActionReducerMap, MetaReducer } from '@ngrx/store';
 import { AppStore } from 'src/app/models';
-import { reducerServices } from './services.reducer';
-
-import { statusesReducers } from './statuses.reducer';
-import { ordersReducer } from './orders.reducer';
+import { environment } from '../../../environments/environment';
+import { reducerBusiness } from './business.reducer';
+import { currentBusinessReducer } from './current-business.reducer';
+import { currentClientReducer } from './current-client.reducer';
 import { customersReducer } from './customers.reducer';
-import { curentClientReducer } from './current-client.reducer';
-import { curentBusinessReducer } from './current-business.reducer';
+import { ordersReducer } from './orders.reducer';
+import { reducerServices } from './services.reducer';
+import { statusesReducers } from './statuses.reducer';
 
 export const reducers: ActionReducerMap<AppStore> = {
-  currentClient: curentClientReducer,
-  currentBusiness: curentBusinessReducer,
+  currentClient: currentClientReducer,
+  currentBusiness: currentBusinessReducer,
   services: reducerServices,
   statuses: statusesReducers,
   orders: ordersReducer,
-  customers: customersReducer
+  customers: customersReducer,
+  clientBusinesses: reducerBusiness
 };
 
 

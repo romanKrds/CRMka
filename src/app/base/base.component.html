@@ -1,0 +1,13 @@
+<mat-sidenav-container hasBackdrop="false" autosize>
+  <mat-sidenav
+    mode="side"
+    opened
+    #sidebar
+    [class.small]="small"
+    (dblclick)="onResizeSidebar()"
+  >
+    <app-sidebar [small]="small"></app-sidebar>
+  </mat-sidenav>
+
+  <mat-sidenav-content> <router-outlet></router-outlet> </mat-sidenav-content>
+</mat-sidenav-container>

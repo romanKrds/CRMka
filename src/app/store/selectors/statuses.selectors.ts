@@ -1,6 +1,6 @@
-import { StatusesState } from '../../models/statuses-state.model';
 import { statusesAdapter } from '../reducers/statuses.reducer';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { StatusesState } from '@models/*';
 
 export const selectStateStatuses = createFeatureSelector<StatusesState>('statuses');
 
@@ -12,25 +12,24 @@ const {
   selectTotal,
 } = statusesAdapter.getSelectors();
 
-export const selectAllStatuses = createSelector(
+export const selectStateIds = createSelector(
+  selectStateStatuses,
+  selectIds
+);
+export const selectStatusesEntities = createSelector(
   selectStateStatuses,
   selectEntities
 );
 
-const _selectAsArray = (statuses) => {
-
-  return Object.keys(statuses).map((key) => {
-    return statuses[key];
-  });
-};
-
-export const selectStatusesAsArray = createSelector(
-  selectAllStatuses,
-  _selectAsArray
+export const selectStatusesAll = createSelector(
+  selectStateStatuses,
+  selectAll
 );
-
-
+export const selectStatusesTotal = createSelector(
+  selectStateStatuses,
+  selectTotal
+);
 export const getStatusById = () => createSelector(
-  selectAllStatuses,
+  selectStatusesEntities,
   (services, id) => services[id]
 );

@@ -1,0 +1,32 @@
+<mat-card
+  *ngIf="order"
+  [ngClass]="order.state"
+  [class.active]="order.id === currentOrder"
+  (click)="choseCurrentOrder()"
+>
+  <mat-card-header fxLayout="column">
+    <mat-card-title class="text-nowrap">
+      {{ order.service.title }}
+    </mat-card-title>
+    <mat-card-title-group fxFlexAlign="end">
+      <mat-card-subtitle class="mb-0">
+        {{ +order.started_at * 1000 | date: 'dd/LL/yyyy' }}
+      </mat-card-subtitle>
+    </mat-card-title-group>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content
+    fxLayout="row"
+    fxLayoutAlign="space-between"
+    fxLayoutGap="15px"
+  >
+    <div class="name">
+      Клиент
+      <p>{{ order.customer.first_name }}</p>
+    </div>
+    <div class="status">
+      Статус
+      <p>{{ order.stateObj.title }}</p>
+    </div>
+  </mat-card-content>
+</mat-card>

@@ -1,7 +1,7 @@
-import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-import { CustomersActions  } from '@actions/*';
+import { CustomersActions } from '@actions/*';
 import { CustomersActionTypes } from '@constants/*';
 import { Customer, CustomersState } from '@models/*';
+import { createEntityAdapter, EntityAdapter } from '@ngrx/entity';
 
 
  export const customersAdapter: EntityAdapter<Customer> = createEntityAdapter<Customer>();

@@ -1,8 +1,11 @@
 export interface Customer {
-  id: string;
   businessId: string;
   email: string;
-  firstName: string;
-  lastName: string;
+  first_name: string;
+  last_name: string;
   phone: string;
 }
+
+export interface CustomerWithId extends Customer {
+  id: string;
+ }
