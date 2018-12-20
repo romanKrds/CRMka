@@ -1,8 +1,9 @@
 .example-viewport {
-  height: 140px;
+  height: calc(100vh - 60px - 36px - 36px - 8px);
   width: 100%;
 }
 
 .example-item {
   height: 130px;
+  padding: 4px;
 }
