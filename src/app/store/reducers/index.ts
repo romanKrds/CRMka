@@ -1,8 +1,5 @@
 import {
-  ActionReducer,
   ActionReducerMap,
-  createFeatureSelector,
-  createSelector,
   MetaReducer
 } from '@ngrx/store';
 import { environment } from '../../../environments/environment';
@@ -14,6 +11,7 @@ import { ordersReducer } from './orders.reducer';
 import { customersReducer } from './customers.reducer';
 import { curentClientReducer } from './current-client.reducer';
 import { curentBusinessReducer } from './current-business.reducer';
+import { customersPerBusinessReducer } from './customersPerBusiness.reducer';
 
 export const reducers: ActionReducerMap<AppStore> = {
   currentClient: curentClientReducer,
@@ -21,7 +19,8 @@ export const reducers: ActionReducerMap<AppStore> = {
   services: reducerServices,
   statuses: statusesReducers,
   orders: ordersReducer,
-  customers: customersReducer
+  customers: customersReducer,
+  customersPerBusiness: customersPerBusinessReducer
 };
 
 

@@ -6,6 +6,7 @@ export interface AppStore {
   currentBusiness?: string;
   orders: OrdersState;
   customers: CustomersState;
+  customersPerBusiness: string[];
   statuses: StatusesState;
   services: ServicesState;
 }
