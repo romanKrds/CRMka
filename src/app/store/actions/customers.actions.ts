@@ -1,18 +1,23 @@
 import { Action } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
-import { Customer } from '../../models/customer.model';
+import { Customer } from '@models/*';
 import { CustomersActionTypes } from '@constants/*';
 
 
 
 export class LoadCustomers implements Action {
   readonly type = CustomersActionTypes.LoadCustomers;
-  constructor() { }
+  constructor(public payload: { business: string }) { }
+}
+
+export class LoadCustomersInfo implements Action {
+  readonly type = CustomersActionTypes.LoadCustomersInfo;
+  constructor(public payload: { customers: string[] }) { }
 }
 
 
-export class LoadCustomersSuccess implements Action {
-  readonly type = CustomersActionTypes.LoadCustomersSuccess;
+export class LoadCustomersInfoSuccess implements Action {
+  readonly type = CustomersActionTypes.LoadCustomersInfoSuccess;
 
   constructor(public payload: { customers: Customer[] }) {}
 }
@@ -76,15 +81,16 @@ export class ErrorCustomers implements Action {
 }
 
 export type CustomersActions =
- LoadCustomers
- | LoadCustomersSuccess
- | AddCustomer
- | UpsertCustomer
- | AddCustomers
- | UpsertCustomers
- | UpdateCustomer
- | UpdateCustomers
- | DeleteCustomer
- | DeleteCustomers
- | ClearCustomers
- | ErrorCustomers;
+  LoadCustomers
+  |LoadCustomersInfo
+  | LoadCustomersInfoSuccess
+  | AddCustomer
+  | UpsertCustomer
+  | AddCustomers
+  | UpsertCustomers
+  | UpdateCustomer
+  | UpdateCustomers
+  | DeleteCustomer
+  | DeleteCustomers
+  | ClearCustomers
+  | ErrorCustomers;

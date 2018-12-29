@@ -1,93 +1,92 @@
-import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireDatabase, SnapshotAction } from '@angular/fire/database';
+import { DatabaseReference } from '@angular/fire/database/interfaces';
+
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { Action, Store, select } from '@ngrx/store';
+import { Action, Store } from '@ngrx/store';
 import { Injectable } from '@angular/core';
+
+import { CustomersActionTypes, CustomersPerBusinessActionTypes } from '@constants/*';
+import {
+  LoadCustomersInfoSuccess,
+  LoadCustomersPerBusiness,
+  LoadCustomersPerBusinessSuccess,
+  LoadCustomersInfo,
+  LoadCustomers,
+  ErrorCustomersPerBusiness,
+  ErrorCustomers
+} from '@actions/*';
+import { AppStore, Customer} from '@models/*';
+
+import { CommonEffectsBehavior } from './shared/common-behavior.class';
+
 import { Observable, of } from 'rxjs';
 import { map, mergeMap, tap, switchMap, catchError } from 'rxjs/operators';
+import { flatten } from 'lodash';
 
-import { CustomersActionTypes } from '@constants/*';
-import { LoadCustomersSuccess, ErrorCustomers } from '@actions/*';
-import { Customer, AppStore } from '@models/*';
-import { DatabaseReference } from '@angular/fire/database/interfaces';
-// import { CustomersLoadSuccess } from '../actions/customer.actions';
-
-
+interface CustomersPerBusinessRaw {
+  string: boolean;
+}
 @Injectable()
-export class CustomersEffects {
-
-  private business: string;
+export class CustomersEffects extends CommonEffectsBehavior {
 
   constructor(
     private db: AngularFireDatabase,
     private store: Store<AppStore>,
     private actions$: Actions
   ) {
-    this.store.pipe(
-      select('currentBusiness')
-    )
-    .subscribe((value: string) => this.business = value);
+    super(db);
   }
 
   @Effect()
-  loadCustomersPerBussines$: Observable<Action> = this.actions$.pipe(
-    ofType(CustomersActionTypes.LoadCustomers),
-    mergeMap(
-      () => this.db.list<any>(`/customersPerBusiness`, (ref: DatabaseReference) =>
-      ref.orderByKey().equalTo(this.business)).snapshotChanges().pipe(
-        // If successful, dispatch success action with result
-        tap(value => value.map(item => console.log(item.payload.val()))),
-        map((customer: any[]) => {
-          console.log(customer);
-          return new LoadCustomersSuccess({ customers: customer });
-        }),
-      )
-    )
-  );
-
-  @Effect()
-    // by leobaltazor
-    loadCustomersEffect$: Observable<Action> = this.actions$.pipe(
+  loadCustomers$: Observable<Action> = this.actions$
+    .pipe(
       ofType(CustomersActionTypes.LoadCustomers),
-      switchMap(_ => {
-          return this.db.list('/customers', ref => ref.orderByChild('businessId').equalTo(this.business))
-          .snapshotChanges();
-      }),
-      map(customers => {
-        // console.log('list', customers);
-          return customers.map(customer => {
-            const data = customer.payload.val();
-            const id = customer.payload.key;
-            return { id, ...data };
-          });
-      }),
-      map((customers: Customer[]) => {
-        // console.log('DISPATCH', customers);
-        return new LoadCustomersSuccess({ customers });
-      }),
-      catchError(errors => of(new ErrorCustomers({ errors })))
+      map((action: LoadCustomers) => new LoadCustomersPerBusiness({business: action.payload.business}))
     );
 
-  // @Effect()
-  // loadCustomersEffect$: Observable<Action> = this.actions$.pipe(
-  //   ofType(CustomersActionTypes.LoadCustomers),
-  //   mergeMap(
-  //     () => this.db.list<Customer>('/customers').snapshotChanges().pipe(
-  //       // If successful, dispatch success action with result
-  //       map(data => {
-  //         return data.map(value => {
-  //           const dat = value.payload.val();
-  //           const id = value.payload.key;
-  //           return { id, ...dat };
-  //         });
-  //       }),
-  //       map((customer: Customer[]) => {
-  //         return new LoadCustomersSuccess({ customers: customer });
-  //       }),
-  //     )
-  //   )
-  // );
+  @Effect()
+  loadCustomersPerBussines$: Observable<Action> = this.actions$
+    .pipe(
+      ofType(CustomersPerBusinessActionTypes.LoadCustomersPerBusiness),
+      mergeMap(
+        (action: LoadCustomersPerBusiness) => this.db.list<CustomersPerBusinessRaw>(
+          `/customersPerBusiness`,
+          (ref: DatabaseReference) => ref.orderByKey().equalTo(action.payload.business)
+        ).snapshotChanges()
+          .pipe(
+            // // If successful, dispatch success action with result
+            switchMap((snapAction: SnapshotAction<CustomersPerBusinessRaw>[]) => {
+              const customers = Object.keys(snapAction[0].payload.val());
+              return [
+                new LoadCustomersPerBusinessSuccess({customers}),
+                new LoadCustomersInfo({customers})
+              ];
+            }),
+            // If request fails, dispatch failed action
+            catchError((errors) => of(new ErrorCustomersPerBusiness({errors})))
+          )
+      )
+    );
 
-  // (ref: DatabaseReference) =>
-  //       ref.orderByChild('size').equalTo(this.business)
+  @Effect()
+  loadCustomersInfo$: Observable<Action> = this.actions$
+    .pipe(
+      ofType(CustomersActionTypes.LoadCustomersInfo),
+      mergeMap(
+        (action: LoadCustomersInfo) =>
+          this.retrieveMultipleKeys<Customer>('customers', action.payload.customers)
+            .pipe(
+              // If successful, dispatch success action with result
+              tap((v: SnapshotAction<Customer>[][]) => console.log(v)),
+              map((resp: SnapshotAction<Customer>[][]) => {
+                const customers = flatten(resp).map((item: SnapshotAction<Customer>) => ({...item.payload.val(), id: item.key}));
+                console.log(customers);
+                return new LoadCustomersInfoSuccess({customers});
+              }),
+              // If request fails, dispatch failed action
+              catchError((errors) => of(new ErrorCustomers({errors})))
+            )
+      )
+    );
 }
 

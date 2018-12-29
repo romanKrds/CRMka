@@ -1,5 +1,5 @@
-import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-import { CustomersActions  } from '@actions/*';
+import { EntityAdapter, createEntityAdapter } from '@ngrx/entity';
+import { CustomersActions } from '@actions/*';
 import { CustomersActionTypes } from '@constants/*';
 import { Customer, CustomersState } from '@models/*';
 
@@ -48,7 +48,7 @@ export function customersReducer(
       return customersAdapter.removeMany(action.payload.ids, state);
     }
 
-    case CustomersActionTypes.LoadCustomersSuccess: {
+    case CustomersActionTypes.LoadCustomersInfoSuccess: {
       // console.log('Load Customers reducer', action, state);
       return customersAdapter.addAll(action.payload.customers, state);
     }

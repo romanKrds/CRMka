@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
+
 import { Store, select } from '@ngrx/store';
 
-import { AppStore, OrdersState } from '@models/*';
-
-import { LoadStatuses, LoadOrders, LoadServices, LoadCustomers } from '@actions/*';
-import { selectStateServices, selectStatusesAsArray } from '@selectors/*';
+import { AppStore } from '@models/*';
+import { LoadStatuses, LoadCustomers } from '@actions/*';
 
 
 @Component({
@@ -28,29 +27,18 @@ export class AppComponent implements OnInit {
     this.store.select('orders').subscribe(
       // (orders: OrdersState) => console.log(orders)
     );
+      this.store.pipe(
+        select('currentBusiness')
+      );
 
-    this.store.pipe(
-      select('currentBusiness')
-    )
-    .subscribe((value: string) => this.store.dispatch(new LoadCustomers()));
-    // this.store
-    //   .select(selectStatusesAsArray)
-    //   .subscribe(statuses => {
-    //     // console.log('STATUSES: ', statuses);
-    //     // this.statuses = statuses;
-    //   }
-    //   );
+    this.store
+      .pipe(
+        select('currentBusiness')
+      )
 
-    // this.store
-    //   .select(selectStateServices)
-    //   .subscribe(
-    //     // value => console.log('SERVICES: ', value)
-    //   );
-    // this.db
-    //   .list('/clients')
-    //   .valueChanges()
-    //   .subscribe(
-    //     // value => console.log('CLIENTS: ', value)
-    //   );
+      .subscribe(
+        (business: string) => this.store.dispatch(new LoadCustomers({business}))
+      );
+
   }
 }

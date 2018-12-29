@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { AppStore, Order, OrdersState, StatusesState, Status } from '@models/*';
-import { selectServicesAll, selectAllStatuses, selectStatusesAsArray, getServiceById, getStatusById } from '@selectors/*';
-import { selectAllOrders, selectCurrentOrder, getOrderById } from 'src/app/store/selectors/orders.selectors';
+import { AppStore, Order, OrdersState } from '@models/*';
+import { selectServicesAll, selectStatusesAsArray, getServiceById, getStatusById } from '@selectors/*';
+import { selectCurrentOrder, getOrderById } from 'src/app/store/selectors/orders.selectors';
 import { getCustomerById } from 'src/app/store/selectors/customers.selectors';
 import { DateAdapter } from '@angular/material/core';
 
@@ -45,15 +45,9 @@ export class OrderDetailsComponent implements OnInit {
       }
       );
     this.store.select(selectServicesAll)
-      .subscribe(value => (this.services = value,
-        console.log(this.services)
-      )
-      );
+      .subscribe(value => (this.services = value));
     this.store.select(selectStatusesAsArray)
-      .subscribe(value => (this.statuses = value,
-        console.log(this.statuses)
-      )
-      );
+      .subscribe(value => (this.statuses = value));
     this.formInit(),
       this.orderForm.valueChanges
         .subscribe((valueChange: any) => {
@@ -100,7 +94,7 @@ export class OrderDetailsComponent implements OnInit {
       started_at: this.currentOrder.started_at,
       state: this.statuses[stateid].id
     };
-    console.log(result);
+    // console.log(result);
     // console.log(this.statuses);
     // console.log(stateid);
     // console.log(this.statuses[stateid]);
